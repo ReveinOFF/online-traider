@@ -1,0 +1,102 @@
+header {
+  position: relative;
+  margin-top: 20px;
+  justify-content: space-between;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    height: 2px;
+    width: 100%;
+    background: linear-gradient(
+      93.83deg,
+      #294bb8 0%,
+      #2985b8 100%,
+      #2985b8 100%
+    );
+  }
+
+  nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      border-radius: 10px 10px 0px 0px;
+      background: #2f3241;
+      cursor: default;
+      position: relative;
+
+      &:last-child a {
+        padding: 17px 20px;
+      }
+
+      &,
+      button {
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 16px;
+        letter-spacing: 0.05em;
+        text-align: left;
+      }
+
+      button {
+        gap: 14px;
+        padding: 17px 20px;
+        background: transparent;
+        color: #6b6e7b;
+      }
+
+      a {
+        color: #6b6e7b;
+        text-decoration: none;
+      }
+
+      &:first-child {
+        background: linear-gradient(
+          93.83deg,
+          #294bb8 0%,
+          #2985b8 100%,
+          #2985b8 100%
+        );
+
+        button {
+          color: #ffffff;
+        }
+      }
+    }
+  }
+
+  &,
+  & > div,
+  nav ul {
+    display: flex;
+    gap: 1px;
+  }
+
+  .h_dropdown {
+    position: absolute;
+    top: 100%;
+    padding: 20px;
+    padding-right: 40px;
+    left: 0;
+    background: #2f3241;
+    width: 211px;
+    display: grid;
+    gap: 20px;
+
+    a {
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 16px;
+      letter-spacing: 0em;
+      text-align: left;
+
+      &:hover {
+        color: #2179e0;
+      }
+    }
+  }
+}

@@ -1,0 +1,112 @@
+.btn {
+  letter-spacing: 0.1em;
+}
+
+/* Big button style */
+.big_btn {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 18px;
+  text-align: center;
+  color: #ffffff;
+
+  background: #294bb8;
+  box-shadow: -110px 0px 60px -45px #2985b8 inset;
+  border-radius: 5px;
+  padding: 1.2rem 7.2rem;
+  transition: all 0.1s;
+
+  &:hover {
+    background: #469bea;
+    box-shadow: none;
+  }
+
+  &:active {
+    background: #2572b9;
+  }
+
+  &:disabled {
+    background: #4d5060;
+    color: #8a8d9d;
+    box-shadow: none;
+  }
+}
+
+/* Small green button style */
+.smg_btn {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 14px;
+  text-align: center;
+  color: #ffffff;
+
+  background-color: #232735;
+  width: 182px;
+  height: 30px;
+  border-radius: 5px;
+  position: relative;
+
+  transition: all 0.1s;
+
+  &::after {
+    background: #37cf74;
+    box-shadow: -110px 0px 60px -45px #37cfa1 inset;
+  }
+
+  &:hover {
+    background: #37cf74;
+    box-shadow: -110px 0px 60px -45px #37cfa1 inset;
+  }
+
+  &:active {
+    background: #229b61;
+  }
+}
+
+/* Small blue button style */
+.smb_btn {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 14px;
+  text-align: center;
+  color: #ffffff;
+
+  background-color: #232735;
+  width: 182px;
+  height: 30px;
+  border-radius: 5px;
+  position: relative;
+
+  transition: all 0.1s;
+
+  &::after {
+    background: #294bb8;
+    box-shadow: -110px 0px 60px -45px #2985b8 inset;
+  }
+
+  &:hover {
+    background: #294bb8;
+    box-shadow: -110px 0px 60px -45px #2985b8 inset;
+  }
+
+  &:active {
+    background: #2572b9;
+  }
+}
+
+.smb_btn::after,
+.smg_btn::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  height: calc(100% + 2px);
+  width: calc(100% + 2px);
+  border-radius: 5px;
+  z-index: -1;
+}
+
+.smb_btn:active,
+.smg_btn:active {
+  box-shadow: none;
+}

@@ -1,0 +1,38 @@
+@import url("./fonts.scss");
+
+body {
+  margin: 0;
+  background: #232735;
+}
+
+button {
+  border: 0;
+}
+
+button:not(:disabled) {
+  cursor: pointer;
+}
+
+input:focus {
+  outline: none;
+}
+
+.roboto {
+  font-family: Roboto;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.justify-center {
+  display: flex;
+  justify-content: center;
+}
+
+.item-center {
+  display: flex;
+  align-items: center;
+}

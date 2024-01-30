@@ -1,0 +1,110 @@
+.signup {
+  min-height: 100vh;
+  padding-top: 30px;
+
+  h1 {
+    margin-top: 0;
+  }
+
+  & > div {
+    background: #2f3241;
+    border-radius: 10px;
+    padding: 30px 78px;
+    position: relative;
+
+    & > img {
+      position: absolute;
+      top: 40px;
+      right: 30px;
+      cursor: pointer;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    p {
+      max-width: 764px;
+      color: #8a8d9d;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+      letter-spacing: 0em;
+      text-align: center;
+    }
+
+    h2 {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    form {
+      & > div {
+        margin-bottom: 50px;
+
+        fieldset {
+          display: grid;
+          grid-template-columns: 0.5fr 1fr;
+          gap: 20px;
+          align-items: center;
+          margin-bottom: 20px;
+          border: 0;
+
+          & > div {
+            text-align: end;
+            color: #8a8d9d;
+            font-size: 15px;
+            font-weight: 500;
+            line-height: 18px;
+            letter-spacing: 0em;
+          }
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+
+          input[type="date"]::-webkit-inner-spin-button,
+          input[type="date"]::-webkit-calendar-picker-indicator {
+            display: none;
+            -webkit-appearance: none;
+          }
+
+          input[type="date"] {
+            max-width: 137px;
+          }
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+.last_block {
+  display: grid;
+  justify-content: center;
+  grid-auto-columns: 0.3fr;
+
+  .last_h2 {
+    margin-top: 0;
+  }
+
+  button {
+    background: #2179e0;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 18px;
+    letter-spacing: 0.1em;
+    text-align: center;
+    color: #ffffff;
+    padding: 19px 41px;
+    border-radius: 5px;
+    transition: box-shadow 0.1s;
+
+    &:hover {
+      box-shadow: -90px 0px 75px -20px #294bb8 inset;
+    }
+  }
+}

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import arrow from "../../assets/images/arrow.svg";
 import styles from "./selector.module.scss";
 
-const Selector = ({ data, className, disabled }) => {
+const Selector = ({ data, className, selected, setSelected, disabled }) => {
   const [showSelector, setShowSelector] = useState(false);
 
   const changeShowSelector = (e) => {
@@ -24,22 +24,29 @@ const Selector = ({ data, className, disabled }) => {
   return (
     <div className={`${styles.selector} c_selector ${className || ""}`}>
       <button
-        className={`flex-center ${styles.btn_selected} ${
+        className={`item-center ${styles.btn_selected} ${
           showSelector ? styles.active : ""
         } ${disabled ? styles.inactive : ""}`}
-        onClick={() => setShowSelector(!showSelector)}
+        onClick={(e) => {
+          e.preventDefault();
+          setShowSelector(!showSelector);
+        }}
       >
-        <div>Real (USD)</div>
+        <div>{data[selected] || "Не указан"}</div>
         <img src={arrow} alt="arrow" />
       </button>
       <div className={showSelector ? styles.active : ""}>
-        <div
-          onClick={() => {
-            setShowSelector(false);
-          }}
-        >
-          Real (USD)
-        </div>
+        {Object.entries(data).map((item) => (
+          <div
+            key={item[0]}
+            onClick={() => {
+              setShowSelector(false);
+              setSelected(item[0]);
+            }}
+          >
+            {item[1]}
+          </div>
+        ))}
       </div>
     </div>
   );

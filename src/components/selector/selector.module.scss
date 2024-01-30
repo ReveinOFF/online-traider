@@ -1,21 +1,28 @@
 .selector {
   position: relative;
   display: inline-block;
+  z-index: 1;
 
   .btn_selected {
     background: #4e5266;
-    padding: 16px 20px;
     border-radius: 5px;
     color: #ffffff;
+    padding: 11px 20px;
     font-size: 15px;
     font-weight: 400;
     line-height: 18px;
     letter-spacing: 0em;
     text-align: left;
     transition: 0.3s;
+    border: 1px solid transparent;
+    width: 100%;
+
+    &:not(.inactive):hover {
+      border: 1px solid #8a8d9d;
+    }
 
     img {
-      margin-left: 260px;
+      margin-left: auto;
       transition: rotate 0.3s;
     }
 
@@ -50,6 +57,8 @@
     display: grid;
     gap: 15px;
     z-index: -1;
+    max-height: 400px;
+    overflow: auto;
     visibility: hidden;
     opacity: 0;
     transform: translateY(-40px);

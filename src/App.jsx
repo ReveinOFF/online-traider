@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 // import ResetPass from "./pages/auth/reset";
 // import SignUp from "./pages/auth/signup";
 import Home from "./pages/home";
+import Layout from "./components/layout";
 
 const App = () => {
   return (
@@ -11,7 +12,9 @@ const App = () => {
       <Route path="/reset-pass" element={<ResetPass />} />
       <Route path="/signup" element={<SignUp />} /> */}
 
-      <Route path="/" element={<Home />} />
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+      </Route>
     </Routes>
   );
 };

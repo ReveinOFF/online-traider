@@ -31,24 +31,25 @@ const Language = ({ className }) => {
   }, [showLng]);
 
   return (
-    <div
-      className={`lng ${className || ""} ${showLng ? "show-lng-block" : ""}`}
-    >
-      <img
-        src={i18n.language === "ru" ? russian : english}
-        alt={i18n.language === "ru" ? "russian" : "english"}
-        width={16}
-        height={16}
-        onClick={() => setShowLng(!showLng)}
-      />
-      <img
-        src={i18n.language !== "ru" ? russian : english}
-        alt={i18n.language !== "ru" ? "russian" : "english"}
-        className={showLng ? "show_lng" : "hidden_lng"}
-        width={16}
-        height={16}
-        onClick={() => changeLang(i18n.language !== "ru" ? "ru" : "en")}
-      />
+    <div className={`lng ${className || ""} ${showLng ? "active" : ""}`}>
+      <div className={showLng ? "active" : ""}>
+        <img
+          src={i18n.language === "ru" ? russian : english}
+          alt={i18n.language === "ru" ? "russian" : "english"}
+          width={16}
+          height={16}
+          onClick={() => setShowLng(!showLng)}
+        />
+      </div>
+      <div className={showLng ? "active" : ""}>
+        <img
+          src={i18n.language !== "ru" ? russian : english}
+          alt={i18n.language !== "ru" ? "russian" : "english"}
+          width={16}
+          height={16}
+          onClick={() => changeLang(i18n.language !== "ru" ? "ru" : "en")}
+        />
+      </div>
     </div>
   );
 };

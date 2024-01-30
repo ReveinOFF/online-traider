@@ -1,33 +1,37 @@
 .lng {
-  display: grid;
-  gap: 10px;
-  background: transparent;
-  padding: 17px 5px;
-  border-radius: 5px;
+  position: relative;
+  align-self: baseline;
 
-  transition: background 0.3s;
-
-  img {
+  div {
     cursor: pointer;
+    display: flex;
+    transition: all 0.3s;
+
+    &:is(.active) {
+      background: #2f3241;
+    }
+
+    &:first-child {
+      padding: 5px 5px;
+      border-radius: 5px 5px 0 0;
+      padding-top: 17px;
+    }
 
     &:last-child {
-      transition: 0.3s;
+      padding: 17px 5px;
+      padding-top: 5px;
+      border-radius: 0 0 5px 5px;
+      position: absolute;
+      z-index: 1;
+      visibility: hidden;
+      opacity: 0;
+      transform: translateY(-20px);
+
+      &:is(.active) {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   }
-}
-
-.show-lng-block {
-  background: #2f3241;
-}
-
-.hidden_lng {
-  visibility: hidden;
-  transform: translateY(-20px);
-  opacity: 0;
-}
-
-.show_lng {
-  visibility: visible;
-  transform: translateY(0);
-  opacity: 1;
 }

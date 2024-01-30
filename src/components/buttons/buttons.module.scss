@@ -2,24 +2,26 @@
   letter-spacing: 0.1em;
 }
 
-/* Big button style */
+.nmg_btn,
 .big_btn {
   font-size: 15px;
   font-weight: 700;
   line-height: 18px;
   text-align: center;
   color: #ffffff;
-
-  background: #294bb8;
-  box-shadow: -110px 0px 60px -45px #2985b8 inset;
   border-radius: 5px;
   padding: 1.2rem 7.2rem;
   transition: all 0.1s;
 
   &:hover {
-    background: #469bea;
     box-shadow: none;
   }
+}
+
+/* Big button style */
+.big_btn {
+  background: #294bb8;
+  box-shadow: -90px 0px 75px -20px #2985b8 inset;
 
   &:active {
     background: #2572b9;
@@ -33,6 +35,16 @@
 }
 
 /* Small green button style */
+.nmg_btn {
+  background: #37cf74;
+  box-shadow: -90px 0px 75px -20px #37cfa1 inset;
+
+  &:active {
+    background: #37cfa1;
+  }
+}
+
+/* Small green button style */
 .smg_btn {
   font-size: 12px;
   font-weight: 700;
@@ -41,8 +53,6 @@
   color: #ffffff;
 
   background-color: #232735;
-  width: 182px;
-  height: 30px;
   border-radius: 5px;
   position: relative;
 
@@ -72,8 +82,6 @@
   color: #ffffff;
 
   background-color: #232735;
-  width: 182px;
-  height: 30px;
   border-radius: 5px;
   position: relative;
 

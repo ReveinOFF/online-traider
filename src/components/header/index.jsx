@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import "./header.style.scss";
 import arrow from "../../assets/images/arrow.svg";
 import arrow_first from "../../assets/images/arrow_first.svg";
-import russian from "../../assets/images/header/russian.png";
+import russian from "../../assets/images/russian.png";
 
 const Header = () => {
   return (

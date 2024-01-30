@@ -1,0 +1,33 @@
+.lng {
+  display: grid;
+  gap: 10px;
+  background: transparent;
+  padding: 17px 5px;
+  border-radius: 5px;
+
+  transition: background 0.3s;
+
+  img {
+    cursor: pointer;
+
+    &:last-child {
+      transition: 0.3s;
+    }
+  }
+}
+
+.show-lng-block {
+  background: #2f3241;
+}
+
+.hidden_lng {
+  visibility: hidden;
+  transform: translateY(-20px);
+  opacity: 0;
+}
+
+.show_lng {
+  visibility: visible;
+  transform: translateY(0);
+  opacity: 1;
+}

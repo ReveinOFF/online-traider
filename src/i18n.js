@@ -8,7 +8,7 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    lng: localStorage.getItem("lng")?.toString(),
+    lng: localStorage.getItem("lng") || navigator.language.split("-")[0],
     fallbackLng: "en",
     saveMissing: false,
     detection: {

@@ -1,0 +1,21 @@
+.mb {
+  margin-bottom: 10px;
+}
+
+.block_btn {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  button {
+    padding: 19px 23px;
+  }
+}
+
+.btn_last {
+  background-color: #2f3241;
+}
+
+.link {
+  width: 100%;
+  display: inherit;
+}

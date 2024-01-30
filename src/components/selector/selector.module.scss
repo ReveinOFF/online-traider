@@ -1,0 +1,72 @@
+.selector {
+  position: relative;
+  display: inline-block;
+
+  .btn_selected {
+    background: #4e5266;
+    padding: 16px 20px;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: left;
+    transition: 0.3s;
+
+    img {
+      margin-left: 260px;
+      transition: rotate 0.3s;
+    }
+
+    &:is(.active) {
+      border-radius: 5px 5px 0 0;
+      border-bottom: 1px solid #8a8d9d;
+
+      img {
+        rotate: 180deg;
+      }
+    }
+
+    &:is(.inactive) {
+      cursor: not-allowed;
+      color: #8a8d9d;
+    }
+  }
+
+  & > div {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    background: #4e5266;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: left;
+    border-radius: 0 0 5px 5px;
+    padding: 16px 20px;
+    display: grid;
+    gap: 15px;
+    z-index: -1;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-40px);
+    transition: 0.3s;
+
+    div {
+      cursor: pointer;
+
+      &:hover {
+        color: #2179e0;
+      }
+    }
+
+    &:is(.active) {
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}

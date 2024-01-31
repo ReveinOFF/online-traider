@@ -1,6 +1,5 @@
 header {
   position: relative;
-  margin-top: 20px;
   justify-content: space-between;
 
   &::after {
@@ -81,6 +80,7 @@ header {
     .btn-terminal {
       padding: 8px 20px;
       margin-right: 9px;
+      margin-left: 37px;
     }
 
     .profile {

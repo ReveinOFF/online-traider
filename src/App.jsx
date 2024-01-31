@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 // import SignUp from "./pages/auth/signup";
 import Home from "./pages/home";
 import Layout from "./components/layout";
+import Profile from "./pages/profile";
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
 
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
+        <Route path="profile" element={<Profile />} />
       </Route>
     </Routes>
   );

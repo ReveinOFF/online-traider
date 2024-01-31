@@ -1,0 +1,11 @@
+.layout {
+  min-height: 100vh;
+  padding-top: 20px;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  justify-content: center;
+
+  & > main {
+    background: #2f3241;
+  }
+}

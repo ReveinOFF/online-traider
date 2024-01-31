@@ -8,7 +8,9 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    lng: localStorage.getItem("lng") || navigator.language.split("-")[0],
+    lng:
+      localStorage.getItem("lng") ||
+      navigator.language.split("-")[0].toLocaleLowerCase(),
     fallbackLng: "en",
     saveMissing: false,
     detection: {

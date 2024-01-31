@@ -1,0 +1,13 @@
+.checkbox {
+  border: 1px solid #8a8d9d;
+  border-radius: 5px;
+  background: #4e5266;
+  width: 25px;
+  height: 25px;
+  transition: border 0.3s;
+  cursor: pointer;
+
+  &:hover {
+    border: 1px solid #c4c5c9;
+  }
+}

@@ -13,6 +13,8 @@ import TransactionsAccount from "./pages/trade/transactions";
 import DocumentsAccount from "./pages/documents";
 import MyPayments from "./pages/payments/my";
 import Conclusion from "./pages/payments/conclusion";
+import Transfer from "./pages/payments/transfer";
+import Check from "./pages/payments/check";
 
 const App = () => {
   return (
@@ -34,6 +36,8 @@ const App = () => {
 
         <Route path="payment/my" element={<MyPayments />} />
         <Route path="payment/conclusion" element={<Conclusion />} />
+        <Route path="payment/transfer" element={<Transfer />} />
+        <Route path="payment/check" element={<Check />} />
       </Route>
     </Routes>
   );

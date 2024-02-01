@@ -1,0 +1,55 @@
+.block_transfer {
+  flex-direction: column;
+  position: relative;
+  z-index: 0;
+
+  .info {
+    width: 100%;
+    max-width: 460px;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 23px;
+    letter-spacing: 0em;
+    color: #8a8d9d;
+    background: #353847;
+    padding: 15px 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+
+  .s_transfer {
+    width: 100%;
+    max-width: 420px;
+
+    fieldset {
+      margin-bottom: 20px;
+
+      & > div:last-of-type {
+        width: 100%;
+      }
+    }
+  }
+
+  button {
+    background: #2f3241;
+    padding: 19px 95px;
+  }
+}
+
+.fs_lr {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+
+  div {
+    color: #6b6e7b;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0em;
+  }
+
+  input {
+    margin: 0 20px;
+  }
+}

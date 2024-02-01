@@ -239,12 +239,14 @@ table {
   }
 }
 
-.fs-t {
+fieldset {
   border: 0;
   padding: 0;
   margin: 0;
+}
 
-  div {
+.fs-t {
+  & > div:first-child {
     margin-bottom: 10px;
     font-size: 14px;
     font-weight: 500;
@@ -259,4 +261,40 @@ input[type="date"]::-webkit-inner-spin-button,
 input[type="date"]::-webkit-calendar-picker-indicator {
   display: none;
   -webkit-appearance: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.check_info {
+  border-radius: 5px;
+  background: #353847;
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 20px;
+
+  div {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0em;
+
+    &:first-child {
+      color: #8a8d9d;
+    }
+
+    &:last-child {
+      color: #ffffff;
+    }
+  }
+}
+
+.mb-1 {
+  margin-bottom: 10px;
 }

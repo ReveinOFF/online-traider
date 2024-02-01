@@ -29,7 +29,7 @@ const SignIn = () => {
             <Link to="/signup">Регистрация</Link>
             <Link to="/reset-pass">Забыли пароль?</Link>
           </div>
-          <BigButton>ВОЙТИ</BigButton>
+          <BigButton className={styles.btn}>ВОЙТИ</BigButton>
         </form>
       </div>
     </main>

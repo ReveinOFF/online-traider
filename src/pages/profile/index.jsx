@@ -4,6 +4,7 @@ import Selector from "../../components/selector";
 import countryList from "../../utils/country";
 import { useState } from "react";
 import Checkbox from "../../components/checkbox";
+import styles from "./profile.module.scss";
 
 const Profile = () => {
   const [countryKey, setCountryKey] = useState(
@@ -13,7 +14,7 @@ const Profile = () => {
   return (
     <>
       <h1 className="mt-3 mb-2">Мой профиль</h1>
-      <form className="block_data">
+      <form className={styles.block_data}>
         <div>
           <h2>Персональные данные</h2>
           <fieldset>

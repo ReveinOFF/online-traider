@@ -17,7 +17,7 @@ const ResetPass = () => {
             <CustomInput type="email" name="email" placeholder="Ваш e-mail" />
           </fieldset>
           <div className={`btn_z-index ${styles.block_btn}`}>
-            <NmGreenButton>ОТПРАВИТЬ</NmGreenButton>
+            <NmGreenButton className={styles.btn}>ОТПРАВИТЬ</NmGreenButton>
             <Link to="/" className={styles.link}>
               <SmBlueButton className={styles.btn_last}>ОТМЕНИТЬ</SmBlueButton>
             </Link>

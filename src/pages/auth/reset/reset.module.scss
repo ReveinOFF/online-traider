@@ -5,10 +5,11 @@
 .block_btn {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+}
 
-  button {
-    padding: 19px 23px;
-  }
+.btn,
+.btn_last {
+  padding: 19px 23px;
 }
 
 .btn_last {

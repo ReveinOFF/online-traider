@@ -27,6 +27,7 @@ header {
       background: #2f3241;
       cursor: default;
       position: relative;
+      z-index: 2;
 
       &:last-child a {
         padding: 17px 20px;
@@ -168,7 +169,7 @@ header {
 
   .h_dropdown {
     position: absolute;
-    top: 100%;
+    top: calc(100% + 2px);
     padding: 20px;
     padding-right: 40px;
     left: 0;

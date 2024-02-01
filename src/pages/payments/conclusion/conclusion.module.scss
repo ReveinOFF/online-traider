@@ -1,0 +1,29 @@
+.conclusion {
+  table {
+    tbody {
+      tr {
+        td {
+          height: 65px;
+
+          img {
+            margin-right: 20px;
+          }
+
+          button {
+            padding: 8px 16px;
+            background: #3f4352;
+          }
+        }
+
+        td:first-child {
+          justify-content: flex-start;
+          padding-left: 30px;
+        }
+
+        td:last-child {
+          padding-right: 30px;
+        }
+      }
+    }
+  }
+}

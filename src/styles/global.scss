@@ -162,6 +162,7 @@ table {
     tr {
       th {
         color: #6b6e7b;
+        padding: 0 30px;
 
         &:first-child {
           border-top-left-radius: 5px;
@@ -236,4 +237,26 @@ table {
       }
     }
   }
+}
+
+.fs-t {
+  border: 0;
+  padding: 0;
+  margin: 0;
+
+  div {
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #6b6e7b;
+  }
+}
+
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
 }

@@ -10,6 +10,9 @@ import OpenAccount from "./pages/trade/open";
 import ConnectAccount from "./pages/trade/connect";
 import HistoryAccount from "./pages/trade/history";
 import TransactionsAccount from "./pages/trade/transactions";
+import DocumentsAccount from "./pages/documents";
+import MyPayments from "./pages/payments/my";
+import Conclusion from "./pages/payments/conclusion";
 
 const App = () => {
   return (
@@ -21,11 +24,16 @@ const App = () => {
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="profile" element={<Profile />} />
+
         <Route path="trade/my" element={<MyAccount />} />
         <Route path="trade/open" element={<OpenAccount />} />
         <Route path="trade/connect" element={<ConnectAccount />} />
         <Route path="trade/history" element={<HistoryAccount />} />
         <Route path="trade/transactions" element={<TransactionsAccount />} />
+        <Route path="trade/documents" element={<DocumentsAccount />} />
+
+        <Route path="payment/my" element={<MyPayments />} />
+        <Route path="payment/conclusion" element={<Conclusion />} />
       </Route>
     </Routes>
   );

@@ -218,4 +218,22 @@ table {
       }
     }
   }
+
+  tfoot {
+    tr {
+      background: #4d5060;
+      width: 100%;
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 19px;
+      letter-spacing: 0em;
+      text-align: center;
+
+      td {
+        padding: 40px 0;
+        border-radius: 0px 0px 5px 5px;
+      }
+    }
+  }
 }

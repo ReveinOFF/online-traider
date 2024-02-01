@@ -1,0 +1,44 @@
+.history {
+  padding: 0 30px;
+
+  fieldset {
+    border: 0;
+
+    & > div {
+      &:first-of-type {
+        color: #6b6e7b;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 16px;
+        letter-spacing: 0em;
+        margin-bottom: 10px;
+      }
+
+      &:last-of-type {
+        width: 100%;
+        max-width: 206px;
+      }
+    }
+  }
+
+  table {
+    margin-top: 20px;
+  }
+
+  .money {
+    background: #4c5f60;
+    width: 100%;
+    text-align: end;
+    padding: 14px 20px;
+    margin-top: 10px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 19px;
+    letter-spacing: 0em;
+
+    span {
+      font-weight: 400;
+    }
+  }
+}

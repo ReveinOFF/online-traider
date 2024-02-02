@@ -48,11 +48,21 @@ const Header = () => {
               />
             </button>
             <div className={`h_dropdown ${showShop ? "active" : ""}`}>
-              <Link>Мои счета</Link>
-              <Link>Открыть счет</Link>
-              <Link>Подключить счет</Link>
-              <Link>Депозитные операции</Link>
-              <Link>Торговая история</Link>
+              <Link to="/trade/my" onClick={() => setShowShop(false)}>
+                Мои счета
+              </Link>
+              <Link to="/trade/open" onClick={() => setShowShop(false)}>
+                Открыть счет
+              </Link>
+              <Link to="/trade/connect" onClick={() => setShowShop(false)}>
+                Подключить счет
+              </Link>
+              <Link to="/trade/transactions" onClick={() => setShowShop(false)}>
+                Депозитные операции
+              </Link>
+              <Link to="/trade/history" onClick={() => setShowShop(false)}>
+                Торговая история
+              </Link>
             </div>
           </li>
           <li className="justify-center">
@@ -66,7 +76,7 @@ const Header = () => {
             </button>
           </li>
           <li className="justify-center">
-            <Link to="">ОБРАЩЕНИЕ</Link>
+            <Link to="/appeals">ОБРАЩЕНИЕ</Link>
           </li>
         </ul>
       </nav>

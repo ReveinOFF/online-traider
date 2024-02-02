@@ -2,13 +2,9 @@ import { BigButton } from "../../../components/buttons";
 import Selector from "../../../components/selector";
 import CustomInput from "../../../components/input";
 import styles from "./connect.module.scss";
+import sexData from "../../../utils/sex";
 
 const ConnectAccount = () => {
-  const sexData = {
-    m: "Мужской",
-    f: "Женский",
-  };
-
   return (
     <>
       <h1>Подключить счет</h1>

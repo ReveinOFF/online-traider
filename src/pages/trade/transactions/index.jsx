@@ -1,12 +1,8 @@
 import Selector from "../../../components/selector";
 import styles from "./transactions.module.scss";
+import sexData from "../../../utils/sex";
 
 const TransactionsAccount = () => {
-  const sexData = {
-    m: "Мужской",
-    f: "Женский",
-  };
-
   return (
     <>
       <h1>Депозитные операции</h1>

@@ -7,6 +7,7 @@ import close from "../../../assets/images/close.svg";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import countryList from "../../../utils/country";
+import sexData from "../../../utils/sex";
 
 const SignUp = () => {
   const [captchaValid, setCaptchaValid] = useState(false);
@@ -15,11 +16,6 @@ const SignUp = () => {
     navigator.language.split("-")[0].toLocaleUpperCase() || "US"
   );
   const navigate = useNavigate();
-
-  const sexData = {
-    m: "Мужской",
-    f: "Женский",
-  };
 
   return (
     <>

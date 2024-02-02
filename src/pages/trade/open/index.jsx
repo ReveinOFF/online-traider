@@ -1,13 +1,9 @@
 import { BigButton } from "../../../components/buttons";
 import Selector from "../../../components/selector";
 import styles from "./open.module.scss";
+import sexData from "../../../utils/sex";
 
 const OpenAccount = () => {
-  const sexData = {
-    m: "Мужской",
-    f: "Женский",
-  };
-
   return (
     <>
       <h1>Открыть счет</h1>

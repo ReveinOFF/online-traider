@@ -3,14 +3,10 @@ import Selector from "../../../components/selector";
 import CustomInput from "../../../components/input";
 import { SmGreenButton } from "../../../components/buttons";
 import styles from "./transfer.module.scss";
+import sexData from "../../../utils/sex";
 
 const Transfer = () => {
   const [sexKey, setSexKey] = useState();
-
-  const sexData = {
-    m: "Мужской",
-    f: "Женский",
-  };
 
   return (
     <>

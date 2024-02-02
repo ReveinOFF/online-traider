@@ -5,7 +5,7 @@ const CustomInput = ({ type, name, className, placeholder, pattern }) => {
     <input
       type={type}
       name={name}
-      className={`${styles.cstm_input} ${className} roboto`}
+      className={`${styles.cstm_input} ${className}`}
       placeholder={placeholder}
       pattern={pattern}
     ></input>

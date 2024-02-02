@@ -1,0 +1,118 @@
+.download {
+  justify-self: flex-start;
+  max-width: 396px;
+  width: 100%;
+
+  img {
+    margin-right: 11px;
+  }
+
+  a {
+    color: #37cf74;
+  }
+}
+
+.history_appeals {
+  padding: 0 30px;
+
+  .input {
+    textarea {
+      height: 130px;
+      width: 100%;
+      padding: 20px;
+    }
+  }
+
+  .check {
+    gap: 14px;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0em;
+  }
+
+  button {
+    padding: 16px 50px;
+  }
+
+  .header_apples {
+    padding: 18px 30px;
+    background: #4d5060;
+    border-radius: 5px 5px 0px 0px;
+
+    div {
+      &:first-child {
+        color: #ffffff;
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 23px;
+        letter-spacing: 0em;
+        margin-bottom: 5px;
+      }
+
+      &:last-child {
+        color: #8a8d9d;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 16px;
+        letter-spacing: 0em;
+      }
+    }
+  }
+
+  .body_apples {
+    background: #353847;
+    border-radius: 0px 0px 5px 5px;
+
+    & > div {
+      padding: 20px 30px;
+
+      &:not(:last-child) {
+        border-bottom: 1px solid #4d5060;
+      }
+
+      .info {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+
+        div {
+          letter-spacing: 0em;
+
+          &:first-child {
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 500;
+            line-height: 18px;
+          }
+
+          &:last-child {
+            color: #8a8d9d;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 16px;
+          }
+        }
+      }
+
+      .status {
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 16px;
+        letter-spacing: 0em;
+        color: #8a8d9d;
+        margin-bottom: 5px;
+      }
+
+      .message {
+        color: #ffffff;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 21px;
+        letter-spacing: 0em;
+        max-width: 800px;
+      }
+    }
+  }
+}

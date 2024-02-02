@@ -2,7 +2,6 @@ import { Route, Routes } from "react-router-dom";
 import SignIn from "./pages/auth/signin";
 import ResetPass from "./pages/auth/reset";
 import SignUp from "./pages/auth/signup";
-import Home from "./pages/home";
 import Layout from "./components/layout";
 import Profile from "./pages/profile";
 import MyAccount from "./pages/trade/my";
@@ -15,6 +14,9 @@ import MyPayments from "./pages/payments/my";
 import Conclusion from "./pages/payments/conclusion";
 import Transfer from "./pages/payments/transfer";
 import Check from "./pages/payments/check";
+import MainAppeals from "./pages/appeals/main";
+import CreateAppeals from "./pages/appeals/create";
+import HistoryAppeals from "./pages/appeals/history";
 
 const App = () => {
   return (
@@ -24,8 +26,7 @@ const App = () => {
       <Route path="/signup" element={<SignUp />} />
 
       <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
-        <Route path="profile" element={<Profile />} />
+        <Route index element={<Profile />} />
 
         <Route path="trade/my" element={<MyAccount />} />
         <Route path="trade/open" element={<OpenAccount />} />
@@ -38,6 +39,10 @@ const App = () => {
         <Route path="payment/conclusion" element={<Conclusion />} />
         <Route path="payment/transfer" element={<Transfer />} />
         <Route path="payment/check" element={<Check />} />
+
+        <Route path="appeals" element={<MainAppeals />} />
+        <Route path="appeals/create" element={<CreateAppeals />} />
+        <Route path="appeals/history" element={<HistoryAppeals />} />
       </Route>
     </Routes>
   );

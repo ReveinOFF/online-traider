@@ -22,7 +22,8 @@ button:not(:disabled) {
   cursor: pointer;
 }
 
-input:focus {
+input:focus,
+textarea:focus {
   outline: none;
 }
 
@@ -48,6 +49,10 @@ input:focus {
 
 .mb-2 {
   margin-bottom: 20px;
+}
+
+.mb-3 {
+  margin-bottom: 30px;
 }
 
 h1 {

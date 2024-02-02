@@ -1,0 +1,39 @@
+.create_appeals {
+  width: 100%;
+  flex-direction: column;
+
+  button {
+    width: 100%;
+    max-width: 396px;
+    padding: 16px 0;
+  }
+
+  fieldset {
+    max-width: 396px;
+    width: 100%;
+
+    input,
+    textarea,
+    div {
+      width: 100%;
+    }
+
+    textarea {
+      height: 130px;
+    }
+  }
+}
+
+.download {
+  justify-self: flex-start;
+  max-width: 396px;
+  width: 100%;
+
+  img {
+    margin-right: 11px;
+  }
+
+  a {
+    color: #37cf74;
+  }
+}

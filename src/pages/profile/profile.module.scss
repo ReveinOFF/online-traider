@@ -40,9 +40,14 @@
       }
 
       & > button {
-        max-width: 150px;
+        max-width: 160px;
         padding: 11px 17px;
         background: #2f3241;
+        font-size: 15px;
+        font-weight: 600;
+        line-height: 18px;
+        letter-spacing: 0em;
+        text-align: center;
       }
 
       input[type="date"]::-webkit-inner-spin-button,

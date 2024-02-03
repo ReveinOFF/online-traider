@@ -17,6 +17,12 @@ import Check from "./pages/payments/check";
 import MainAppeals from "./pages/appeals/main";
 import CreateAppeals from "./pages/appeals/create";
 import HistoryAppeals from "./pages/appeals/history";
+import AdminLayout from "./components/layout-admin";
+import Servers from "./pages/admin/settings/servers";
+import Account from "./pages/admin/settings/account";
+import DocumentsAdmin from "./pages/admin/settings/document";
+import LangAdmin from "./pages/admin/settings/lang";
+import PaymentsAdmin from "./pages/admin/settings/payments";
 
 const App = () => {
   return (
@@ -43,6 +49,16 @@ const App = () => {
         <Route path="appeals" element={<MainAppeals />} />
         <Route path="appeals/create" element={<CreateAppeals />} />
         <Route path="appeals/history" element={<HistoryAppeals />} />
+      </Route>
+
+      <Route path="/admin/" element={<AdminLayout />}>
+        <Route index element={<Profile />} />
+
+        <Route path="servers" element={<Servers />} />
+        <Route path="account" element={<Account />} />
+        <Route path="documents" element={<DocumentsAdmin />} />
+        <Route path="lang" element={<LangAdmin />} />
+        <Route path="payments" element={<PaymentsAdmin />} />
       </Route>
     </Routes>
   );

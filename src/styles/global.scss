@@ -38,6 +38,11 @@ textarea:focus {
   justify-content: center;
 }
 
+.justify-between {
+  display: flex;
+  justify-content: space-between;
+}
+
 .item-center {
   display: flex;
   align-items: center;
@@ -67,6 +72,8 @@ h1 {
 }
 
 h2 {
+  margin-top: 20px;
+  margin-bottom: 20px;
   font-size: 20px;
   font-weight: 600;
   line-height: 23px;
@@ -150,6 +157,70 @@ h2 {
 .btn_z-index {
   z-index: 1;
   position: relative;
+}
+
+.th-t-left {
+  text-align: left;
+}
+
+.td-t-left {
+  text-align: left;
+  padding: 0 30px;
+  color: #74ace0;
+}
+
+.td-active {
+  color: #37cf74;
+}
+
+.td-inactive {
+  color: #ff4b55;
+}
+
+.h-btn {
+  position: relative;
+  z-index: 0;
+
+  button {
+    position: absolute;
+    background: #2f3241;
+    padding: 8px 43px;
+    right: 30px;
+    top: 1px;
+  }
+}
+
+.h-s-btn {
+  position: relative;
+  z-index: 0;
+
+  div {
+    position: absolute;
+    display: flex;
+    gap: 10px;
+    right: 30px;
+    top: 1px;
+
+    button {
+      background: #2f3241;
+
+      &:first-child {
+        padding: 8px 30px;
+      }
+
+      &:last-child {
+        padding: 8px 43px;
+      }
+    }
+  }
+}
+
+.delete {
+  justify-content: center;
+
+  img {
+    cursor: pointer;
+  }
 }
 
 .table {
@@ -302,4 +373,17 @@ input[type="number"] {
 
 .mb-1 {
   margin-bottom: 10px;
+}
+
+.layout {
+  min-height: 100vh;
+  padding-top: 20px;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  justify-content: center;
+
+  & > main {
+    background: #2f3241;
+    border-radius: 0px 0px 10px 10px;
+  }
 }

@@ -201,6 +201,21 @@ const OfficeAdmin = () => {
       </div>
       <div className={styles.block_data}>
         <h2>Настройки Trader's Room</h2>
+        <fieldset className={styles.fs_block}>
+          <div>Загрузить баннер</div>
+          <div>
+            <div className="btn_z-index">
+              <SmBlueButton className={styles.btn_bg}>
+                Выберите файл
+              </SmBlueButton>
+              <div>файл не выбран</div>
+            </div>
+            <div>
+              Поддерживаемый тип файлов: jpg, jpeg, png, gif, svg. Размер
+              баннера не должен превышать 890x156 пикселей.
+            </div>
+          </div>
+        </fieldset>
         <fieldset className={`${styles.fs} ${styles.fs_info}`}>
           <div>
             <div>Ссылка для баннера</div>

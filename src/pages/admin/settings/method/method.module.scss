@@ -1,0 +1,255 @@
+.method {
+  padding-inline: 20px;
+
+  .top_title {
+    position: relative;
+    background-color: #2f3241;
+    display: flex;
+    gap: 5px;
+    z-index: 0;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 2px;
+      width: 100%;
+      border-radius: 5px;
+      background: #294bb8;
+      box-shadow: -400px 0px 60px -45px #2985b8 inset;
+      z-index: -1;
+    }
+
+    div {
+      &:first-child {
+        padding: 12px 24px;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 16px;
+        letter-spacing: 0.05em;
+        background: #2f3241;
+        color: #ffffff;
+        position: relative;
+        border-radius: 5px 5px 0 0;
+        margin-bottom: 2px;
+
+        &::after {
+          content: "";
+          position: absolute;
+          top: -1.5px;
+          left: -2px;
+          height: calc(100% + 2px);
+          width: calc(100% + 4px);
+          border-radius: 5px 5px 0 0;
+          background: #294bb8;
+          box-shadow: -130px 0px 60px -45px #2985b8 inset;
+          z-index: -1;
+        }
+      }
+      &:last-child {
+        padding: 12px 24px;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 16px;
+        letter-spacing: 0.05em;
+        background: #2f3241;
+        color: #6b6e7b;
+        position: relative;
+        border-radius: 5px 5px 0 0;
+        margin-bottom: 2px;
+
+        &::after {
+          content: "";
+          position: absolute;
+          top: -1.5px;
+          left: -2px;
+          height: calc(100% + 2px);
+          width: calc(100% + 4px);
+          border-radius: 5px 5px 0 0;
+          background: #6b6e7b;
+          z-index: -1;
+        }
+      }
+    }
+  }
+
+  .fs_center {
+    width: 100%;
+    max-width: 396px;
+
+    div {
+      width: 100%;
+    }
+  }
+
+  .block_data,
+  .btn_add {
+    padding: 0 15%;
+  }
+
+  button {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 18px;
+    letter-spacing: 0em;
+  }
+}
+
+.fs {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr;
+  align-items: center;
+  gap: 46px;
+  margin-bottom: 40px;
+
+  div:first-child {
+    color: #8a8d9d;
+    text-align: end;
+  }
+}
+
+.fs_info {
+  & > div:first-child {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+
+    .info {
+      position: absolute;
+      right: -25px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+}
+
+.fs_delete {
+  position: relative;
+
+  & > img {
+    position: absolute;
+    right: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+.block_data2 {
+  position: relative;
+
+  .block_bg {
+    position: absolute;
+    top: -20px;
+    left: 0;
+    width: 100%;
+    height: calc(100% + 40px);
+    background: #353847;
+    border-radius: 5px;
+    z-index: 0;
+  }
+
+  & > div:last-child {
+    padding: 0 15%;
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.fs_btn {
+  position: relative;
+  z-index: 0;
+
+  button {
+    background: #353847;
+    padding: 11px 15px;
+    max-width: 180px;
+  }
+}
+
+.btn_add {
+  position: relative;
+  z-index: 0;
+  display: flex;
+  justify-content: flex-end;
+
+  button {
+    background: #2f3241;
+    padding-block: 8px;
+    padding-inline: 0;
+    max-width: 130px;
+    width: 100%;
+  }
+}
+
+.border {
+  height: 2px;
+  margin-inline: 20px;
+  background: #4d5060;
+  margin-block: 20px;
+}
+
+.bottom_btn {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 50px;
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 0;
+
+  button {
+    padding: 13px 63px;
+  }
+}
+
+.btn_abolition {
+  background: #2f3241;
+}
+
+.fs_block {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr;
+  align-items: flex-start;
+  gap: 46px;
+  margin-bottom: 40px;
+
+  & > div:first-child {
+    color: #8a8d9d;
+    text-align: end;
+  }
+
+  & > div:last-child {
+    & > div:first-child {
+      display: flex;
+      margin-bottom: 10px;
+      gap: 20px;
+      align-items: center;
+
+      button {
+        padding: 11px 20px;
+      }
+
+      div {
+        font-size: 15px;
+        font-weight: 600;
+        line-height: 18px;
+        letter-spacing: 0em;
+        color: #ffffff;
+      }
+    }
+
+    & > div:last-child {
+      color: #8a8d9d;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 14px;
+      letter-spacing: 0em;
+      max-width: 412px;
+    }
+  }
+}
+
+.btn_bg {
+  background: #353847;
+}

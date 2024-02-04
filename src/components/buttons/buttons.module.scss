@@ -91,13 +91,18 @@
     box-shadow: -110px 0px 60px -45px #2985b8 inset;
   }
 
-  &:hover {
+  &:not(:disabled):hover {
     background: #294bb8;
     box-shadow: -110px 0px 60px -45px #2985b8 inset;
   }
 
-  &:active {
+  &:not(:disabled):active {
     background: #2572b9;
+  }
+
+  &:is(:disabled)::after {
+    box-shadow: none;
+    background: #4d5060;
   }
 }
 

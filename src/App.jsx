@@ -23,6 +23,8 @@ import Account from "./pages/admin/settings/account";
 import DocumentsAdmin from "./pages/admin/settings/document";
 import LangAdmin from "./pages/admin/settings/lang";
 import PaymentsAdmin from "./pages/admin/settings/payments";
+import AppealAdmin from "./pages/admin/appeal";
+import LangEdit from "./pages/admin/settings/lang-edit";
 
 const App = () => {
   return (
@@ -54,11 +56,14 @@ const App = () => {
       <Route path="/admin/" element={<AdminLayout />}>
         <Route index element={<Profile />} />
 
-        <Route path="servers" element={<Servers />} />
-        <Route path="account" element={<Account />} />
-        <Route path="documents" element={<DocumentsAdmin />} />
-        <Route path="lang" element={<LangAdmin />} />
-        <Route path="payments" element={<PaymentsAdmin />} />
+        <Route path="appeal" element={<AppealAdmin />} />
+
+        <Route path="setting/servers" element={<Servers />} />
+        <Route path="setting/account" element={<Account />} />
+        <Route path="setting/documents" element={<DocumentsAdmin />} />
+        <Route path="setting/lang" element={<LangAdmin />} />
+        <Route path="setting/lang/edit" element={<LangEdit />} />
+        <Route path="setting/payments" element={<PaymentsAdmin />} />
       </Route>
     </Routes>
   );

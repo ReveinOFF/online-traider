@@ -1,0 +1,28 @@
+.block_data {
+  padding: 0 15%;
+
+  fieldset {
+    display: grid;
+    grid-template-columns: 0.4fr 1fr;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 24px;
+
+    &:last-child {
+      margin-bottom: 20px;
+    }
+
+    div:first-child {
+      color: #8a8d9d;
+      text-align: end;
+    }
+
+    div:last-child {
+      color: #ffffff;
+    }
+  }
+
+  .btn {
+    padding: 13px 51px;
+  }
+}

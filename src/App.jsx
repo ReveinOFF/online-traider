@@ -35,6 +35,7 @@ import NewOrders from "./pages/admin/services/order";
 import Management from "./pages/admin/services/management";
 import UserManagement from "./pages/admin/services/users";
 import ReportSystem from "./pages/admin/services/report";
+import PaymentService from "./pages/admin/services/payments";
 
 const App = () => {
   return (
@@ -85,6 +86,7 @@ const App = () => {
         <Route path="services/management" element={<Management />} />
         <Route path="services/users" element={<UserManagement />} />
         <Route path="services/report" element={<ReportSystem />} />
+        <Route path="services/payment" element={<PaymentService />} />
       </Route>
     </Routes>
   );

@@ -29,6 +29,9 @@ import OfficeAdmin from "./pages/admin/settings/office";
 import MethodAdmin from "./pages/admin/settings/method";
 import EmailList from "./pages/admin/services/email";
 import Course from "./pages/admin/services/course";
+import Templates from "./pages/admin/services/templates";
+import Shares from "./pages/admin/services/shares";
+import NewOrders from "./pages/admin/services/order";
 
 const App = () => {
   return (
@@ -73,6 +76,9 @@ const App = () => {
 
         <Route path="services/email" element={<EmailList />} />
         <Route path="services/course" element={<Course />} />
+        <Route path="services/templates" element={<Templates />} />
+        <Route path="services/shares" element={<Shares />} />
+        <Route path="services/orders" element={<NewOrders />} />
       </Route>
     </Routes>
   );

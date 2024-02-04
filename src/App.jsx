@@ -34,6 +34,7 @@ import Shares from "./pages/admin/services/shares";
 import NewOrders from "./pages/admin/services/order";
 import Management from "./pages/admin/services/management";
 import UserManagement from "./pages/admin/services/users";
+import ReportSystem from "./pages/admin/services/report";
 
 const App = () => {
   return (
@@ -83,6 +84,7 @@ const App = () => {
         <Route path="services/orders" element={<NewOrders />} />
         <Route path="services/management" element={<Management />} />
         <Route path="services/users" element={<UserManagement />} />
+        <Route path="services/report" element={<ReportSystem />} />
       </Route>
     </Routes>
   );

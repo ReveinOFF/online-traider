@@ -25,6 +25,7 @@ import LangAdmin from "./pages/admin/settings/lang";
 import PaymentsAdmin from "./pages/admin/settings/payments";
 import AppealAdmin from "./pages/admin/appeal";
 import LangEdit from "./pages/admin/settings/lang-edit";
+import OfficeAdmin from "./pages/admin/settings/office";
 
 const App = () => {
   return (
@@ -64,6 +65,7 @@ const App = () => {
         <Route path="setting/lang" element={<LangAdmin />} />
         <Route path="setting/lang/edit" element={<LangEdit />} />
         <Route path="setting/payments" element={<PaymentsAdmin />} />
+        <Route path="setting/office" element={<OfficeAdmin />} />
       </Route>
     </Routes>
   );

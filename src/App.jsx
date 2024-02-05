@@ -36,6 +36,7 @@ import Management from "./pages/admin/services/management";
 import UserManagement from "./pages/admin/services/users";
 import ReportSystem from "./pages/admin/services/report";
 import PaymentService from "./pages/admin/services/payments";
+import Test from "./pages/test";
 
 const App = () => {
   return (
@@ -46,6 +47,8 @@ const App = () => {
 
       <Route path="/" element={<Layout />}>
         <Route index element={<Profile />} />
+
+        <Route path="test" element={<Test />} />
 
         <Route path="trade/my" element={<MyAccount />} />
         <Route path="trade/open" element={<OpenAccount />} />

@@ -1,6 +1,19 @@
+@import "../../styles/responsive.scss";
+
 header {
   position: relative;
   justify-content: space-between;
+  display: flex;
+
+  @include tablet-landscape-down {
+    width: 80vw;
+  }
+  @include tablet-portrait-down {
+    width: 90vw;
+  }
+  @include phone-only {
+    width: 100vw;
+  }
 
   &::after {
     content: "";
@@ -16,7 +29,7 @@ header {
     );
   }
 
-  nav ul {
+  & > nav ul {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -24,7 +37,7 @@ header {
 
     li {
       border-radius: 10px 10px 0px 0px;
-      background: #2f3241;
+      background: #292c39;
       cursor: default;
       position: relative;
       z-index: 2;
@@ -78,93 +91,20 @@ header {
   }
 
   & > div {
-    .btn-terminal {
-      padding: 8px 20px;
-      margin-right: 9px;
-      margin-left: 37px;
-    }
-
-    .profile {
-      margin-right: 3px;
-      border-radius: 5px 5px 0 0;
-      color: #6b6e7b;
-      align-items: baseline;
-      font-size: 14px;
-      font-weight: 600;
-      line-height: 16px;
-      letter-spacing: 0em;
-      background: transparent;
-      position: relative;
-      display: grid;
-      transition: background 0.3s;
-
-      & > div {
-        &:first-child {
-          padding: 15px 20px;
-
-          &:is(.active) {
-            filter: invert(55%) sepia(88%) saturate(5400%) hue-rotate(199deg)
-              brightness(94%) contrast(86%);
-          }
-
-          &:hover {
-            filter: invert(55%) sepia(88%) saturate(5400%) hue-rotate(199deg)
-              brightness(94%) contrast(86%);
-          }
-        }
-
-        &:last-child {
-          position: absolute;
-          top: 100%;
-          background: #2f3241c8;
-          width: 100%;
-          z-index: 1;
-          border-radius: 0 0 5px 5px;
-          padding: 20px;
-          display: grid;
-          gap: 20px;
-          transform: translateY(-40px);
-          opacity: 0;
-          visibility: hidden;
-          transition: all 0.3s;
-
-          &:is(.active) {
-            transform: translateY(0);
-            opacity: 1;
-            visibility: visible;
-          }
-
-          & > div {
-            color: #ffffff;
-            font-weight: 400;
-            text-align: start;
-
-            &:hover {
-              filter: invert(55%) sepia(88%) saturate(5400%) hue-rotate(199deg)
-                brightness(94%) contrast(86%);
-            }
-          }
-        }
+    &:first-of-type {
+      @include tablet-landscape-down {
+        display: none;
       }
-
-      &:is(.active) {
-        background: #2f3241;
-      }
-
-      img {
-        margin-right: 15px;
-      }
-    }
-
-    .lng {
-      margin-right: 5px;
     }
   }
 
-  &,
-  nav,
-  nav ul {
+  & > nav,
+  & > nav ul {
     display: flex;
+
+    @include tablet-landscape-down {
+      display: none;
+    }
   }
 
   .h_dropdown {
@@ -173,11 +113,11 @@ header {
     padding: 20px;
     padding-right: 40px;
     left: 0;
-    background: #2f3241;
+    background: #292c39;
     width: 211px;
     display: grid;
     gap: 20px;
-    transform: translateY(-50px);
+    transform: translateY(50px);
     opacity: 0;
     visibility: hidden;
     z-index: -1;
@@ -204,6 +144,278 @@ header {
   }
 }
 
+.btn-terminal {
+  padding: 8px 20px;
+  margin-left: 37px;
+}
+
+.profile {
+  padding: 0;
+  margin-left: 9px;
+  border-radius: 5px 5px 0 0;
+  color: #6b6e7b;
+  align-items: baseline;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0em;
+  background: transparent;
+  position: relative;
+  display: grid;
+  transition: background 0.3s;
+
+  & > div {
+    &:first-child {
+      padding: 15px;
+
+      &:is(.active) {
+        filter: invert(55%) sepia(88%) saturate(5400%) hue-rotate(199deg)
+          brightness(94%) contrast(86%);
+      }
+
+      &:hover {
+        filter: invert(55%) sepia(88%) saturate(5400%) hue-rotate(199deg)
+          brightness(94%) contrast(86%);
+      }
+    }
+
+    &:last-child {
+      position: absolute;
+      top: 100%;
+      background: #292c39b8;
+      width: 100%;
+      z-index: 1;
+      border-radius: 0 0 5px 5px;
+      padding: 15px;
+      display: grid;
+      gap: 20px;
+      transform: translateY(-40px);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+
+      &:is(.active) {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+      }
+
+      & > div,
+      & > a {
+        color: #ffffff;
+        font-weight: 400;
+        text-align: start;
+
+        &:hover {
+          filter: invert(55%) sepia(88%) saturate(5400%) hue-rotate(199deg)
+            brightness(94%) contrast(86%);
+        }
+      }
+    }
+  }
+
+  &:is(.active) {
+    background: #292c39;
+  }
+
+  img {
+    margin-right: 15px;
+  }
+}
+
+.lng {
+  margin-right: 5px;
+  margin-left: 3px;
+  z-index: 2;
+}
+
 .ml-big {
   margin-left: 190px;
+}
+
+.h-mob {
+  width: 100%;
+  display: none;
+  justify-content: space-between;
+
+  @include tablet-landscape-down {
+    display: flex;
+  }
+
+  & > div {
+    &:first-child {
+      display: flex;
+      align-items: center;
+      margin-left: 5px;
+
+      .btn-terminal {
+        margin-left: 0;
+
+        @include tablet-portrait-down {
+          display: none;
+        }
+      }
+
+      .profile {
+        @include tablet-portrait-down {
+          display: none;
+        }
+      }
+
+      .lng {
+        transform: translateY(20%);
+      }
+    }
+
+    &:last-child {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      background-color: #2f3241;
+      border-radius: 10px 10px 0 0;
+      padding: 17px 20px;
+      margin-right: 5px;
+    }
+  }
+}
+
+.burger {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 400px;
+  background: #343846;
+  z-index: 10;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(400px);
+  transition: 0.3s;
+
+  @include phone-only {
+    width: 100vw;
+  }
+
+  &:is(.active) {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+  }
+
+  & > button {
+    cursor: pointer;
+    background: transparent;
+  }
+
+  nav {
+    ul {
+      padding: 0;
+      margin: 30px 0;
+
+      li {
+        list-style: none;
+        position: relative;
+
+        &:not(:last-child) {
+          margin-bottom: 5px;
+        }
+
+        button,
+        & > a {
+          color: #ffffff;
+          border: 2px solid #4d5265;
+          font-size: 14px;
+          font-weight: 600;
+          line-height: 16px;
+          letter-spacing: 0.05em;
+          padding: 20px 10px;
+          height: 100%;
+          background-color: transparent;
+          width: 100%;
+          text-align: start;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          transition: background 0.3s;
+
+          &:not(.active):hover > img,
+          &:not(.active):hover > a,
+          &:not(.active):hover > div {
+            filter: invert(55%) sepia(88%) saturate(5400%) hue-rotate(199deg)
+              brightness(94%) contrast(86%);
+          }
+
+          &:is(.active) {
+            background: #292c39;
+          }
+        }
+
+        & > div {
+          position: absolute;
+          z-index: 1;
+          background: #292c39;
+          width: 100%;
+          padding: 20px;
+          border: 2px solid #4d5265;
+          border-top: 0;
+          transform: translateY(50px);
+          opacity: 0;
+          visibility: hidden;
+          transition: 0.1s;
+
+          &:is(.active) {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+          }
+
+          a {
+            font-size: 14px;
+            font-weight: 400;
+            display: block;
+            line-height: 16px;
+            letter-spacing: 0em;
+            color: #ffffff;
+
+            &:not(:last-child) {
+              margin-bottom: 20px;
+            }
+
+            &:hover {
+              filter: invert(55%) sepia(88%) saturate(5400%) hue-rotate(199deg)
+                brightness(94%) contrast(86%);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  & > div {
+    button {
+      margin: 0;
+      width: 100%;
+    }
+  }
+}
+
+.burger-bg {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: #2b2e39a2;
+  z-index: 9;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+
+  &:is(.active) {
+    opacity: 1;
+    visibility: visible;
+  }
 }

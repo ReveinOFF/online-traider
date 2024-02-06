@@ -3,7 +3,6 @@
 .selector {
   position: relative;
   display: inline-block;
-  z-index: 1;
 
   .btn_selected {
     background: #4e5266;
@@ -84,7 +83,7 @@
     padding: 16px 20px;
     display: grid;
     gap: 15px;
-    z-index: -1;
+    z-index: 1;
     max-height: 400px;
     overflow: auto;
     visibility: hidden;

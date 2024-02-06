@@ -1,6 +1,13 @@
 import styles from "./input.module.scss";
 
-const CustomInput = ({ type, name, className, placeholder, pattern }) => {
+const CustomInput = ({
+  type,
+  name,
+  className,
+  required,
+  placeholder,
+  pattern,
+}) => {
   return (
     <input
       type={type}
@@ -8,6 +15,7 @@ const CustomInput = ({ type, name, className, placeholder, pattern }) => {
       className={`${styles.cstm_input} ${className}`}
       placeholder={placeholder}
       pattern={pattern}
+      required={required}
     ></input>
   );
 };

@@ -1,7 +1,14 @@
+@import "../../../styles/responsive.scss";
+
 .open {
   display: grid;
   justify-content: center;
   grid-template-columns: 396px;
+  padding-inline: 10px;
+
+  @include phone-only {
+    grid-template-columns: 1fr;
+  }
 
   fieldset {
     border: 0;
@@ -30,6 +37,11 @@
     button {
       padding: 19px 58px;
       margin-top: 20px;
+
+      @include phone-low {
+        padding-inline: 0;
+        width: 100%;
+      }
     }
   }
 }

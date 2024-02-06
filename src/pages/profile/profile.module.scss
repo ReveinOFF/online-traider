@@ -1,5 +1,7 @@
+@import "../../styles//responsive.scss";
+
 .block_data {
-  padding: 0 15%;
+  padding: 0 10%;
 
   & > div {
     margin-bottom: 50px;
@@ -28,10 +30,20 @@
       align-items: center;
       margin-bottom: 20px;
 
-      div {
+      @include tablet-portrait-down {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(2, 1fr);
+        gap: 10px;
+      }
+
+      & > div {
         &:first-child {
           color: #8a8d9d;
           text-align: end;
+
+          @include tablet-portrait-down {
+            text-align: start;
+          }
         }
 
         &:nth-child(2) {
@@ -48,6 +60,10 @@
         line-height: 18px;
         letter-spacing: 0em;
         text-align: center;
+      }
+
+      input {
+        width: 100%;
       }
 
       input[type="date"]::-webkit-inner-spin-button,

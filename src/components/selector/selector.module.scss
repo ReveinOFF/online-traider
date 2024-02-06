@@ -1,3 +1,5 @@
+@import "../../styles/responsive.scss";
+
 .selector {
   position: relative;
   display: inline-block;
@@ -17,6 +19,28 @@
     border: 1px solid transparent;
     width: 100%;
 
+    @include tablet-portrait-down {
+      justify-content: space-between;
+    }
+
+    & > div {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+
+      @include tablet-portrait-down {
+        max-width: 300px;
+      }
+
+      @include phone-only {
+        max-width: 200px;
+      }
+
+      @include phone-low {
+        max-width: 120px;
+      }
+    }
+
     &:not(.inactive):hover {
       border: 1px solid #8a8d9d;
     }
@@ -24,6 +48,10 @@
     img {
       margin-left: auto;
       transition: rotate 0.3s;
+
+      @include tablet-portrait-down {
+        margin-left: 20px;
+      }
     }
 
     &:is(.active) {
@@ -66,6 +94,9 @@
 
     div {
       cursor: pointer;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
 
       &:hover {
         color: #2179e0;

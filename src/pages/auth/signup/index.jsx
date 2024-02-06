@@ -109,6 +109,7 @@ const SignUp = () => {
                   data={sexData}
                   selected={sexKey}
                   setSelected={setSexKey}
+                  emptyMsg="Не указан"
                 />
               </fieldset>
             </div>

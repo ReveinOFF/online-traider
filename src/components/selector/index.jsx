@@ -2,7 +2,14 @@ import { useEffect, useState } from "react";
 import arrow from "../../assets/images/arrow.svg";
 import styles from "./selector.module.scss";
 
-const Selector = ({ data, className, selected, setSelected, disabled }) => {
+const Selector = ({
+  data,
+  className,
+  selected,
+  setSelected,
+  emptyMsg,
+  disabled,
+}) => {
   const [showSelector, setShowSelector] = useState(false);
 
   const changeShowSelector = (e) => {
@@ -32,8 +39,8 @@ const Selector = ({ data, className, selected, setSelected, disabled }) => {
           setShowSelector(!showSelector);
         }}
       >
-        <div>{data[selected] || "Не указан"}</div>
-        <img src={arrow} alt="arrow" />
+        <div>{data[selected] || emptyMsg}</div>
+        <img src={arrow} alt="arrow" width={10} height={10} />
       </button>
       <div className={showSelector ? styles.active : ""}>
         {Object.entries(data).map((item) => (

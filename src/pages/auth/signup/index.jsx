@@ -26,7 +26,7 @@ const SignUp = () => {
             alt="close"
             width={16}
             height={16}
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/signin")}
           />
 
           <h1>Регистрация</h1>

@@ -18,7 +18,7 @@ const ResetPass = () => {
           </fieldset>
           <div className={`btn_z-index ${styles.block_btn}`}>
             <NmGreenButton className={styles.btn}>ОТПРАВИТЬ</NmGreenButton>
-            <Link to="/" className={styles.link}>
+            <Link to="/signin" className={styles.link}>
               <SmBlueButton className={styles.btn_last}>ОТМЕНИТЬ</SmBlueButton>
             </Link>
           </div>

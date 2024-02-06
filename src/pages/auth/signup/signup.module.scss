@@ -1,3 +1,5 @@
+@import "../../../styles/responsive.scss";
+
 .signup {
   min-height: 100vh;
   padding-top: 30px;
@@ -11,6 +13,10 @@
     border-radius: 10px;
     padding: 30px 78px;
     position: relative;
+
+    @include tablet-portrait-down {
+      padding-inline: 10px;
+    }
 
     & > img {
       position: absolute;
@@ -50,6 +56,12 @@
           margin-bottom: 20px;
           border: 0;
 
+          @include tablet-portrait-down {
+            grid-template-columns: 1fr;
+            grid-template-rows: repeat(2, 1fr);
+            gap: 10px;
+          }
+
           & > div {
             text-align: end;
             color: #8a8d9d;
@@ -57,6 +69,10 @@
             font-weight: 500;
             line-height: 18px;
             letter-spacing: 0em;
+
+            @include tablet-portrait-down {
+              text-align: start;
+            }
           }
 
           &:last-child {
@@ -87,6 +103,10 @@
   justify-content: center;
   grid-auto-columns: 0.3fr;
 
+  @include tablet-portrait-down {
+    grid-auto-columns: 1fr;
+  }
+
   .last_h2 {
     margin-top: 0;
   }
@@ -102,6 +122,11 @@
     padding: 19px 41px;
     border-radius: 5px;
     transition: box-shadow 0.1s;
+
+    @include tablet-portrait-down {
+      padding-inline: 0;
+      width: 100%;
+    }
 
     &:hover {
       box-shadow: -90px 0px 75px -20px #294bb8 inset;

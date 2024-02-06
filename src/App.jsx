@@ -36,7 +36,6 @@ import Management from "./pages/admin/services/management";
 import UserManagement from "./pages/admin/services/users";
 import ReportSystem from "./pages/admin/services/report";
 import PaymentService from "./pages/admin/services/payments";
-import Test from "./pages/test";
 
 const App = () => {
   return (
@@ -67,7 +66,6 @@ const App = () => {
 
       <Route path="/admin/" element={<AdminLayout />}>
         <Route index element={<Profile />} />
-        <Route path="test" element={<Test />} />
 
         <Route path="appeal" element={<AppealAdmin />} />
 

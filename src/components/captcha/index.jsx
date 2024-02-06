@@ -24,7 +24,7 @@ const Captcha = ({ setCaptchaValid }) => {
     const ctx = canvas.getContext("2d");
 
     ctx.fillStyle = "blue";
-    ctx.font = "25px Roboto";
+    ctx.font = "25px Captcha";
 
     const text = generateCaptchaText();
     setCaptchaText(text);

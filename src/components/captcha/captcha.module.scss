@@ -1,6 +1,12 @@
+@import "../../styles/responsive.scss";
+
 .captcha {
   margin-bottom: 30px;
   gap: 15px;
+
+  @include tablet-portrait-down {
+    flex-direction: column;
+  }
 
   div {
     background: #ffffff;

@@ -48,8 +48,6 @@ const App = () => {
       <Route path="/" element={<Layout />}>
         <Route index element={<Profile />} />
 
-        <Route path="test" element={<Test />} />
-
         <Route path="trade/my" element={<MyAccount />} />
         <Route path="trade/open" element={<OpenAccount />} />
         <Route path="trade/connect" element={<ConnectAccount />} />
@@ -69,6 +67,7 @@ const App = () => {
 
       <Route path="/admin/" element={<AdminLayout />}>
         <Route index element={<Profile />} />
+        <Route path="test" element={<Test />} />
 
         <Route path="appeal" element={<AppealAdmin />} />
 

@@ -230,7 +230,7 @@ header {
 }
 
 .ml-big {
-  margin-left: 190px;
+  margin-left: 150px;
 }
 
 .h-mob {
@@ -397,6 +397,20 @@ header {
     button {
       margin: 0;
       width: 100%;
+
+      &:first-child {
+        margin-bottom: 10px;
+      }
+    }
+
+    .profile {
+      @include tablet-landscape-down {
+        display: none;
+      }
+
+      @include tablet-portrait-down {
+        display: block;
+      }
     }
   }
 }

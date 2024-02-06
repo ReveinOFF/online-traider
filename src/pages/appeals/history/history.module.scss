@@ -1,3 +1,5 @@
+@import "../../../styles/responsive.scss";
+
 .download {
   justify-self: flex-start;
   max-width: 396px;
@@ -34,6 +36,11 @@
 
   button {
     padding: 16px 50px;
+
+    @include phone-only {
+      width: 100%;
+      padding-inline: 0;
+    }
   }
 
   .header_apples {
@@ -77,6 +84,11 @@
         justify-content: space-between;
         margin-bottom: 5px;
 
+        @include phone-only {
+          justify-content: flex-start;
+          flex-direction: column;
+        }
+
         div {
           letter-spacing: 0em;
 
@@ -85,6 +97,10 @@
             font-size: 15px;
             font-weight: 500;
             line-height: 18px;
+
+            @include phone-only {
+              margin-bottom: 5px;
+            }
           }
 
           &:last-child {
@@ -112,6 +128,15 @@
         line-height: 21px;
         letter-spacing: 0em;
         max-width: 800px;
+        width: 100%;
+
+        @include tablet-landscape-down {
+          max-width: 500px;
+        }
+
+        @include tablet-portrait-down {
+          max-width: 300px;
+        }
       }
     }
   }

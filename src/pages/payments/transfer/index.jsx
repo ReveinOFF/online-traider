@@ -24,6 +24,7 @@ const Transfer = () => {
               data={sexData}
               selected={sexKey}
               setSelected={setSexKey}
+              emptyMsg="Не указан"
             />
           </fieldset>
           <fieldset className="fs-t">
@@ -32,6 +33,7 @@ const Transfer = () => {
               data={sexData}
               selected={sexKey}
               setSelected={setSexKey}
+              emptyMsg="Не указан"
             />
           </fieldset>
           <fieldset className={`flex-center ${styles.fs_lr}`}>

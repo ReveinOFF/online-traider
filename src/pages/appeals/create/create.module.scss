@@ -1,6 +1,12 @@
+@import "../../../styles/responsive.scss";
+
 .create_appeals {
   width: 100%;
   flex-direction: column;
+
+  @include phone-only {
+    padding-inline: 10px;
+  }
 
   button {
     width: 100%;

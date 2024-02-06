@@ -378,10 +378,18 @@ input[type="number"] {
 
     &:first-child {
       color: #8a8d9d;
+
+      @include phone-only {
+        margin-right: 15px;
+      }
     }
 
     &:last-child {
       color: #ffffff;
+
+      @include phone-only {
+        white-space: wrap;
+      }
     }
   }
 }

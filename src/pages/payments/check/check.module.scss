@@ -1,5 +1,15 @@
+@import "../../../styles/responsive.scss";
+
 .check {
   flex-direction: column;
+
+  @include tablet-portrait-down {
+    padding-inline: 20px;
+  }
+
+  @include phone-only {
+    padding-inline: 10px;
+  }
 
   & > div {
     width: 100%;

@@ -17,7 +17,13 @@ const CreateAppeals = () => {
       <div className={`item-center ${styles.create_appeals}`}>
         <fieldset className="fs-t mb-2">
           <div>Отдел компании</div>
-          <Selector data={sexData} selected={sexKey} setSelected={setSexKey} />
+
+          <Selector
+            data={sexData}
+            selected={sexKey}
+            setSelected={setSexKey}
+            emptyMsg="Не указан"
+          />
         </fieldset>
         <fieldset className="fs-t mb-2">
           <div>Тема обращения</div>

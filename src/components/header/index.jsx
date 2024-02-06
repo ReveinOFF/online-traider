@@ -11,6 +11,8 @@ import exit from "../../assets/images/header/exit.svg";
 import close from "../../assets/images/close.svg";
 import burger from "../../assets/images/header/burger-menu.svg";
 import LocalStorage from "../../services/localStorage";
+import axios from "axios";
+import DataCreate from "../data-create";
 
 const Header = () => {
   const [showProfile, setShowProfile] = useState(false);
@@ -37,8 +39,22 @@ const Header = () => {
   };
 
   const Logout = () => {
-    LocalStorage.remove("token");
-    navigate("signin");
+    const { key, rand_param } = DataCreate();
+
+    axios
+      .get("https://cabinet.itcyclonelp.com/api/v_2/page/Logout", {
+        params: {
+          key,
+          rand_param,
+          auth_token: LocalStorage.get("auth_token"),
+        },
+      })
+      .then((e) => {
+        if (e.data.result === "success") {
+          LocalStorage.remove("auth_token");
+          navigate("/signin");
+        }
+      });
   };
 
   useEffect(() => {

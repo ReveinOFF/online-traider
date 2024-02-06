@@ -7,9 +7,9 @@ import passIcon from "../../../assets/images/signin/pass.svg";
 import errorIcon from "../../../assets/images/signin/error.svg";
 import Language from "../../../components/language";
 import axios from "axios";
-import md5 from "md5";
 import LocalStorage from "../../../services/localStorage";
 import { useState } from "react";
+import DataCreate from "../../../components/data-create";
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -20,14 +20,12 @@ const SignIn = () => {
     e.preventDefault();
     setDisableBtn(true);
 
-    const randParam =
-      Math.floor(Math.random() * (99999999 - 1000000 + 1)) + 1000000;
-    const key = md5(`${"J4iFwfH4M2ae"}${randParam}`);
+    const { key, rand_param } = DataCreate();
 
     var bodyFormData = new FormData(e.target);
     bodyFormData.append("savePassword", true);
     bodyFormData.append("key", key);
-    bodyFormData.append("rand_param", randParam);
+    bodyFormData.append("rand_param", rand_param);
 
     axios
       .post("https://cabinet.itcyclonelp.com/api/v_2/page/Login", bodyFormData)
@@ -55,18 +53,24 @@ const SignIn = () => {
               type="email"
               name="user_email"
               placeholder="Логин или E-mail"
+              error={isError}
             />
           </fieldset>
           <fieldset className={styles.margin}>
             <img src={passIcon} alt="password" width={20} height={20} />
-            <CustomInput type="password" name="password" placeholder="Пароль" />
+            <CustomInput
+              type="password"
+              name="password"
+              placeholder="Пароль"
+              error={isError}
+            />
           </fieldset>
           <div className={`${styles.margin} justify-center`}>
             <Link to="/signup">Регистрация</Link>
             <Link to="/reset-pass">Забыли пароль?</Link>
           </div>
           {isError && (
-            <div class={styles.error}>
+            <div class="error">
               <img src={errorIcon} alt="(!)" />
               <span class="ng-binding">Неверный email или пароль</span>
             </div>

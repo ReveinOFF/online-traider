@@ -33,7 +33,6 @@ const EmailList = () => {
         </div>
         <BigButton>ОТПРАВИТЬ</BigButton>
       </div>
-      <div></div>
     </>
   );
 };

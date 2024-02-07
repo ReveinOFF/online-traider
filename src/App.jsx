@@ -76,10 +76,7 @@ const App = () => {
         <Route path="appeals/history" element={<HistoryAppeals />} />
       </Route>
 
-      <Route
-        path="/admin/"
-        element={isAuth ? <AdminLayout /> : <Navigate to="/signin" />}
-      >
+      <Route path="/admin/" element={<AdminLayout />}>
         <Route index element={<Profile />} />
 
         <Route path="appeal" element={<AppealAdmin />} />

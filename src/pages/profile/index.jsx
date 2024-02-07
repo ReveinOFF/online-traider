@@ -2,7 +2,7 @@ import CustomInput from "../../components/input";
 import { SmBlueButton, BigButton } from "../../components/buttons";
 import Selector from "../../components/selector";
 import countryList from "../../utils/country";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Checkbox from "../../components/checkbox";
 import styles from "./profile.module.scss";
 
@@ -10,6 +10,9 @@ const Profile = () => {
   const [countryKey, setCountryKey] = useState(
     navigator.language.split("-")[0].toLocaleUpperCase() || "US"
   );
+  const [profile, setProfile] = useState();
+
+  useEffect(() => {}, []);
 
   return (
     <>

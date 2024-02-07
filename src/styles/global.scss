@@ -436,6 +436,37 @@ input[type="number"] {
   }
 }
 
+.errorModal {
+  background-color: rgba(255, 71, 71, 0.575);
+  border-radius: 5px;
+  color: #ff4747;
+  font-weight: 500;
+  margin-top: 20px;
+  padding: 12px 15px;
+  width: auto;
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  translate: -50% 0;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  gap: 15px;
+  z-index: 5;
+  animation: error 0.3s ease-in-out;
+
+  @keyframes error {
+    from {
+      transform: translateY(-50px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+}
+
 .selector {
   position: relative;
   display: inline-block;

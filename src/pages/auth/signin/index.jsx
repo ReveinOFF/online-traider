@@ -72,7 +72,7 @@ const SignIn = () => {
           {isError && (
             <div class="error">
               <img src={errorIcon} alt="(!)" />
-              <span class="ng-binding">Неверный email или пароль</span>
+              <span>Неверный email или пароль</span>
             </div>
           )}
           <BigButton className={styles.btn} disabled={disableBtn}>

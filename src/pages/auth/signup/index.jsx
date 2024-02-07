@@ -3,7 +3,7 @@ import CustomInput from "../../../components/input";
 import Footer from "../../../components/footer";
 import Selector from "../../../components/selector";
 import close from "../../../assets/images/close.svg";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import sexData from "../../../utils/sex";
 import * as Yup from "yup";
@@ -12,6 +12,7 @@ import axios from "axios";
 import DataCreate from "../../../components/data-create";
 import LocalStorage from "../../../services/localStorage.js";
 import reload from "../../../assets/images/reload.svg";
+import { ErrorContext } from "../../../components/error-modal/index.jsx";
 
 const SignUp = () => {
   const [typingTimeout, setTypingTimeout] = useState();
@@ -19,7 +20,7 @@ const SignUp = () => {
   const [countrySelected, setCountrySelected] = useState();
   const [sexSelected, setSexSelected] = useState();
   const [disableBtn, setDisableBtn] = useState(false);
-  const [isError, setIsError] = useState(false);
+  const { setMessage, setError } = useContext(ErrorContext);
   const navigate = useNavigate();
 
   const canvasRef = useRef(null);
@@ -94,9 +95,10 @@ const SignUp = () => {
       .then((e) => {
         if (e.data.result === "success") {
           navigate("/signin");
-          setIsError(false);
+          setError(false);
         } else {
-          setIsError(true);
+          setError(true);
+          setMessage("Error registration");
           Object.entries(e.data.errors).forEach((element) => {
             formik.setFieldError(element[0], "Error validation");
           });

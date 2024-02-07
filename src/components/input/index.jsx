@@ -6,6 +6,9 @@ const CustomInput = ({
   className,
   required,
   placeholder,
+  value,
+  onChange,
+  onBlur,
   error,
   pattern,
 }) => {
@@ -13,9 +16,14 @@ const CustomInput = ({
     <input
       type={type}
       name={name}
-      className={`${styles.cstm_input} ${className} ${error ? "error" : ""}`}
+      value={value}
+      className={`${styles.cstm_input} ${className} ${
+        error ? styles.error_input : ""
+      }`}
       placeholder={placeholder}
       pattern={pattern}
+      onChange={onChange}
+      onBlur={onBlur}
       required={required}
     ></input>
   );

@@ -1,15 +1,7 @@
 import { useEffect, useState } from "react";
 import arrow from "../../assets/images/arrow.svg";
-import styles from "./selector.module.scss";
 
-const Selector = ({
-  data,
-  className,
-  selected,
-  setSelected,
-  emptyMsg,
-  disabled,
-}) => {
+const Selector = ({ children, className, selected, disabled }) => {
   const [showSelector, setShowSelector] = useState(false);
 
   const changeShowSelector = (e) => {
@@ -29,32 +21,20 @@ const Selector = ({
   }, [showSelector]);
 
   return (
-    <div className={`${styles.selector} c_selector ${className || ""}`}>
+    <div className={`selector ${className || ""}`}>
       <button
-        className={`item-center ${styles.btn_selected} ${
-          showSelector ? styles.active : ""
-        } ${disabled ? styles.inactive : ""}`}
+        className={`item-center c_selector btn_selected ${
+          showSelector ? "active" : ""
+        } ${disabled ? "inactive" : ""}`}
         onClick={(e) => {
           e.preventDefault();
           setShowSelector(!showSelector);
         }}
       >
-        <div>{data[selected] || emptyMsg}</div>
+        <div>{selected}</div>
         <img src={arrow} alt="arrow" width={10} height={10} />
       </button>
-      <div className={showSelector ? styles.active : ""}>
-        {Object.entries(data).map((item) => (
-          <div
-            key={item[0]}
-            onClick={() => {
-              setShowSelector(false);
-              setSelected(item[0]);
-            }}
-          >
-            {item[1]}
-          </div>
-        ))}
-      </div>
+      <div className={showSelector ? "active" : ""}>{children}</div>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import styles from "./textarea.module.scss";
 
-const CustomTextArea = ({ type, name, className, placeholder }) => {
+const CustomTextArea = ({ name, className, placeholder }) => {
   return (
     <textarea
       name={name}

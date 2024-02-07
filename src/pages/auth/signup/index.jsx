@@ -363,7 +363,10 @@ const SignUp = () => {
                   <Selector
                     selected={sexSelected || t("signup.block_2.set_empty")}
                   >
-                    {Object.entries(sexData)?.map((item) => (
+                    {Object.entries({
+                      f: t("sex.f"),
+                      m: t("sex.m"),
+                    })?.map((item) => (
                       <div
                         key={item[0]}
                         onClick={() => {

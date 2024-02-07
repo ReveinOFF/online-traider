@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import SignIn from "./pages/auth/signin";
 import ResetPass from "./pages/auth/reset";
 import SignUp from "./pages/auth/signup";
@@ -36,15 +36,27 @@ import Management from "./pages/admin/services/management";
 import UserManagement from "./pages/admin/services/users";
 import ReportSystem from "./pages/admin/services/report";
 import PaymentService from "./pages/admin/services/payments";
+import { useAuth } from "./components/isAuth";
 
 const App = () => {
+  const { isAuth } = useAuth();
+
   return (
     <Routes>
-      <Route path="/signin" element={<SignIn />} />
-      <Route path="/reset-pass" element={<ResetPass />} />
-      <Route path="/signup" element={<SignUp />} />
+      <Route
+        path="/signin"
+        element={!isAuth ? <SignIn /> : <Navigate to="/" />}
+      />
+      <Route
+        path="/reset-pass"
+        element={!isAuth ? <ResetPass /> : <Navigate to="/" />}
+      />
+      <Route
+        path="/signup"
+        element={!isAuth ? <SignUp /> : <Navigate to="/" />}
+      />
 
-      <Route path="/" element={<Layout />}>
+      <Route path="/" element={isAuth ? <Layout /> : <Navigate to="/signin" />}>
         <Route index element={<Profile />} />
 
         <Route path="trade/my" element={<MyAccount />} />
@@ -64,7 +76,10 @@ const App = () => {
         <Route path="appeals/history" element={<HistoryAppeals />} />
       </Route>
 
-      <Route path="/admin/" element={<AdminLayout />}>
+      <Route
+        path="/admin/"
+        element={isAuth ? <AdminLayout /> : <Navigate to="/signin" />}
+      >
         <Route index element={<Profile />} />
 
         <Route path="appeal" element={<AppealAdmin />} />

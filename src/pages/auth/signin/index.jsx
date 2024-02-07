@@ -7,16 +7,17 @@ import passIcon from "../../../assets/images/signin/pass.svg";
 import errorIcon from "../../../assets/images/signin/error.svg";
 import Language from "../../../components/language";
 import axios from "axios";
-import LocalStorage from "../../../services/localStorage";
 import { useState } from "react";
 import DataCreate from "../../../components/data-create";
 import { useTranslation } from "react-i18next";
+import { useAuth } from "../../../components/isAuth";
 
 const SignIn = () => {
   const navigate = useNavigate();
   const [disableBtn, setDisableBtn] = useState(false);
   const [isError, setIsError] = useState(false);
   const { t } = useTranslation();
+  const { login } = useAuth();
 
   const handleSubmite = (e) => {
     e.preventDefault();
@@ -33,7 +34,7 @@ const SignIn = () => {
       .post("https://cabinet.itcyclonelp.com/api/v_2/page/Login", bodyFormData)
       .then((e) => {
         if (e.data.result === "success") {
-          LocalStorage.set("auth_token", e.data.values.auth_token);
+          login(e.data.values.auth_token);
           navigate("/");
           setIsError(false);
         } else {

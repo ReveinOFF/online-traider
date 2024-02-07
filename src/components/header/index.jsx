@@ -13,6 +13,7 @@ import burger from "../../assets/images/header/burger-menu.svg";
 import LocalStorage from "../../services/localStorage";
 import axios from "axios";
 import DataCreate from "../data-create";
+import { useAuth } from "../isAuth";
 
 const Header = () => {
   const [showProfile, setShowProfile] = useState(false);
@@ -21,6 +22,7 @@ const Header = () => {
   const [showCompany, setShowCompany] = useState(false);
   const [showBurger, setShowBurger] = useState(false);
   const navigate = useNavigate();
+  const { logout } = useAuth();
 
   const changeShowProfile = (e) => {
     if (!e.target.closest(".c_profile")) setShowProfile(false);
@@ -51,8 +53,7 @@ const Header = () => {
       })
       .then((e) => {
         if (e.data.result === "success") {
-          LocalStorage.remove("auth_token");
-          navigate("/signin");
+          logout();
         }
       });
   };

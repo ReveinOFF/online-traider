@@ -10,11 +10,13 @@ import axios from "axios";
 import LocalStorage from "../../../services/localStorage";
 import { useState } from "react";
 import DataCreate from "../../../components/data-create";
+import { useTranslation } from "react-i18next";
 
 const SignIn = () => {
   const navigate = useNavigate();
   const [disableBtn, setDisableBtn] = useState(false);
   const [isError, setIsError] = useState(false);
+  const { t } = useTranslation();
 
   const handleSubmite = (e) => {
     e.preventDefault();
@@ -45,14 +47,14 @@ const SignIn = () => {
     <main className="auth_block flex-center">
       <div className="block">
         <Language />
-        <h1>Вход в личный кабинет</h1>
+        <h1>{t("signin.h1")}</h1>
         <form onSubmit={handleSubmite}>
           <fieldset className={styles.margin}>
             <img src={profileIcon} alt="email" width={20} height={20} />
             <CustomInput
               type="email"
               name="user_email"
-              placeholder="Логин или E-mail"
+              placeholder={t("signin.email")}
               error={isError}
             />
           </fieldset>
@@ -61,22 +63,22 @@ const SignIn = () => {
             <CustomInput
               type="password"
               name="password"
-              placeholder="Пароль"
+              placeholder={t("signin.password")}
               error={isError}
             />
           </fieldset>
           <div className={`${styles.margin} justify-center`}>
-            <Link to="/signup">Регистрация</Link>
-            <Link to="/reset-pass">Забыли пароль?</Link>
+            <Link to="/signup">{t("signin.reg")}</Link>
+            <Link to="/reset-pass">{t("signin.forgot")}</Link>
           </div>
           {isError && (
             <div class="error">
               <img src={errorIcon} alt="(!)" />
-              <span>Неверный email или пароль</span>
+              <span>{t("signin.error")}</span>
             </div>
           )}
           <BigButton className={styles.btn} disabled={disableBtn}>
-            ВОЙТИ
+            {t("signin.btn")}
           </BigButton>
         </form>
       </div>

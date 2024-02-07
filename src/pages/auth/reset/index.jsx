@@ -8,11 +8,13 @@ import axios from "axios";
 import DataCreate from "../../../components/data-create";
 import { useState } from "react";
 import errorIcon from "../../../assets/images/signin/error.svg";
+import { useTranslation } from "react-i18next";
 
 const ResetPass = () => {
   const [disableBtn, setDisableBtn] = useState(false);
   const [error, setError] = useState(false);
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const SendReset = (e) => {
     e.preventDefault();
@@ -46,37 +48,35 @@ const ResetPass = () => {
     <main className="auth_block flex-center">
       <div className="block">
         <Language />
-        <h1>Восстановление пароля</h1>
+        <h1>{t("forgot.h1")}</h1>
         <form onSubmit={SendReset}>
           <fieldset className={styles.mb}>
             <img src={email} alt="email" width={20} height={15} />
             <CustomInput
               type="email"
               name="email"
-              placeholder="Ваш e-mail"
+              placeholder={t("forgot.email")}
               error={error}
             />
           </fieldset>
           {error && (
             <div class="error">
               <img src={errorIcon} alt="(!)" />
-              <span class="ng-binding">Некорректный email</span>
+              <span class="ng-binding">{t("forgot.error")}</span>
             </div>
           )}
           <div className={`btn_z-index ${styles.block_btn}`}>
             <NmGreenButton className={styles.btn} disabled={disableBtn}>
-              ОТПРАВИТЬ
+              {t("forgot.btn_1")}
             </NmGreenButton>
             <Link to="/signin" className={styles.link}>
-              <SmBlueButton className={styles.btn_last}>ОТМЕНИТЬ</SmBlueButton>
+              <SmBlueButton className={styles.btn_last}>
+                {t("forgot.btn_2")}
+              </SmBlueButton>
             </Link>
           </div>
         </form>
-        <p>
-          Чтобы сбросить ваш пароль, вам необходимо ввести email, указанный
-          при регистрации. На ваш email будет отправлено письмо со ссылкой
-          на изменение пароля.
-        </p>
+        <p>{t("forgot.desc")}</p>
       </div>
     </main>
   );

@@ -13,6 +13,7 @@ import DataCreate from "../../../components/data-create";
 import LocalStorage from "../../../services/localStorage.js";
 import reload from "../../../assets/images/reload.svg";
 import { ErrorContext } from "../../../components/error-modal/index.jsx";
+import { useTranslation } from "react-i18next";
 
 const SignUp = () => {
   const [typingTimeout, setTypingTimeout] = useState();
@@ -22,6 +23,7 @@ const SignUp = () => {
   const [disableBtn, setDisableBtn] = useState(false);
   const { setMessage, setError } = useContext(ErrorContext);
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const canvasRef = useRef(null);
   const [captchaText, setCaptchaText] = useState("");
@@ -98,9 +100,9 @@ const SignUp = () => {
           setError(false);
         } else {
           setError(true);
-          setMessage("Error registration");
+          setMessage(t("signup_valid.error"));
           Object.entries(e.data.errors).forEach((element) => {
-            formik.setFieldError(element[0], "Error validation");
+            formik.setFieldError(element[0], t("signup_valid.error_any"));
           });
         }
       })
@@ -128,9 +130,9 @@ const SignUp = () => {
 
   const SignupSchema = Yup.object().shape({
     email: Yup.string()
-      .email("Invalid email")
-      .required("Required")
-      .test("checkEmail", "Пошта уже есть", async (value) => {
+      .email(t("signup_valid.email"))
+      .required(t("signup_valid.req"))
+      .test("checkEmail", t("signup_valid.email_unique"), async (value) => {
         if (typingTimeout) clearTimeout(typingTimeout);
         return new Promise((resolve) => {
           setTypingTimeout(
@@ -150,20 +152,14 @@ const SignUp = () => {
         });
       }),
     password: Yup.string()
-      .required("Required")
-      .min(8, "Too Short!")
-      .matches(
-        /^(?=.*[A-Z])/,
-        "Пароль должен содержать как минимум одну заглавную букву"
-      )
-      .matches(
-        /(?=.*[a-z])/,
-        "Пароль должен содержать как минимум одну строчную букву"
-      )
-      .matches(/(?=.*[0-9])/, "Пароль должен содержать как минимум одну цифру"),
+      .required(t("signup_valid.req"))
+      .min(8, t("signup_valid.pass_min"))
+      .matches(/^(?=.*[A-Z])/, t("signup_valid.pass_u"))
+      .matches(/(?=.*[a-z])/, t("signup_valid.pass_l"))
+      .matches(/(?=.*[0-9])/, t("signup_valid.pass_n")),
     password_repeat: Yup.string()
-      .required("Required")
-      .oneOf([Yup.ref("password"), null], "Passwords must match"),
+      .required(t("signup_valid.req"))
+      .oneOf([Yup.ref("password"), null], t("signup_valid.pass_r")),
     date_of_birth: Yup.date()
       .transform(function (value, originalValue) {
         if (this.isType(value)) {
@@ -173,14 +169,14 @@ const SignUp = () => {
         return result;
       })
       .notRequired(),
-    second_name: Yup.string().required("Required"),
-    first_name: Yup.string().required("Required"),
+    second_name: Yup.string().required(t("signup_valid.req")),
+    first_name: Yup.string().required(t("signup_valid.req")),
     patronymic: Yup.string().notRequired(),
     login: Yup.string().notRequired(),
     passport: Yup.string().notRequired(),
     tag_1: Yup.string().notRequired(),
     country: Yup.string().notRequired(),
-    phone: Yup.string().required("Required"),
+    phone: Yup.string().required(t("signup_valid.req")),
     area: Yup.string().notRequired(),
     city: Yup.string().notRequired(),
     address: Yup.string().notRequired(),
@@ -221,12 +217,8 @@ const SignUp = () => {
             onClick={() => navigate("/signin")}
           />
 
-          <h1>Регистрация</h1>
-          <p>
-            Регистрация займет всего несколько минут и позволит вам получить
-            доступ к личному кабинету. Поля, отмеченные *, обязательны для
-            заполнения
-          </p>
+          <h1>{t("signup.h1")}</h1>
+          <p>{t("signup.desc")}</p>
 
           <FormikProvider value={formik}>
             <form
@@ -236,13 +228,13 @@ const SignUp = () => {
               }}
             >
               <div>
-                <h2>Учетная запись</h2>
+                <h2>{t("signup.block_1.h2")}</h2>
                 <fieldset>
-                  <div>E-Mail *</div>
+                  <div>{t("signup.block_1.email")}</div>
                   <CustomInput
                     type="email"
                     name="email"
-                    placeholder="Введите e-mail"
+                    placeholder={t("signup.block_1.email_ph")}
                     value={values.email}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -256,11 +248,11 @@ const SignUp = () => {
                   </div>
                 )}
                 <fieldset>
-                  <div>Пароль *</div>
+                  <div>{t("signup.block_1.password")}</div>
                   <CustomInput
                     type="password"
                     name="password"
-                    placeholder="Введите пароль"
+                    placeholder={t("signup.block_1.password_ph")}
                     value={values.password}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -274,11 +266,11 @@ const SignUp = () => {
                   </div>
                 )}
                 <fieldset>
-                  <div>Повторите новый пароль *</div>
+                  <div>{t("signup.block_1.password_r")}</div>
                   <CustomInput
                     type="password"
                     name="password_repeat"
-                    placeholder="Повторите пароль"
+                    placeholder={t("signup.block_1.password_r_ph")}
                     value={values.password_repeat}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -292,7 +284,7 @@ const SignUp = () => {
                   </div>
                 )}
                 <fieldset>
-                  <div>Дата рождения</div>
+                  <div>{t("signup.block_1.data")}</div>
                   <CustomInput
                     type="date"
                     name="date_of_birth"
@@ -305,13 +297,13 @@ const SignUp = () => {
               </div>
 
               <div>
-                <h2>Учетная запись</h2>
+                <h2>{t("signup.block_2.h2")}</h2>
                 <fieldset>
-                  <div>Фамилия *</div>
+                  <div>{t("signup.block_2.second_name")}</div>
                   <CustomInput
                     type="text"
                     name="second_name"
-                    placeholder="Введите фамилию"
+                    placeholder={t("signup.block_2.second_name_ph")}
                     value={values.second_name}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -325,11 +317,11 @@ const SignUp = () => {
                   </div>
                 )}
                 <fieldset>
-                  <div>Имя *</div>
+                  <div>{t("signup.block_2.first_name")}</div>
                   <CustomInput
                     type="text"
                     name="first_name"
-                    placeholder="Введите имя"
+                    placeholder={t("signup.block_2.first_name_ph")}
                     value={values.first_name}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -343,11 +335,11 @@ const SignUp = () => {
                   </div>
                 )}
                 <fieldset>
-                  <div>Отчество</div>
+                  <div>{t("signup.block_2.patronymic")}</div>
                   <CustomInput
                     type="text"
                     name="patronymic"
-                    placeholder="Введите отчество"
+                    placeholder={t("signup.block_2.patronymic_ph")}
                     value={values.patronymic}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -355,7 +347,7 @@ const SignUp = () => {
                   />
                 </fieldset>
                 <fieldset>
-                  <div>Паспорт</div>
+                  <div>{t("signup.block_2.passport")}</div>
                   <CustomInput
                     type="text"
                     name="passport"
@@ -367,8 +359,10 @@ const SignUp = () => {
                   />
                 </fieldset>
                 <fieldset>
-                  <div>Пол</div>
-                  <Selector selected={sexSelected || "Не указан"}>
+                  <div>{t("signup.block_2.sex")}</div>
+                  <Selector
+                    selected={sexSelected || t("signup.block_2.set_empty")}
+                  >
                     {Object.entries(sexData)?.map((item) => (
                       <div
                         key={item[0]}
@@ -385,13 +379,13 @@ const SignUp = () => {
               </div>
 
               <div>
-                <h2>Контакты</h2>
+                <h2>{t("signup.block_3.h2")}</h2>
                 <fieldset>
-                  <div>Телефон *</div>
+                  <div>{t("signup.block_3.phone")}</div>
                   <CustomInput
                     type="tel"
                     name="phone"
-                    placeholder="Введите номер телефона"
+                    placeholder={t("signup.block_3.phone_ph")}
                     value={values.phone}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -405,7 +399,7 @@ const SignUp = () => {
                   </div>
                 )}
                 <fieldset>
-                  <div>Страна</div>
+                  <div>{t("signup.block_3.country")}</div>
                   <Selector selected={countrySelected}>
                     {countryList
                       ?.filter((item) => item.code !== countrySelected)
@@ -423,11 +417,11 @@ const SignUp = () => {
                   </Selector>
                 </fieldset>
                 <fieldset>
-                  <div>Область</div>
+                  <div>{t("signup.block_3.area")}</div>
                   <CustomInput
                     type="text"
                     name="area"
-                    placeholder="Введите область"
+                    placeholder={t("signup.block_3.area_ph")}
                     value={values.area}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -435,11 +429,11 @@ const SignUp = () => {
                   />
                 </fieldset>
                 <fieldset>
-                  <div>Город</div>
+                  <div>{t("signup.block_3.city")}</div>
                   <CustomInput
                     type="text"
                     name="city"
-                    placeholder="Введите город"
+                    placeholder={t("signup.block_3.city_ph")}
                     value={values.city}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -447,11 +441,11 @@ const SignUp = () => {
                   />
                 </fieldset>
                 <fieldset>
-                  <div>Адрес</div>
+                  <div>{t("signup.block_3.address")}</div>
                   <CustomInput
                     type="text"
                     name="address"
-                    placeholder="Введите адрес"
+                    placeholder={t("signup.block_3.address_ph")}
                     value={values.address}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -459,11 +453,11 @@ const SignUp = () => {
                   />
                 </fieldset>
                 <fieldset>
-                  <div>Почтовый индекс</div>
+                  <div>{t("signup.block_3.postcode")}</div>
                   <CustomInput
                     type="text"
                     name="postcode"
-                    placeholder="Введите почтовый индекс"
+                    placeholder={t("signup.block_3.postcode_ph")}
                     value={values.postcode}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -473,7 +467,7 @@ const SignUp = () => {
               </div>
 
               <div className={styles.last_block}>
-                <h2 className={styles.last_h2}>Контакты</h2>
+                <h2 className={styles.last_h2}>{t("signup.block_4.h2")}</h2>
                 <div className={`${styles.captcha} flex-center`}>
                   <div className="flex-center">
                     <canvas ref={canvasRef} width={120} height={53.2}></canvas>
@@ -495,7 +489,7 @@ const SignUp = () => {
                 {showError && !isCaptchaValid && (
                   <div className={styles.error_block}>
                     <div></div>
-                    <div>Error Captcha</div>
+                    <div>{t("signup.block_4.captcha")}</div>
                   </div>
                 )}
                 <button
@@ -507,7 +501,7 @@ const SignUp = () => {
                   }
                   type="submit"
                 >
-                  ЗАРЕГИСТРИРОВАТЬСЯ
+                  {t("signup.block_4.btn")}
                 </button>
               </div>
             </form>

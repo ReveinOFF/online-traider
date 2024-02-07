@@ -34,7 +34,7 @@ const SignIn = () => {
       .post("https://cabinet.itcyclonelp.com/api/v_2/page/Login", bodyFormData)
       .then((e) => {
         if (e.data.result === "success") {
-          login(e.data.values.auth_token);
+          login(e.data.values.auth_token, e.data.values.user_id);
           navigate("/");
           setIsError(false);
         } else {

@@ -22,7 +22,7 @@ const ErrorModal = ({ children }) => {
   return (
     <ErrorContext.Provider value={{ setError, setMessage }}>
       {error && (
-        <div class="errorModal">
+        <div className="errorModal">
           <img src={errorIcon} alt="(!)" />
           <span>{message}</span>
         </div>

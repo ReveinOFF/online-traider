@@ -1,7 +1,7 @@
 import styles from "./signin.module.scss";
 import CustomInput from "../../../components/input";
 import { BigButton } from "../../../components/buttons";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import profileIcon from "../../../assets/images/signin/profile.svg";
 import passIcon from "../../../assets/images/signin/pass.svg";
 import errorIcon from "../../../assets/images/signin/error.svg";
@@ -13,7 +13,6 @@ import { useTranslation } from "react-i18next";
 import { useAuth } from "../../../components/isAuth";
 
 const SignIn = () => {
-  const navigate = useNavigate();
   const [disableBtn, setDisableBtn] = useState(false);
   const [isError, setIsError] = useState(false);
   const { t } = useTranslation();
@@ -35,7 +34,6 @@ const SignIn = () => {
       .then((e) => {
         if (e.data.result === "success") {
           login(e.data.values.auth_token, e.data.values.user_id);
-          navigate("/");
           setIsError(false);
         } else {
           setIsError(true);

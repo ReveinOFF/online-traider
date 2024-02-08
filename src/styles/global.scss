@@ -549,7 +549,6 @@ input[type="number"] {
     border-radius: 0 0 5px 5px;
     padding: 16px 20px;
     display: grid;
-    gap: 15px;
     z-index: 1;
     max-height: 400px;
     overflow: auto;
@@ -563,6 +562,7 @@ input[type="number"] {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+      padding-block: 10px;
 
       &:hover {
         color: #2179e0;

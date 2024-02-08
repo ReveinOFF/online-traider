@@ -1,44 +1,43 @@
 import styles from "./buttons.module.scss";
 
-export const BigButton = ({ children, disabled, className }) => {
+export const BigButton = ({ children, className, ...otherProps }) => {
   return (
     <button
       className={`${styles.big_btn} ${styles.btn} ${className || ""}`}
-      disabled={disabled}
+      {...otherProps}
     >
       {children}
     </button>
   );
 };
 
-export const NmGreenButton = ({ children, disabled, className }) => {
+export const NmGreenButton = ({ children, className, ...otherProps }) => {
   return (
     <button
       className={`${styles.nmg_btn} ${styles.btn} ${className || ""}`}
-      disabled={disabled}
+      {...otherProps}
     >
       {children}
     </button>
   );
 };
 
-export const SmGreenButton = ({ children, className, disabled }) => {
+export const SmGreenButton = ({ children, className, ...otherProps }) => {
   return (
     <button
       className={`${styles.smg_btn} ${styles.btn} ${className || ""}`}
-      disabled={disabled}
+      {...otherProps}
     >
       {children}
     </button>
   );
 };
 
-export const SmBlueButton = ({ children, className, disabled, onClick }) => {
+export const SmBlueButton = ({ children, className, ...otherProps }) => {
   return (
     <button
       className={`${styles.smb_btn} ${styles.btn} ${className || ""}`}
-      onClick={onClick}
-      disabled={disabled}
+      {...otherProps}
     >
       {children}
     </button>

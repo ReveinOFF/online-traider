@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./header.style.scss";
 import arrow from "../../assets/images/arrow.svg";
 import arrow_first from "../../assets/images/arrow_first.svg";
@@ -24,6 +24,7 @@ const Header = () => {
   const [showBurger, setShowBurger] = useState(false);
   const { t } = useTranslation();
   const { logout } = useAuth();
+  const navigate = useNavigate();
 
   const changeShowProfile = (e) => {
     if (!e.target.closest(".c_profile")) setShowProfile(false);
@@ -53,9 +54,7 @@ const Header = () => {
         },
       })
       .then((e) => {
-        if (e.data.result === "success") {
-          logout();
-        }
+        logout();
       });
   };
 
@@ -160,12 +159,6 @@ const Header = () => {
                 onClick={() => setShowPayment(false)}
               >
                 {t("header.concl")}
-              </Link>
-              <Link
-                to="/payment/transfer"
-                onClick={() => setShowPayment(false)}
-              >
-                {t("header.trans_p")}
               </Link>
             </div>
           </li>
@@ -301,12 +294,6 @@ const Header = () => {
                   onClick={() => setShowPayment(false)}
                 >
                   {t("header.concl")}
-                </Link>
-                <Link
-                  to="/payment/transfer"
-                  onClick={() => setShowPayment(false)}
-                >
-                  {t("header.trans_p")}
                 </Link>
               </div>
             </li>

@@ -3,8 +3,12 @@
   justify-content: center;
 
   button {
-    padding: 19px 45px;
     margin-top: 20px;
+
+    a {
+      padding: 19px 45px;
+      color: #ffffff;
+    }
   }
 }
 
@@ -12,4 +16,9 @@
   background: #3f4352;
   padding: 9px 10px;
   margin-right: 20px;
+
+  a {
+    padding: 9px 10px;
+    color: #ffffff;
+  }
 }

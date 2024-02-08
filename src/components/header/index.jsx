@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./header.style.scss";
 import arrow from "../../assets/images/arrow.svg";
 import arrow_first from "../../assets/images/arrow_first.svg";
@@ -14,6 +14,7 @@ import LocalStorage from "../../services/localStorage";
 import axios from "axios";
 import DataCreate from "../data-create";
 import { useAuth } from "../isAuth";
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
   const [showProfile, setShowProfile] = useState(false);
@@ -21,7 +22,7 @@ const Header = () => {
   const [showPayment, setShowPayment] = useState(false);
   const [showCompany, setShowCompany] = useState(false);
   const [showBurger, setShowBurger] = useState(false);
-  const navigate = useNavigate();
+  const { t } = useTranslation();
   const { logout } = useAuth();
 
   const changeShowProfile = (e) => {
@@ -115,7 +116,7 @@ const Header = () => {
               className="item-center"
               onClick={() => setShowShop(!showShop)}
             >
-              ТОРГОВЛЯ{" "}
+              {t("header.shop")}{" "}
               <img
                 src={arrow_first}
                 className={showShop ? "active" : ""}
@@ -126,19 +127,19 @@ const Header = () => {
             </button>
             <div className={`h_dropdown ${showShop ? "active" : ""}`}>
               <Link to="/trade/my" onClick={() => setShowShop(false)}>
-                Мои счета
+                {t("header.my")}
               </Link>
               <Link to="/trade/open" onClick={() => setShowShop(false)}>
-                Открыть счет
+                {t("header.open")}
               </Link>
               <Link to="/trade/connect" onClick={() => setShowShop(false)}>
-                Подключить счет
+                {t("header.connect")}
               </Link>
               <Link to="/trade/transactions" onClick={() => setShowShop(false)}>
-                Депозитные операции
+                {t("header.trans")}
               </Link>
               <Link to="/trade/history" onClick={() => setShowShop(false)}>
-                Торговая история
+                {t("header.history")}
               </Link>
             </div>
           </li>
@@ -147,23 +148,24 @@ const Header = () => {
               className="item-center"
               onClick={() => setShowPayment(!showPayment)}
             >
-              ПЛАТЕЖИ <img src={arrow} alt="arrow" width={10} height={10} />
+              {t("header.payment")}{" "}
+              <img src={arrow} alt="arrow" width={10} height={10} />
             </button>
             <div className={`h_dropdown ${showPayment ? "active" : ""}`}>
               <Link to="/payment/my" onClick={() => setShowPayment(false)}>
-                Мои заявки
+                {t("header.my_p")}
               </Link>
               <Link
                 to="/payment/conclusion"
                 onClick={() => setShowPayment(false)}
               >
-                Ввод средств
+                {t("header.concl")}
               </Link>
               <Link
                 to="/payment/transfer"
                 onClick={() => setShowPayment(false)}
               >
-                Вывод средств
+                {t("header.trans_p")}
               </Link>
             </div>
           </li>
@@ -172,17 +174,18 @@ const Header = () => {
               className="item-center"
               onClick={() => setShowCompany(!showCompany)}
             >
-              КОМПАНИЯ <img src={arrow} alt="arrow" width={10} height={10} />
+              {t("header.company")}{" "}
+              <img src={arrow} alt="arrow" width={10} height={10} />
             </button>
             <div className={`h_dropdown ${showCompany ? "active" : ""}`}>
               <Link to="/trade/documents" onClick={() => setShowCompany(false)}>
-                Документы
+                {t("header.doc")}
               </Link>
             </div>
           </li>
           <li className="justify-center">
             <Link to="/appeals" className="item-center">
-              ОБРАЩЕНИЕ
+              {t("header.appeals")}
             </Link>
           </li>
         </ul>
@@ -197,15 +200,16 @@ const Header = () => {
         >
           <div className={showProfile ? "active" : ""}>
             <img src={profile} alt="profile" width={16} height={16} />
-            Мой профиль
+            {t("header.profile")}
           </div>
           <div className={showProfile ? "active" : ""}>
             <Link to="/">
               <img src={myprofile} alt="my profile" width={16} height={16} />{" "}
-              Мой профиль
+              {t("header.profile")}
             </Link>
             <div onClick={Logout}>
-              <img src={exit} alt="exit" width={16} height={16} /> Выход
+              <img src={exit} alt="exit" width={16} height={16} />{" "}
+              {t("header.logout")}
             </div>
           </div>
         </button>
@@ -222,15 +226,16 @@ const Header = () => {
           >
             <div className={showProfile ? "active" : ""}>
               <img src={profile} alt="profile" width={16} height={16} />
-              Мой профиль
+              {t("header.profile")}
             </div>
             <div className={showProfile ? "active" : ""}>
               <Link to="/">
                 <img src={myprofile} alt="my profile" width={16} height={16} />{" "}
-                Мой профиль
+                {t("header.profile")}
               </Link>
               <div onClick={Logout}>
-                <img src={exit} alt="exit" width={16} height={16} /> Выход
+                <img src={exit} alt="exit" width={16} height={16} />{" "}
+                {t("header.logout")}
               </div>
             </div>
           </button>
@@ -255,27 +260,27 @@ const Header = () => {
                 className={showShop ? "active" : ""}
                 onClick={() => setShowShop(!showShop)}
               >
-                <div>ТОРГОВЛЯ</div>
+                <div>{t("header.shop")}</div>
                 <img src={arrow} alt="arrow" width={11} height={11} />
               </button>
               <div className={showShop ? "active" : ""}>
                 <Link to="/trade/my" onClick={() => setShowShop(false)}>
-                  Мои счета
+                  {t("header.my")}
                 </Link>
                 <Link to="/trade/open" onClick={() => setShowShop(false)}>
-                  Открыть счет
+                  {t("header.open")}
                 </Link>
                 <Link to="/trade/connect" onClick={() => setShowShop(false)}>
-                  Подключить счет
+                  {t("header.connect")}
                 </Link>
                 <Link
                   to="/trade/transactions"
                   onClick={() => setShowShop(false)}
                 >
-                  Депозитные операции
+                  {t("header.trans")}
                 </Link>
                 <Link to="/trade/history" onClick={() => setShowShop(false)}>
-                  Торговая история
+                  {t("header.history")}
                 </Link>
               </div>
             </li>
@@ -284,24 +289,24 @@ const Header = () => {
                 className={showPayment ? "active" : ""}
                 onClick={() => setShowPayment(!showPayment)}
               >
-                <div>ПЛАТЕЖИ</div>
+                <div>{t("header.payment")}</div>
                 <img src={arrow} alt="arrow" width={11} height={11} />
               </button>
               <div className={showPayment ? "active" : ""}>
                 <Link to="/payment/my" onClick={() => setShowPayment(false)}>
-                  Мои заявки
+                  {t("header.my_p")}
                 </Link>
                 <Link
                   to="/payment/conclusion"
                   onClick={() => setShowPayment(false)}
                 >
-                  Ввод средств
+                  {t("header.concl")}
                 </Link>
                 <Link
                   to="/payment/transfer"
                   onClick={() => setShowPayment(false)}
                 >
-                  Вывод средств
+                  {t("header.trans_p")}
                 </Link>
               </div>
             </li>
@@ -310,7 +315,7 @@ const Header = () => {
                 className={showCompany ? "active" : ""}
                 onClick={() => setShowCompany(!showCompany)}
               >
-                <div>КОМПАНИЯ</div>
+                <div>{t("header.company")}</div>
                 <img src={arrow} alt="arrow" width={11} height={11} />
               </button>
               <div className={showCompany ? "active" : ""}>
@@ -318,12 +323,12 @@ const Header = () => {
                   to="/trade/documents"
                   onClick={() => setShowCompany(false)}
                 >
-                  Документы
+                  {t("header.doc")}
                 </Link>
               </div>
             </li>
             <li>
-              <Link to="/appeals">ОБРАЩЕНИЯ</Link>
+              <Link to="/appeals">{t("header.appeals")}</Link>
             </li>
           </ul>
         </nav>
@@ -338,15 +343,16 @@ const Header = () => {
           >
             <div className={showProfile ? "active" : ""}>
               <img src={profile} alt="profile" width={16} height={16} />
-              Мой профиль
+              {t("header.profile")}
             </div>
             <div className={showProfile ? "active" : ""}>
               <Link to="/">
                 <img src={myprofile} alt="my profile" width={16} height={16} />{" "}
-                Мой профиль
+                {t("header.profile")}
               </Link>
               <div onClick={Logout}>
-                <img src={exit} alt="exit" width={16} height={16} /> Выход
+                <img src={exit} alt="exit" width={16} height={16} />{" "}
+                {t("header.logout")}
               </div>
             </div>
           </button>

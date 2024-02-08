@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import arrow from "../../assets/images/arrow.svg";
 import arrow_first from "../../assets/images/arrow_first.svg";
 import Language from "../language";
@@ -13,13 +13,14 @@ import close from "../../assets/images/close.svg";
 import axios from "axios";
 import DataCreate from "../data-create";
 import { useAuth } from "../isAuth";
+import { useTranslation } from "react-i18next";
 
 const AdminHeader = () => {
   const [showProfile, setShowProfile] = useState(false);
   const [showSetting, setShowSetting] = useState(false);
   const [showService, setShowService] = useState(false);
   const [showBurger, setShowBurger] = useState(false);
-  const navigate = useNavigate();
+  const { t } = useTranslation();
   const { logout } = useAuth();
 
   const changeShowProfile = (e) => {
@@ -97,7 +98,7 @@ const AdminHeader = () => {
               className="item-center"
               onClick={() => setShowSetting(!showSetting)}
             >
-              НАСТРОЙКИ{" "}
+              {t("header_admin.setting")}{" "}
               <img
                 src={arrow_first}
                 className={showSetting ? "active" : ""}
@@ -111,43 +112,43 @@ const AdminHeader = () => {
                 to="/admin/setting/documents"
                 onClick={() => setShowSetting(false)}
               >
-                Документы
+                {t("header_admin.doc")}
               </Link>
               <Link
                 to="/admin/setting/office"
                 onClick={() => setShowSetting(false)}
               >
-                Личный кабинет
+                {t("header_admin.office")}
               </Link>
               <Link
                 to="/admin/setting/payments"
                 onClick={() => setShowSetting(false)}
               >
-                Платежные системы
+                {t("header_admin.payment")}
               </Link>
               <Link
                 to="/admin/setting/servers"
                 onClick={() => setShowSetting(false)}
               >
-                Серверы
+                {t("header_admin.servers")}
               </Link>
               <Link
                 to="/admin/setting/account"
                 onClick={() => setShowSetting(false)}
               >
-                Типы счетов
+                {t("header_admin.acc")}
               </Link>
               <Link
                 to="/admin/setting/lang"
                 onClick={() => setShowSetting(false)}
               >
-                Языки
+                {t("header_admin.lang")}
               </Link>
               <Link
                 to="/admin/setting/method"
                 onClick={() => setShowSetting(false)}
               >
-                Методы оплаты
+                {t("header_admin.method")}
               </Link>
             </div>
           </li>
@@ -156,67 +157,68 @@ const AdminHeader = () => {
               className="item-center"
               onClick={() => setShowService(!showService)}
             >
-              СЕРВИС <img src={arrow} alt="arrow" width={10} height={10} />
+              {t("header_admin.service")}{" "}
+              <img src={arrow} alt="arrow" width={10} height={10} />
             </button>
             <div className={`h_dropdown ${showService ? "active" : ""}`}>
               <Link
                 to="/admin/services/email"
                 onClick={() => setShowService(false)}
               >
-                Email рассылка
+                {t("header_admin.email")}
               </Link>
               <Link
                 to="/admin/services/course"
                 onClick={() => setShowService(false)}
               >
-                Курсы валют
+                {t("header_admin.course")}
               </Link>
               <Link
                 to="/admin/services/templates"
                 onClick={() => setShowService(false)}
               >
-                Шаблоны писем
+                {t("header_admin.templates")}
               </Link>
               <Link
                 to="/admin/services/shares"
                 onClick={() => setShowService(false)}
               >
-                Акции
+                {t("header_admin.shares")}
               </Link>
               <Link
                 to="/admin/services/orders"
                 onClick={() => setShowService(false)}
               >
-                Новые заявки
+                {t("header_admin.orders")}
               </Link>
               <Link
                 to="/admin/services/management"
                 onClick={() => setShowService(false)}
               >
-                Управление счетами
+                {t("header_admin.manage")}
               </Link>
               <Link
                 to="/admin/services/users"
                 onClick={() => setShowService(false)}
               >
-                Управление пользователями
+                {t("header_admin.users")}
               </Link>
               <Link
                 to="/admin/services/payment"
                 onClick={() => setShowService(false)}
               >
-                Ввод\вывод средств
+                {t("header_admin.payment_s")}
               </Link>
               <Link
                 to="/admin/services/report"
                 onClick={() => setShowService(false)}
               >
-                Отчет по платежным системам
+                {t("header_admin.report")}
               </Link>
             </div>
           </li>
           <li className="justify-center">
-            <Link to="/admin/appeals">ОБРАЩЕНИЕ</Link>
+            <Link to="/admin/appeals">{t("header_admin.appeals")}</Link>
           </li>
         </ul>
       </nav>
@@ -232,15 +234,16 @@ const AdminHeader = () => {
         >
           <div className={showProfile ? "active" : ""}>
             <img src={profile} alt="profile" width={16} height={16} />
-            Мой профиль
+            {t("header_admin.profile")}
           </div>
           <div className={showProfile ? "active" : ""}>
             <Link to="/admin/">
               <img src={myprofile} alt="my profile" width={16} height={16} />{" "}
-              Мой профиль
+              {t("header_admin.profile")}
             </Link>
             <div onClick={Logout}>
-              <img src={exit} alt="exit" width={16} height={16} /> Выход
+              <img src={exit} alt="exit" width={16} height={16} />{" "}
+              {t("header_admin.logout")}
             </div>
           </div>
         </button>
@@ -257,15 +260,16 @@ const AdminHeader = () => {
           >
             <div className={showProfile ? "active" : ""}>
               <img src={profile} alt="profile" width={16} height={16} />
-              Мой профиль
+              {t("header_admin.profile")}
             </div>
             <div className={showProfile ? "active" : ""}>
               <Link to="/">
                 <img src={myprofile} alt="my profile" width={16} height={16} />{" "}
-                Мой профиль
+                {t("header_admin.profile")}
               </Link>
               <div onClick={Logout}>
-                <img src={exit} alt="exit" width={16} height={16} /> Выход
+                <img src={exit} alt="exit" width={16} height={16} />{" "}
+                {t("header_admin.logout")}
               </div>
             </div>
           </button>
@@ -290,7 +294,7 @@ const AdminHeader = () => {
                 className={showSetting ? "active" : ""}
                 onClick={() => setShowSetting(!showSetting)}
               >
-                <div>НАСТРОЙКИ</div>
+                <div>{t("header_admin.setting")}</div>
                 <img src={arrow} alt="arrow" width={11} height={11} />
               </button>
               <div className={showSetting ? "active" : ""}>
@@ -298,43 +302,43 @@ const AdminHeader = () => {
                   to="/admin/setting/documents"
                   onClick={() => setShowSetting(false)}
                 >
-                  Документы
+                  {t("header_admin.doc")}
                 </Link>
                 <Link
                   to="/admin/setting/office"
                   onClick={() => setShowSetting(false)}
                 >
-                  Личный кабинет
+                  {t("header_admin.office")}
                 </Link>
                 <Link
                   to="/admin/setting/payments"
                   onClick={() => setShowSetting(false)}
                 >
-                  Платежные системы
+                  {t("header_admin.payment")}
                 </Link>
                 <Link
                   to="/admin/setting/servers"
                   onClick={() => setShowSetting(false)}
                 >
-                  Серверы
+                  {t("header_admin.servers")}
                 </Link>
                 <Link
                   to="/admin/setting/account"
                   onClick={() => setShowSetting(false)}
                 >
-                  Типы счетов
+                  {t("header_admin.acc")}
                 </Link>
                 <Link
                   to="/admin/setting/lang"
                   onClick={() => setShowSetting(false)}
                 >
-                  Языки
+                  {t("header_admin.lang")}
                 </Link>
                 <Link
                   to="/admin/setting/method"
                   onClick={() => setShowSetting(false)}
                 >
-                  Методы оплаты
+                  {t("header_admin.method")}
                 </Link>
               </div>
             </li>
@@ -343,7 +347,7 @@ const AdminHeader = () => {
                 className={showService ? "active" : ""}
                 onClick={() => setShowService(!showService)}
               >
-                <div>СЕРВИС</div>
+                <div>{t("header_admin.service")}</div>
                 <img src={arrow} alt="arrow" width={11} height={11} />
               </button>
               <div className={showService ? "active" : ""}>
@@ -351,60 +355,60 @@ const AdminHeader = () => {
                   to="/admin/services/email"
                   onClick={() => setShowService(false)}
                 >
-                  Email рассылка
+                  {t("header_admin.email")}
                 </Link>
                 <Link
                   to="/admin/services/course"
                   onClick={() => setShowService(false)}
                 >
-                  Курсы валют
+                  {t("header_admin.course")}
                 </Link>
                 <Link
                   to="/admin/services/templates"
                   onClick={() => setShowService(false)}
                 >
-                  Шаблоны писем
+                  {t("header_admin.templates")}
                 </Link>
                 <Link
                   to="/admin/services/shares"
                   onClick={() => setShowService(false)}
                 >
-                  Акции
+                  {t("header_admin.shares")}
                 </Link>
                 <Link
                   to="/admin/services/orders"
                   onClick={() => setShowService(false)}
                 >
-                  Новые заявки
+                  {t("header_admin.orders")}
                 </Link>
                 <Link
                   to="/admin/services/management"
                   onClick={() => setShowService(false)}
                 >
-                  Управление счетами
+                  {t("header_admin.manage")}
                 </Link>
                 <Link
                   to="/admin/services/users"
                   onClick={() => setShowService(false)}
                 >
-                  Управление пользователями
+                  {t("header_admin.users")}
                 </Link>
                 <Link
                   to="/admin/services/payment"
                   onClick={() => setShowService(false)}
                 >
-                  Ввод\вывод средств
+                  {t("header_admin.payment_s")}
                 </Link>
                 <Link
                   to="/admin/services/report"
                   onClick={() => setShowService(false)}
                 >
-                  Отчет по платежным системам
+                  {t("header_admin.report")}
                 </Link>
               </div>
             </li>
             <li>
-              <Link to="/admin/appeals">ОБРАЩЕНИЕ</Link>
+              <Link to="/admin/appeals">{t("header_admin.appeals")}</Link>
             </li>
           </ul>
         </nav>
@@ -419,15 +423,16 @@ const AdminHeader = () => {
           >
             <div className={showProfile ? "active" : ""}>
               <img src={profile} alt="profile" width={16} height={16} />
-              Мой профиль
+              {t("header_admin.profile")}
             </div>
             <div className={showProfile ? "active" : ""}>
               <Link to="/admin/">
                 <img src={myprofile} alt="my profile" width={16} height={16} />{" "}
-                Мой профиль
+                {t("header_admin.profile")}
               </Link>
               <div onClick={Logout}>
-                <img src={exit} alt="exit" width={16} height={16} /> Выход
+                <img src={exit} alt="exit" width={16} height={16} />{" "}
+                {t("header_admin.logout")}
               </div>
             </div>
           </button>

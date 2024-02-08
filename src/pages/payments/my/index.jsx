@@ -30,14 +30,14 @@ const MyPayments = () => {
       })
       .then((e) => {
         if (e.data.result === "success") {
-          setPayment(e.data.values);
-          setFilteredData(e.data.values);
+          setPayment(Object.entries(e.data.values));
+          setFilteredData(Object.entries(e.data.values));
         }
       });
   }, []);
 
   const handleClick = () => {
-    const filtered = Object.entries(payment).filter(([key, item]) => {
+    const filtered = payment.filter(([key, item]) => {
       const startDateMatch = startDate
         ? new Date(item.creation_date * 1000) >= new Date(startDate)
         : true;
@@ -45,7 +45,9 @@ const MyPayments = () => {
         ? new Date(item.creation_date * 1000) <= new Date(endDate)
         : true;
       const keywordMatch = keyword
-        ? item.payment_type.toLowerCase().includes(keyword.toLowerCase())
+        ? item.payment_type
+            .toLocaleLowerCase()
+            .includes(keyword.toLocaleLowerCase())
         : true;
 
       return startDateMatch && endDateMatch && keywordMatch;
@@ -100,7 +102,7 @@ const MyPayments = () => {
               </tr>
             </thead>
             <tbody>
-              {Object.entries(filteredData).map(([key, value]) => (
+              {filteredData.map(([key, value]) => (
                 <tr key={key}>
                   <td>{key}</td>
                   <td>{value.server_account}</td>
@@ -123,7 +125,7 @@ const MyPayments = () => {
                 </tr>
               ))}
             </tbody>
-            {payment.length === 0 && (
+            {filteredData.length === 0 && (
               <tfoot>
                 <tr>
                   <td colSpan={10}>{t("tfoot")}</td>

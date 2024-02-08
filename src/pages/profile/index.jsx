@@ -5,8 +5,10 @@ import countryList from "../../utils/country";
 import { useEffect, useState } from "react";
 import Checkbox from "../../components/checkbox";
 import styles from "./profile.module.scss";
+import { useTranslation } from "react-i18next";
 
 const Profile = () => {
+  const { t } = useTranslation();
   const [countryKey, setCountryKey] = useState(
     navigator.language.split("-")[0].toLocaleUpperCase() || "US"
   );
@@ -16,48 +18,52 @@ const Profile = () => {
 
   return (
     <>
-      <h1 className="mt-3 mb-2">Мой профиль</h1>
+      <h1 className="mt-3 mb-2">{t("profile.h1")}</h1>
       <form className={styles.block_data}>
         <div>
-          <h2>Персональные данные</h2>
+          <h2>{t("profile.block_1.h2")}</h2>
           <fieldset>
-            <div>Логин</div>
+            <div>{t("profile.block_1.login")}</div>
             <div>Trader</div>
           </fieldset>
           <fieldset className="btn_z-index">
-            <div>Пароль</div>
-            <SmBlueButton>Сменить пароль</SmBlueButton>
+            <div>{t("profile.block_1.pass")}</div>
+            <SmBlueButton>{t("profile.block_1.pass_btn")}</SmBlueButton>
           </fieldset>
           <fieldset>
             <div>E-Mail</div>
             <CustomInput
               type="email"
               name="email"
-              placeholder="Введите e-mail"
+              placeholder={t("profile.block_1.email_ph")}
             />
           </fieldset>
           <fieldset>
-            <div>Фамилия</div>
+            <div>{t("profile.block_1.surname")}</div>
             <CustomInput
               type="text"
               name="surname"
-              placeholder="Введите фамилию"
+              placeholder={t("profile.block_1.surname_ph")}
             />
           </fieldset>
           <fieldset>
-            <div>Имя</div>
-            <CustomInput type="text" name="name" placeholder="Введите имя" />
+            <div>{t("profile.block_1.name")}</div>
+            <CustomInput
+              type="text"
+              name="name"
+              placeholder={t("profile.block_1.name_ph")}
+            />
           </fieldset>
           <fieldset>
-            <div>Отчество</div>
+            <div>{t("profile.block_1.patronymic")}</div>
             <CustomInput
               type="text"
               name="patronymic"
-              placeholder="Введите отчество"
+              placeholder={t("profile.block_1.patronymic_ph")}
             />
           </fieldset>
           <fieldset>
-            <div>Паспорт</div>
+            <div>{t("profile.block_1.passport")}</div>
             <CustomInput
               type="text"
               name="pasport"
@@ -65,19 +71,19 @@ const Profile = () => {
             />
           </fieldset>
           <fieldset>
-            <div>Дата рождения</div>
+            <div>{t("profile.block_1.date")}</div>
             <CustomInput type="date" name="date" />
           </fieldset>
         </div>
 
         <div>
-          <h2>Контакты</h2>
+          <h2>{t("profile.block_2.h2")}</h2>
           <fieldset>
-            <div>Телефон</div>
+            <div>{t("profile.block_2.phone")}</div>
             <div>18172717181</div>
           </fieldset>
           <fieldset>
-            <div>Страна</div>
+            <div>{t("profile.block_2.country")}</div>
             <Selector
               data={countryList}
               selected={countryKey}
@@ -85,7 +91,7 @@ const Profile = () => {
             />
           </fieldset>
           <fieldset>
-            <div>Область</div>
+            <div>{t("profile.block_2.area")}</div>
             <CustomInput
               type="text"
               name="area"
@@ -93,35 +99,39 @@ const Profile = () => {
             />
           </fieldset>
           <fieldset>
-            <div>Город</div>
-            <CustomInput type="text" name="city" placeholder="Введите город" />
-          </fieldset>
-          <fieldset>
-            <div>Адрес</div>
+            <div>{t("profile.block_2.city")}</div>
             <CustomInput
               type="text"
-              name="adress"
-              placeholder="Введите адрес"
+              name="city"
+              placeholder={t("profile.block_2.city_ph")}
             />
           </fieldset>
           <fieldset>
-            <div>Почтовый индекс</div>
+            <div>{t("profile.block_2.address")}</div>
+            <CustomInput
+              type="text"
+              name="adress"
+              placeholder={t("profile.block_2.address_ph")}
+            />
+          </fieldset>
+          <fieldset>
+            <div>{t("profile.block_2.postcode")}</div>
             <CustomInput
               type="text"
               name="index"
-              placeholder="Введите почтовый индекс"
+              placeholder={t("profile.block_2.postcode_ph")}
             />
           </fieldset>
         </div>
 
         <div>
-          <h2>Настройки профиля</h2>
+          <h2>{t("profile.block_3.h2")}</h2>
           <fieldset>
-            <div>Дублирование на email</div>
+            <div>{t("profile.block_3.check")}</div>
             <Checkbox />
           </fieldset>
           <fieldset>
-            <div>Язык по умолчанию</div>
+            <div>{t("profile.block_3.lang")}</div>
             <Selector
               data={countryList}
               selected={countryKey}
@@ -131,15 +141,15 @@ const Profile = () => {
         </div>
 
         <div>
-          <h2>Паспорт и документы</h2>
+          <h2>{t("profile.block_4.h2")}</h2>
           <fieldset className="btn_z-index">
-            <div>Загрузить</div>
-            <SmBlueButton>Загрузить файл</SmBlueButton>
+            <div>{t("profile.block_4.download")}</div>
+            <SmBlueButton>{t("profile.block_4.download")}</SmBlueButton>
           </fieldset>
         </div>
 
         <div>
-          <BigButton>РЕДАКТИРОВАНИЕ</BigButton>
+          <BigButton>{t("profile.btn")}</BigButton>
         </div>
       </form>
     </>

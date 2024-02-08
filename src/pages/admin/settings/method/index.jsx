@@ -121,7 +121,7 @@ const MethodAdmin = () => {
         </div>
         <div className={styles.bottom_btn}>
           <SmBlueButton disabled className={styles.btn_abolition}>
-            СОХРАНИТЬ
+            ОТМЕНА
           </SmBlueButton>
           <BigButton disabled>СОХРАНИТЬ</BigButton>
         </div>

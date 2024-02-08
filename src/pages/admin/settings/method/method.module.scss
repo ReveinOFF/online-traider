@@ -1,3 +1,5 @@
+@import "../../../../styles/responsive.scss";
+
 .method {
   padding-inline: 20px;
 
@@ -7,6 +9,12 @@
     display: flex;
     gap: 5px;
     z-index: 0;
+
+    @include phone-only {
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
 
     &::after {
       content: "";
@@ -22,6 +30,11 @@
     }
 
     div {
+      @include phone-only {
+        width: 80%;
+        text-align: center;
+      }
+
       &:first-child {
         padding: 12px 24px;
         font-size: 14px;
@@ -58,6 +71,9 @@
         position: relative;
         border-radius: 5px 5px 0 0;
         margin-bottom: 2px;
+        @include phone-only {
+          border-radius: 0;
+        }
 
         &::after {
           content: "";
@@ -69,6 +85,10 @@
           border-radius: 5px 5px 0 0;
           background: #6b6e7b;
           z-index: -1;
+
+          @include phone-only {
+            border-radius: 0;
+          }
         }
       }
     }
@@ -78,6 +98,10 @@
     width: 100%;
     max-width: 396px;
 
+    @include tablet-portrait-down {
+      padding: 0;
+    }
+
     div {
       width: 100%;
     }
@@ -86,6 +110,10 @@
   .block_data,
   .btn_add {
     padding: 0 15%;
+
+    @include phone-only {
+      padding: 0 10%;
+    }
   }
 
   button {
@@ -103,9 +131,19 @@
   gap: 46px;
   margin-bottom: 40px;
 
+  @include tablet-portrait-down {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    gap: 10px;
+  }
+
   div:first-child {
     color: #8a8d9d;
     text-align: end;
+
+    @include tablet-portrait-down {
+      text-align: start;
+    }
   }
 }
 
@@ -115,11 +153,22 @@
     display: flex;
     justify-content: flex-end;
 
+    @include tablet-portrait-down {
+      justify-content: flex-start;
+      align-items: center;
+    }
+
     .info {
       position: absolute;
       right: -25px;
       top: 50%;
       transform: translateY(-50%);
+
+      @include tablet-portrait-down {
+        position: unset;
+        margin: 0 20px;
+        transform: translateY(0);
+      }
     }
   }
 }
@@ -132,6 +181,10 @@
     right: -30px;
     top: 50%;
     transform: translateY(-50%);
+
+    @include tablet-portrait-down {
+      top: 75%;
+    }
   }
 }
 
@@ -147,12 +200,36 @@
     background: #353847;
     border-radius: 5px;
     z-index: 0;
+
+    @include phone-only {
+      margin-bottom: 10px;
+    }
+  }
+
+  fieldset {
+    @include phone-only {
+      margin-bottom: 20px;
+    }
+  }
+
+  fieldset:nth-child(3) {
+    button {
+      @include phone-only {
+        width: 100%;
+        padding-inline: 0;
+        max-width: unset;
+      }
+    }
   }
 
   & > div:last-child {
     padding: 0 15%;
     position: relative;
     z-index: 1;
+
+    @include phone-only {
+      padding: 0 10%;
+    }
   }
 }
 
@@ -179,6 +256,11 @@
     padding-inline: 0;
     max-width: 130px;
     width: 100%;
+
+    @include phone-only {
+      max-width: unset;
+      margin-top: 20px;
+    }
   }
 }
 
@@ -187,6 +269,10 @@
   margin-inline: 20px;
   background: #4d5060;
   margin-block: 20px;
+
+  @include phone-only {
+    margin-bottom: 0;
+  }
 }
 
 .bottom_btn {
@@ -198,8 +284,17 @@
   position: relative;
   z-index: 0;
 
+  @include phone-only {
+    flex-direction: column;
+  }
+
   button {
     padding: 13px 63px;
+
+    @include tablet-portrait-down {
+      padding-inline: 0;
+      width: 100%;
+    }
   }
 }
 
@@ -214,9 +309,18 @@
   gap: 46px;
   margin-bottom: 40px;
 
+  @include phone-only {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
   & > div:first-child {
     color: #8a8d9d;
     text-align: end;
+
+    @include phone-only {
+      text-align: start;
+    }
   }
 
   & > div:last-child {
@@ -224,10 +328,25 @@
       display: flex;
       margin-bottom: 10px;
       gap: 20px;
-      align-items: center;
+      align-items: flex-start;
+
+      @include tablet-landscape-down {
+        flex-direction: column;
+      }
 
       button {
         padding: 11px 20px;
+
+        @include tablet-landscape-down {
+          width: 100%;
+          max-width: 180px;
+        }
+
+        @include phone-only {
+          width: 100%;
+          padding-inline: 0;
+          max-width: unset;
+        }
       }
 
       div {
@@ -246,6 +365,14 @@
       line-height: 14px;
       letter-spacing: 0em;
       max-width: 412px;
+
+      @include tablet-landscape-down {
+        max-width: 345px;
+      }
+
+      @include tablet-portrait-down {
+        max-width: 230px;
+      }
     }
   }
 }

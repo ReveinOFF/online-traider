@@ -12,7 +12,6 @@ const MyPayments = () => {
   const [filteredData, setFilteredData] = useState([]);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-  const [keyword, setKeyword] = useState("");
   const { i18n, t } = useTranslation();
 
   useEffect(() => {
@@ -44,13 +43,8 @@ const MyPayments = () => {
       const endDateMatch = endDate
         ? new Date(item.creation_date * 1000) <= new Date(endDate)
         : true;
-      const keywordMatch = keyword
-        ? item.payment_type
-            .toLocaleLowerCase()
-            .includes(keyword.toLocaleLowerCase())
-        : true;
 
-      return startDateMatch && endDateMatch && keywordMatch;
+      return startDateMatch && endDateMatch;
     });
 
     setFilteredData(filtered);
@@ -73,14 +67,6 @@ const MyPayments = () => {
             <CusotmInput
               type="date"
               onChange={(e) => setEndDate(e.target.value)}
-            />
-          </fieldset>
-          <fieldset className="fs-t">
-            <div>{t("my_payment.keywords")}</div>
-            <CusotmInput
-              type="text"
-              placeholder={t("my_payment.keywords_ph")}
-              onChange={(e) => setKeyword(e.target.value)}
             />
           </fieldset>
           <SmBlueButton className={styles.btn} onClick={handleClick}>

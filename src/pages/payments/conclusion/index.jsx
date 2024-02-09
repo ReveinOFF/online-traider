@@ -1,7 +1,6 @@
 import styles from "./conclusion.module.scss";
 import { SmGreenButton } from "../../../components/buttons";
-import bank from "../../../assets/images/payments/bank.svg";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import DataCreate from "../../../components/data-create";
 import LocalStorage from "../../../services/localStorage";
 import axios from "axios";
@@ -36,16 +35,16 @@ const Conclusion = () => {
       });
   }, []);
 
-  const costChange = (v) => {
+  const costChange = useCallback((v) => {
     const numericValues = Object.values(v)
-      .filter((value) => /^\d+%$/.test(value))
+      ?.filter((value) => /^\d+%$/.test(value))
       .map((value) => parseInt(value, 10));
 
     const min = numericValues.length > 0 ? Math.min(...numericValues) : 0;
     const max = numericValues.length > 0 ? Math.max(...numericValues) : 0;
 
     return min !== max ? `${min}-${max}%` : `${min}%`;
-  };
+  }, []);
 
   return (
     <>
@@ -66,7 +65,12 @@ const Conclusion = () => {
             {data?.map((item) => (
               <tr key={item.id}>
                 <td className="flex-center">
-                  <img src={bank} alt="bank" width={30} height={30} />
+                  <img
+                    src={`https://cabinet.itcyclonelp.com${item.image}`}
+                    alt="bank"
+                    width={30}
+                    height={30}
+                  />
                   <div>{item.pay_method_name}</div>
                 </td>
                 <td></td>

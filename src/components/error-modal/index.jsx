@@ -38,7 +38,7 @@ const ErrorModal = ({ children }) => {
           {success && (
             <div className="successModal">
               <img src={successIcon} alt="(\/)" width={20} height={20} />
-              <span>{message}</span>
+              <span>{successMessage}</span>
             </div>
           )}
         </div>

@@ -1,0 +1,62 @@
+@import "../../styles/responsive.scss";
+
+.changepass_modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: #2f3241df;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  form {
+    background: #343846;
+    padding: 40px;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px 0 rgba(92, 92, 92, 0.71);
+    position: relative;
+
+    img {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      cursor: pointer;
+    }
+
+    @include phone-only {
+      padding-inline: 20px;
+      margin-inline: 10px;
+    }
+
+    fieldset {
+      &:not(:first-of-type) {
+        margin-top: 20px;
+      }
+
+      & > div {
+        margin-bottom: 10px;
+        color: #ffffff;
+      }
+
+      & > input {
+        width: 100%;
+      }
+    }
+
+    & > div {
+      color: #ff4b55;
+      margin-top: 10px;
+    }
+
+    button {
+      height: 50px;
+      margin-top: 20px;
+      width: 100%;
+    }
+  }
+}

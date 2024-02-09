@@ -11,9 +11,11 @@ import { ErrorContext } from "../../components/error-modal";
 import * as Yup from "yup";
 import { FormikProvider, useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
+import ChangePass from "../../components/change_pass";
 
 const Profile = () => {
   const { t } = useTranslation();
+  const [showChangepass, setShowChangepass] = useState(false);
   const [typingTimeout, setTypingTimeout] = useState();
   const [disableBtn, setDisableBtn] = useState(false);
   const [countryList, setСountryList] = useState();
@@ -129,6 +131,7 @@ const Profile = () => {
     var bodyFormData = new FormData();
     bodyFormData.append("key", key);
     bodyFormData.append("rand_param", rand_param);
+    bodyFormData.append("auth_token", LocalStorage.get("auth_token"));
     bodyFormData.append("user_id", LocalStorage.get("user_id"));
     Object.entries(value).forEach((element) => {
       bodyFormData.append(element[0], element[1]);
@@ -174,6 +177,7 @@ const Profile = () => {
 
   return (
     <>
+      <ChangePass show={showChangepass} setShow={setShowChangepass} />
       <h1 className="mt-3 mb-2">{t("profile.h1")}</h1>
       <FormikProvider value={formik}>
         <form className={styles.block_data} onSubmit={handleSubmit}>
@@ -185,7 +189,12 @@ const Profile = () => {
             </fieldset>
             <fieldset className="btn_z-index">
               <div>{t("profile.block_1.pass")}</div>
-              <SmBlueButton>{t("profile.block_1.pass_btn")}</SmBlueButton>
+              <SmBlueButton
+                onClick={() => setShowChangepass(true)}
+                type="button"
+              >
+                {t("profile.block_1.pass_btn")}
+              </SmBlueButton>
             </fieldset>
             <fieldset>
               <div>E-Mail</div>

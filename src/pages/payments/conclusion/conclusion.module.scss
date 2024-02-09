@@ -10,8 +10,13 @@
           }
 
           button {
-            padding: 8px 16px;
             background: #3f4352;
+            height: 100%;
+
+            a {
+              padding: 8px 16px;
+              color: #ffffff;
+            }
           }
         }
 

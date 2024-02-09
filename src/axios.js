@@ -1,13 +1,15 @@
 import axios from "axios";
 
 axios.interceptors.response.use(
-  (resp) => resp,
-  async (error) => {
-    if (error.response.status === 605) {
+  (resp) => {
+    if (resp.data.error_number === 605) {
       localStorage.removeItem("auth_token");
-      window.location.reload();
+      localStorage.removeItem("user_id");
       window.location.pathname = "/signin";
     }
-    return error;
+    return resp;
+  },
+  (error) => {
+    return Promise.reject(error);
   }
 );

@@ -145,8 +145,14 @@ header {
 }
 
 .btn-terminal {
-  padding: 8px 20px;
   margin-left: 37px;
+  height: 35px;
+  padding: 0;
+
+  a {
+    color: #ffffff;
+    padding: 8px 20px;
+  }
 }
 
 .profile {

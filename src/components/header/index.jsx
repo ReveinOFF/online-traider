@@ -184,7 +184,11 @@ const Header = () => {
         </ul>
       </nav>
       <div className="item-center r-l">
-        <NmGreenButton className="btn-terminal">WebTerminal</NmGreenButton>
+        <NmGreenButton className="btn-terminal">
+          <Link to="https://terminal.itcyclonelp.com" target="_blank">
+            WebTerminal
+          </Link>
+        </NmGreenButton>
         <button
           className={`item-center profile ${
             showProfile ? "active" : ""
@@ -210,7 +214,11 @@ const Header = () => {
       </div>
       <div className="h-mob">
         <div>
-          <NmGreenButton className="btn-terminal">WebTerminal</NmGreenButton>
+          <NmGreenButton className="btn-terminal">
+            <Link to="https://terminal.itcyclonelp.com" target="_blank">
+              WebTerminal
+            </Link>
+          </NmGreenButton>
           <button
             className={`item-center profile ${
               showProfile ? "active" : ""
@@ -321,7 +329,9 @@ const Header = () => {
         </nav>
 
         <div>
-          <NmGreenButton className="btn-terminal">WebTerminal</NmGreenButton>
+          <Link to="https://terminal.itcyclonelp.com" target="_blank">
+            <NmGreenButton className="btn-terminal">WebTerminal</NmGreenButton>
+          </Link>
           <button
             className={`item-center profile ${
               showProfile ? "active" : ""

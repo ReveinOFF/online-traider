@@ -1,48 +1,86 @@
 import Selector from "../../../components/selector";
 import styles from "./transactions.module.scss";
-import sexData from "../../../utils/sex";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import LocalStorage from "../../../services/localStorage";
+import DataCreate from "../../../components/data-create";
+import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 const TransactionsAccount = () => {
-  const [sexKey, setSexKey] = useState();
+  const [data, setData] = useState([]);
+  const { t } = useTranslation();
+
+  useEffect(() => {
+    const { key, rand_param } = DataCreate();
+
+    axios
+      .get(
+        "https://cabinet.itcyclonelp.com/api/v_2/trading/GetDepositsByUser",
+        {
+          params: {
+            key,
+            rand_param,
+            auth_token: LocalStorage.get("auth_token"),
+            user_id: LocalStorage.get("user_id"),
+          },
+        }
+      )
+      .then((e) => {
+        if (e.data.result === "success") {
+          setData(e.data.values);
+        }
+      });
+  }, []);
 
   return (
     <>
-      <h1>Депозитные операции</h1>
+      <h1>{t("deposit.h1")}</h1>
       <div className={styles.transactions}>
         <fieldset>
-          <div className={styles.type}>Выберите счет</div>
-          <Selector
-            className={styles.data}
-            data={sexData}
-            selected={sexKey}
-            setSelected={setSexKey}
-            emptyMsg="Не указан"
-          />
+          <div className={styles.type}>{t("deposit.select")}</div>
+          <Selector className={styles.data} />
         </fieldset>
 
         <table>
           <thead>
             <tr>
-              <th>Дата операции</th>
-              <th>Сумма</th>
+              <th>{t("deposit.th1")}</th>
+              <th>{t("deposit.th2")}</th>
               <th></th>
               <th></th>
               <th></th>
               <th></th>
               <th></th>
-              <th>Комментарии</th>
+              <th>{t("deposit.th3")}</th>
             </tr>
           </thead>
-          <tfoot>
-            <tr>
-              <td colSpan={8}>Нет результатов</td>
-            </tr>
-          </tfoot>
+          <tbody>
+            {data?.map((item) => (
+              <tr key={item.id}>
+                <td>
+                  {new Date(item.operation_date * 1000).toLocaleDateString()}
+                </td>
+                <td>{item.equity}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>{item.comment}</td>
+              </tr>
+            ))}
+          </tbody>
+          {data.length === 0 && (
+            <tfoot>
+              <tr>
+                <td colSpan={8}>{t("tfoot")}</td>
+              </tr>
+            </tfoot>
+          )}
         </table>
 
         <div className={styles.money}>
-          Прибыль: <span>0.00</span>
+          {t("deposit.money")} <span>0.00</span>
         </div>
       </div>
     </>

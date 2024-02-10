@@ -1,17 +1,15 @@
 import styles from "./conclusion.module.scss";
 import { SmGreenButton } from "../../../components/buttons";
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import DataCreate from "../../../components/data-create";
 import LocalStorage from "../../../services/localStorage";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { ErrorContext } from "../../../components/error-modal";
 
 const Conclusion = () => {
   const [data, setData] = useState();
   const { i18n, t } = useTranslation();
-  const { setError, setMessage } = useContext(ErrorContext);
 
   useEffect(() => {
     const { key, rand_param } = DataCreate();
@@ -33,10 +31,6 @@ const Conclusion = () => {
       .then((e) => {
         if (e.data.result === "success") {
           setData(e.data.values);
-          setError(false);
-        } else {
-          setError(true);
-          setMessage(t("profile.error"));
         }
       });
   }, []);

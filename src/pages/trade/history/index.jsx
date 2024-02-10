@@ -73,11 +73,13 @@ const HistoryAccount = () => {
               </tr>
             ))}
           </tbody>
-          <tfoot>
-            <tr>
-              <td colSpan={10}>{t("tfoot")}</td>
-            </tr>
-          </tfoot>
+          {data.length === 0 && (
+            <tfoot>
+              <tr>
+                <td colSpan={10}>{t("tfoot")}</td>
+              </tr>
+            </tfoot>
+          )}
         </table>
 
         <div className={styles.money}>

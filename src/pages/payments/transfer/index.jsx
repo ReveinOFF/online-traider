@@ -20,7 +20,7 @@ const Transfer = () => {
 
     axios
       .get(
-        "https://cabinet.itcyclonelp.com/api/v_2/payments/GetPaymentSystemsList",
+        "https://cabinet.itcyclonelp.com/api/v_2/payments/GetPaymentSystemsUnitedByGroups",
         {
           params: {
             key,

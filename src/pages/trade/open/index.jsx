@@ -9,10 +9,13 @@ import { useTranslation } from "react-i18next";
 import { ErrorContext } from "../../../components/error-modal";
 import { useNavigate } from "react-router-dom";
 
+const listLeverage = [1, 5, 10, 33, 50, 100, 200, 400, 500, 1000];
+
 const OpenAccount = () => {
   const [data, setData] = useState([]);
   const [disabled, setDisabled] = useState(false);
   const [selected, setSelected] = useState();
+  const [levSelected, setLevSelected] = useState();
   const { t, i18n } = useTranslation();
   const { setError, setMessage, setSuccessMessage, setSuccess } =
     useContext(ErrorContext);
@@ -37,6 +40,7 @@ const OpenAccount = () => {
       .then((e) => {
         setData(e.data.values);
         setSelected(e.data.values[0].id);
+        setLevSelected(e.data.values[0]?.leverage);
       });
   }, []);
 
@@ -88,6 +92,7 @@ const OpenAccount = () => {
                   key={item.id}
                   onClick={() => {
                     setSelected(item.id);
+                    setLevSelected(item.leverage);
                   }}
                 >
                   {item.group_name}
@@ -97,11 +102,13 @@ const OpenAccount = () => {
         </fieldset>
         <fieldset>
           <div className={styles.type}>{t("trade_open.leverage")}</div>
-          <Selector
-            selected={
-              "1:" + data?.find((item) => item.id === selected)?.leverage
-            }
-          ></Selector>
+          <Selector selected={"1:" + levSelected} disabled={levSelected > 0}>
+            {listLeverage.map((item, index) => (
+              <div key={index} onClick={() => setLevSelected(item)}>
+                {item}
+              </div>
+            ))}
+          </Selector>
         </fieldset>
         <div className={`justify-center ${styles.btn}`}>
           <BigButton onClick={handleClick} disabled={disabled}>

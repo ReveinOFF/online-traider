@@ -58,13 +58,13 @@ const Check = () => {
               .replace(",", " ")}
           </div>
         </div>
-        <div className="check_info mb-2">
+        <div className="check_info mb-1">
           <div>{t("check.div4")}</div>
-          <div>{data?.invoice}</div>
+          <div>{data?.status}</div>
         </div>
-        <div className={style.print}>
-          <img src={print} alt="print" width={20} height={20} />
+        <div className="check_info">
           <div>{t("check.div5")}</div>
+          <div>{new Date(data?.creation_date * 1000).toLocaleDateString()}</div>
         </div>
       </div>
     </>

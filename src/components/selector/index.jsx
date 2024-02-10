@@ -28,7 +28,7 @@ const Selector = ({ children, className, selected, disabled }) => {
         } ${disabled ? "inactive" : ""}`}
         onClick={(e) => {
           e.preventDefault();
-          setShowSelector(!showSelector);
+          if (!disabled) setShowSelector(!showSelector);
         }}
       >
         <div>{selected}</div>

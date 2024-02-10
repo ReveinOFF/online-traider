@@ -11,6 +11,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 const MainAppeals = () => {
   const [data, setData] = useState();
+  const [showMain, setShowMain] = useState(true);
   const [filteredData, setFilteredData] = useState([]);
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
@@ -20,8 +21,10 @@ const MainAppeals = () => {
     useContext(ErrorContext);
   const navigate = useNavigate();
   const [btnDisabled, setBtnDisabled] = useState(false);
+  const [btnDisabledA, setBtnDisabledA] = useState(false);
 
   useEffect(() => {
+    setBtnDisabledA(true);
     const { key, rand_param } = DataCreate();
 
     axios
@@ -31,7 +34,7 @@ const MainAppeals = () => {
           rand_param,
           auth_token: LocalStorage.get("auth_token"),
           user_id: LocalStorage.get("user_id"),
-          resolved: 0,
+          resolved: showMain ? 0 : 1,
         },
       })
       .then((e) => {
@@ -43,8 +46,9 @@ const MainAppeals = () => {
           setError(true);
           setMessage(t("profile.error"));
         }
-      });
-  }, []);
+      })
+      .finally(() => setBtnDisabledA(false));
+  }, [showMain]);
 
   const handleClick = () => {
     setBtnDisabled(true);
@@ -98,7 +102,13 @@ const MainAppeals = () => {
           <SmGreenButton className={styles.t_btn}>
             <Link to="create">{t("appeals.btn1")}</Link>
           </SmGreenButton>
-          <SmBlueButton className={styles.t_btn}>АРХИВ ОБРАЩЕНИЙ</SmBlueButton>
+          <SmBlueButton
+            className={styles.t_btn}
+            onClick={() => setShowMain(!showMain)}
+            disabled={btnDisabledA}
+          >
+            {showMain ? t("appeals.btn2") : t("appeals.btn2_2")}
+          </SmBlueButton>
         </div>
         <div>
           <fieldset className="fs-t">

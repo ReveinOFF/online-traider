@@ -1,12 +1,43 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Selector from "../../../components/selector";
 import CustomInput from "../../../components/input";
 import { SmGreenButton } from "../../../components/buttons";
 import styles from "./transfer.module.scss";
 import sexData from "../../../utils/sex";
+import { useSearchParams } from "react-router-dom";
+import DataCreate from "../../../components/data-create";
+import axios from "axios";
+import LocalStorage from "../../../services/localStorage";
+import { useTranslation } from "react-i18next";
 
 const Transfer = () => {
-  const [sexKey, setSexKey] = useState();
+  const [data, setData] = useState();
+  const [searchParams] = useSearchParams();
+  const { t, i18n } = useTranslation();
+
+  useEffect(() => {
+    const { key, rand_param } = DataCreate();
+
+    axios
+      .get(
+        "https://cabinet.itcyclonelp.com/api/v_2/payments/GetPaymentSystemsList",
+        {
+          params: {
+            key,
+            rand_param,
+            auth_token: LocalStorage.get("auth_token"),
+            user_id: LocalStorage.get("user_id"),
+            languages: i18n.language,
+            type: "in",
+          },
+        }
+      )
+      .then((e) => {
+        if (e.data.result === "success") {
+          setData(e.data.values);
+        }
+      });
+  }, []);
 
   return (
     <>
@@ -20,21 +51,11 @@ const Transfer = () => {
         <div className={styles.s_transfer}>
           <fieldset className="fs-t">
             <div>Счет</div>
-            <Selector
-              data={sexData}
-              selected={sexKey}
-              setSelected={setSexKey}
-              emptyMsg="Не указан"
-            />
+            <Selector />
           </fieldset>
           <fieldset className="fs-t">
             <div>Валюта платежа</div>
-            <Selector
-              data={sexData}
-              selected={sexKey}
-              setSelected={setSexKey}
-              emptyMsg="Не указан"
-            />
+            <Selector />
           </fieldset>
           <fieldset className={`flex-center ${styles.fs_lr}`}>
             <div>Сумма платежа</div>

@@ -6,7 +6,6 @@ import Layout from "./components/layout";
 import Profile from "./pages/profile";
 import MyAccount from "./pages/trade/my";
 import OpenAccount from "./pages/trade/open";
-import ConnectAccount from "./pages/trade/connect";
 import HistoryAccount from "./pages/trade/history";
 import TransactionsAccount from "./pages/trade/transactions";
 import DocumentsAccount from "./pages/documents";
@@ -17,25 +16,6 @@ import Check from "./pages/payments/check";
 import MainAppeals from "./pages/appeals/main";
 import CreateAppeals from "./pages/appeals/create";
 import HistoryAppeals from "./pages/appeals/history";
-import AdminLayout from "./components/layout-admin";
-import Servers from "./pages/admin/settings/servers";
-import Account from "./pages/admin/settings/account";
-import DocumentsAdmin from "./pages/admin/settings/document";
-import LangAdmin from "./pages/admin/settings/lang";
-import PaymentsAdmin from "./pages/admin/settings/payments";
-import AppealAdmin from "./pages/admin/appeal";
-import LangEdit from "./pages/admin/settings/lang-edit";
-import OfficeAdmin from "./pages/admin/settings/office";
-import MethodAdmin from "./pages/admin/settings/method";
-import EmailList from "./pages/admin/services/email";
-import Course from "./pages/admin/services/course";
-import Templates from "./pages/admin/services/templates";
-import Shares from "./pages/admin/services/shares";
-import NewOrders from "./pages/admin/services/order";
-import Management from "./pages/admin/services/management";
-import UserManagement from "./pages/admin/services/users";
-import ReportSystem from "./pages/admin/services/report";
-import PaymentService from "./pages/admin/services/payments";
 import { useAuth } from "./components/isAuth";
 
 const App = () => {
@@ -61,7 +41,6 @@ const App = () => {
 
         <Route path="trade/my" element={<MyAccount />} />
         <Route path="trade/open" element={<OpenAccount />} />
-        <Route path="trade/connect" element={<ConnectAccount />} />
         <Route path="trade/history" element={<HistoryAccount />} />
         <Route path="trade/transactions" element={<TransactionsAccount />} />
         <Route path="trade/documents" element={<DocumentsAccount />} />
@@ -74,31 +53,6 @@ const App = () => {
         <Route path="appeals" element={<MainAppeals />} />
         <Route path="appeals/create" element={<CreateAppeals />} />
         <Route path="appeals/tickets" element={<HistoryAppeals />} />
-      </Route>
-
-      <Route path="/admin/" element={<AdminLayout />}>
-        <Route index element={<Profile />} />
-
-        <Route path="appeal" element={<AppealAdmin />} />
-
-        <Route path="setting/servers" element={<Servers />} />
-        <Route path="setting/account" element={<Account />} />
-        <Route path="setting/documents" element={<DocumentsAdmin />} />
-        <Route path="setting/lang" element={<LangAdmin />} />
-        <Route path="setting/lang/edit" element={<LangEdit />} />
-        <Route path="setting/payments" element={<PaymentsAdmin />} />
-        <Route path="setting/office" element={<OfficeAdmin />} />
-        <Route path="setting/method" element={<MethodAdmin />} />
-
-        <Route path="services/email" element={<EmailList />} />
-        <Route path="services/course" element={<Course />} />
-        <Route path="services/templates" element={<Templates />} />
-        <Route path="services/shares" element={<Shares />} />
-        <Route path="services/orders" element={<NewOrders />} />
-        <Route path="services/management" element={<Management />} />
-        <Route path="services/users" element={<UserManagement />} />
-        <Route path="services/report" element={<ReportSystem />} />
-        <Route path="services/payment" element={<PaymentService />} />
       </Route>
     </Routes>
   );

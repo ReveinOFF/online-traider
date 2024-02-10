@@ -20,7 +20,7 @@ const MyPayments = () => {
     const { key, rand_param } = DataCreate();
 
     axios
-      .get("https://cabinet.itcyclonelp.com/api/v_2/Payments/GetUsersClaims", {
+      .get("https://cabinet.itcyclonelp.com/api/v_2/trading/GetBalanceInfo", {
         params: {
           key,
           rand_param,
@@ -31,9 +31,9 @@ const MyPayments = () => {
       })
       .then((e) => {
         if (e.data.result === "success") {
-          setPayment(Object.entries(e.data.values));
+          setPayment(e.data.values);
           setError(false);
-          setFilteredData(Object.entries(e.data.values));
+          setFilteredData(e.data.values);
         } else {
           setError(true);
           setMessage(t("profile.error"));
@@ -42,7 +42,7 @@ const MyPayments = () => {
   }, []);
 
   const handleClick = () => {
-    const filtered = payment.filter(([key, item]) => {
+    const filtered = payment.filter((item) => {
       const startDateMatch = startDate
         ? new Date(item.creation_date * 1000) >= new Date(startDate)
         : true;
@@ -94,26 +94,26 @@ const MyPayments = () => {
               </tr>
             </thead>
             <tbody>
-              {filteredData.map(([key, value]) => (
-                <tr key={key}>
-                  <td>{key}</td>
-                  <td>{value.server_account}</td>
-                  <td>{value.account_currency}</td>
+              {filteredData?.map((item) => (
+                <tr key={item.account_id}>
+                  <td>{item.account_id}</td>
+                  <td>{item.server_account}</td>
+                  <td>{item.server_type}</td>
                   <td>
-                    {new Date(value.creation_date * 1000).toLocaleDateString()}
+                    {new Date(item.creation_date * 1000).toLocaleDateString()}
                   </td>
-                  <td>{value.payment_system}</td>
-                  <td>{value.payment_type}</td>
+                  <td>{item.payment_system}</td>
+                  <td>{item.payment_type}</td>
                   <td>
-                    {parseInt(value.account_value)
+                    {parseInt(item.account_value)
                       .toLocaleString("ru-RU", {
                         minimumFractionDigits: 2,
                         maximumFractionDigits: 2,
                       })
                       .replace(",", ".")}{" "}
-                    {value.account_currency}
+                    {item.account_currency}
                   </td>
-                  <td>{value.status}</td>
+                  <td>{item.status}</td>
                 </tr>
               ))}
             </tbody>

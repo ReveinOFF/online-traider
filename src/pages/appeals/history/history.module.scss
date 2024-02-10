@@ -1,15 +1,81 @@
 @import "../../../styles/responsive.scss";
 
+.img_preview {
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: repeat(8, auto);
+  justify-content: flex-start;
+  margin-top: 15px;
+  gap: 10px;
+  margin-bottom: 20px;
+
+  @include tablet-landscape-down {
+    grid-template-columns: repeat(6, auto);
+  }
+
+  @include tablet-portrait-down {
+    grid-template-columns: repeat(4, auto);
+  }
+
+  @include phone-only {
+    grid-template-columns: repeat(3, auto);
+  }
+
+  @include phone-low {
+    grid-template-columns: repeat(2, auto);
+  }
+
+  div {
+    position: relative;
+    animation: show 0.3s ease-in-out;
+
+    @keyframes show {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    & > img {
+      object-fit: cover;
+    }
+
+    button {
+      padding: 5px 10px;
+      background-color: #4e5266de;
+      border-radius: 10px;
+      position: absolute;
+      top: 5px;
+      right: 5px;
+
+      @include phone-only {
+        bottom: 10px;
+        top: auto;
+        right: 50%;
+        translate: 50% 0;
+      }
+
+      &:hover {
+        background-color: #373a45db;
+      }
+    }
+  }
+}
+
 .download {
   justify-self: flex-start;
   max-width: 396px;
   width: 100%;
+  cursor: pointer;
+  margin-bottom: 10px;
 
   img {
     margin-right: 11px;
   }
 
-  a {
+  div {
     color: #37cf74;
   }
 }
@@ -71,6 +137,8 @@
   .body_apples {
     background: #353847;
     border-radius: 0px 0px 5px 5px;
+    max-height: 295px;
+    overflow: auto;
 
     & > div {
       padding: 20px 30px;
@@ -138,6 +206,32 @@
           max-width: 300px;
         }
       }
+
+      .files {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+
+        img {
+          object-fit: cover;
+          cursor: zoom-in;
+        }
+      }
     }
+  }
+}
+
+.closed {
+  position: relative;
+  z-index: 0;
+
+  div {
+    color: #ff4b55;
+    margin-left: 20px;
+    margin-bottom: 20px;
+  }
+
+  button {
+    background: #2f3241;
   }
 }

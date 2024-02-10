@@ -53,6 +53,10 @@
   margin-top: 15px;
   gap: 10px;
 
+  @include phone-only {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   div {
     position: relative;
     animation: show 0.3s ease-in-out;

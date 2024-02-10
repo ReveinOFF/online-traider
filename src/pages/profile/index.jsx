@@ -24,9 +24,6 @@ const Profile = () => {
   const [disableBtnDwnl, setDisableBtnDwnl] = useState(false);
   const [files, setFiles] = useState([]);
   const [countryList, setСountryList] = useState();
-  const [countryKey, setCountryKey] = useState(
-    navigator.language.split("-")[0].toLocaleUpperCase() || "US"
-  );
   const [profile, setProfile] = useState();
   const { setError, setMessage, setSuccessMessage, setSuccess } =
     useContext(ErrorContext);

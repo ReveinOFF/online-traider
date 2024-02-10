@@ -89,7 +89,7 @@ const CreateAppeals = () => {
       return;
     }
 
-    if (e.target.files.length + files.length >= 8) {
+    if (e.target.files.length + files.length > 8) {
       setError(true);
       setMessage(t("app_create.err_f2"));
       e.preventDefault();
@@ -137,7 +137,7 @@ const CreateAppeals = () => {
           type="file"
           ref={ref}
           multiple
-          max={12}
+          accept=".jpg, .jpeg, .gif, .png, .pdf"
           style={{ display: "none" }}
           onChange={changeFiles}
         />

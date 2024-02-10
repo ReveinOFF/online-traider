@@ -8,10 +8,11 @@
     padding-inline: 10px;
   }
 
-  button {
+  & > button {
     width: 100%;
     max-width: 396px;
     padding: 16px 0;
+    margin-block: 30px;
   }
 
   fieldset {
@@ -31,15 +32,55 @@
 }
 
 .download {
-  justify-self: flex-start;
   max-width: 396px;
   width: 100%;
+  cursor: pointer;
 
   img {
     margin-right: 11px;
   }
 
-  a {
+  div {
     color: #37cf74;
+  }
+}
+
+.img_preview {
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-content: center;
+  margin-top: 15px;
+  gap: 10px;
+
+  div {
+    position: relative;
+    animation: show 0.3s ease-in-out;
+
+    @keyframes show {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    & > img {
+      object-fit: cover;
+    }
+
+    button {
+      padding: 5px 10px;
+      background-color: #4e5266de;
+      border-radius: 10px;
+      position: absolute;
+      top: 5px;
+      right: 5px;
+
+      &:hover {
+        background-color: #373a45db;
+      }
+    }
   }
 }

@@ -1,6 +1,17 @@
 .main_appeals {
   padding: 0 30px;
 
+  tr {
+    cursor: pointer;
+
+    td:nth-child(5) {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      max-width: 50px;
+    }
+  }
+
   & > div {
     &:nth-child(1) {
       gap: 10px;
@@ -31,6 +42,18 @@
 }
 
 .t_btn {
-  padding: 11px 41px;
   background: #2f3241;
+  height: 35px;
+  padding: 0;
+
+  &:last-child {
+    padding-inline: 40px;
+  }
+
+  a {
+    height: 100%;
+    padding-block: 9px;
+    color: #ffffff;
+    padding-inline: 40px;
+  }
 }

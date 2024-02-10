@@ -55,18 +55,19 @@ const DocumentsAccount = () => {
                       >
                         {t("document.l_1")}
                       </Link>
-                      <Link
-                        target="_blank"
-                        to={`https://cabinet.itcyclonelp.com/public/documents/${value.link}.pdf`}
-                      >
-                        {t("document.l_2")}
-                      </Link>
                     </div>
                   </div>
                 </td>
               </tr>
             ))}
           </tbody>
+          {!data && (
+            <tfoot>
+              <tr>
+                <td colSpan={6}>{t("tfoot")}</td>
+              </tr>
+            </tfoot>
+          )}
         </table>
       </div>
     </>

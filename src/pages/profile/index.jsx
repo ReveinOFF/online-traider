@@ -472,18 +472,6 @@ const Profile = () => {
           </div>
 
           <div>
-            <h2>{t("profile.block_3.h2")}</h2>
-            <fieldset>
-              <div>{t("profile.block_3.lang")}</div>
-              <Selector
-                data={countryList}
-                selected={countryKey}
-                setSelected={setCountryKey}
-              />
-            </fieldset>
-          </div>
-
-          <div>
             <h2>{t("profile.block_4.h2")}</h2>
             <fieldset className="btn_z-index">
               <div>{t("profile.block_4.download")}</div>

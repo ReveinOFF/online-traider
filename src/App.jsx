@@ -73,7 +73,7 @@ const App = () => {
 
         <Route path="appeals" element={<MainAppeals />} />
         <Route path="appeals/create" element={<CreateAppeals />} />
-        <Route path="appeals/history" element={<HistoryAppeals />} />
+        <Route path="appeals/tickets" element={<HistoryAppeals />} />
       </Route>
 
       <Route path="/admin/" element={<AdminLayout />}>

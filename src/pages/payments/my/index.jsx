@@ -4,8 +4,9 @@ import styles from "./my.module.scss";
 import axios from "axios";
 import DataCreate from "../../../components/data-create";
 import LocalStorage from "../../../services/localStorage";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { ErrorContext } from "../../../components/error-modal";
 
 const MyPayments = () => {
   const [payment, setPayment] = useState([]);
@@ -13,6 +14,7 @@ const MyPayments = () => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const { i18n, t } = useTranslation();
+  const { setError, setMessage } = useContext(ErrorContext);
 
   useEffect(() => {
     const { key, rand_param } = DataCreate();
@@ -30,7 +32,11 @@ const MyPayments = () => {
       .then((e) => {
         if (e.data.result === "success") {
           setPayment(Object.entries(e.data.values));
+          setError(false);
           setFilteredData(Object.entries(e.data.values));
+        } else {
+          setError(true);
+          setMessage(t("profile.error"));
         }
       });
   }, []);

@@ -5,26 +5,30 @@ import axios from "axios";
 import LocalStorage from "../../../services/localStorage";
 import DataCreate from "../../../components/data-create";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const MyAccount = () => {
   const [balance, setBalance] = useState([]);
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     const { key, rand_param } = DataCreate();
 
     axios
-      .get("https://cabinet.itcyclonelp.com/api/v_2/trading/GetBalanceInfo", {
+      .get("https://cabinet.itcyclonelp.com/api/v_2/payments/GetUsersClaims", {
         params: {
           key,
           rand_param,
           auth_token: LocalStorage.get("auth_token"),
           user_id: LocalStorage.get("user_id"),
+          limit: 6,
+          offset: 0,
+          languages: i18n.language,
         },
       })
       .then((e) => {
         if (e.data.result === "success") {
-          setBalance(e.data.values);
-          console.log(e);
+          setBalance(Object.values(e.data.values));
         }
       });
   }, []);
@@ -48,9 +52,9 @@ const MyAccount = () => {
           </thead>
           <tbody>
             {balance?.map((item) => (
-              <tr>
+              <tr key={item.id}>
                 <td>{item.server_account}</td>
-                <td>{item.curr}</td>
+                <td>{item.account_currency}</td>
                 <td>{item.balance}</td>
                 <td>179 642.02</td>
                 <td>{item.margin}</td>

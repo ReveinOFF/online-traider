@@ -70,13 +70,23 @@
     box-shadow: -110px 0px 60px -45px #37cfa1 inset;
   }
 
-  &:hover {
+  &:not(:disabled):hover {
     background: #37cf74;
     box-shadow: -110px 0px 60px -45px #37cfa1 inset;
   }
 
-  &:active {
+  &:not(:disabled):active {
     background: #229b61;
+  }
+
+  &:is(:disabled) {
+    color: #8a8d9d;
+    cursor: not-allowed;
+
+    &::after {
+      background: #4d5060;
+      box-shadow: none;
+    }
   }
 }
 
@@ -108,9 +118,14 @@
     background: #2572b9;
   }
 
-  &:is(:disabled)::after {
-    box-shadow: none;
-    background: #4d5060;
+  &:is(:disabled) {
+    color: #8a8d9d;
+    cursor: not-allowed;
+
+    &::after {
+      background: #4d5060;
+      box-shadow: none;
+    }
   }
 }
 

@@ -12,6 +12,7 @@ import { useTranslation } from "react-i18next";
 const Transfer = () => {
   const [data, setData] = useState();
   const [dataAcc, setDataAcc] = useState();
+  const [dataCurr, setDataCurr] = useState();
   const [disabled, setDisabled] = useState(false);
   const [searchParams] = useSearchParams();
   const { t, i18n } = useTranslation();
@@ -42,10 +43,24 @@ const Transfer = () => {
           setData(
             e.data.values.find((item) => item.id === searchParams.get("id"))
           );
-          setSelectedCurr(
-            e.data.values.find((item) => item.id === searchParams.get("id"))
-              .currency[0]
-          );
+        }
+      });
+
+    axios
+      .get("https://cabinet.itcyclonelp.com/api/v_2/settings/GetCurrencies", {
+        params: {
+          key,
+          rand_param,
+          auth_token: LocalStorage.get("auth_token"),
+          user_id: LocalStorage.get("user_id"),
+          languages: i18n.language,
+          allCurrency: 1,
+        },
+      })
+      .then((e) => {
+        if (e.data.result === "success") {
+          setDataCurr(e.data.values);
+          setSelectedCurr(e.data.values[0].id);
         }
       });
 
@@ -61,14 +76,16 @@ const Transfer = () => {
       })
       .then((e) => {
         if (e.data.result === "success") {
+          const values = e.data.values?.find(
+            (item) => item.curr === selectedCurr
+          );
           setDataAcc(e.data.values);
           setSelectedAcc(
-            e.data.values?.find((item) => item.curr === selectedCurr)
-              ?.server_account
+            `${values?.server_account} (${values?.curr}) - ${values?.balance}`
           );
-          setDisabled(false);
         }
-      });
+      })
+      .finally(() => setDisabled(false));
   }, []);
 
   const costChange = useCallback(
@@ -84,7 +101,7 @@ const Transfer = () => {
 
       return min !== max ? `${min}-${max}%` : `${min}%`;
     },
-    [data]
+    [dataAcc]
   );
 
   const handleClick = () => {};
@@ -107,36 +124,33 @@ const Transfer = () => {
         <div className={styles.s_transfer}>
           <fieldset className="fs-t">
             <div>{t("transfer.select1")}</div>
-            <Selector
-              selected={`${
-                dataAcc?.find((item) => item.server_account === selectedAcc)
-                  ?.server_account
-              } (${
-                dataAcc?.find((item) => item.server_account === selectedAcc)
-                  ?.curr
-              }) - ${parseFloat(
-                dataAcc?.find((item) => item.server_account === selectedAcc)
-                  ?.balance
-              )
-                .toLocaleString("en-US", {
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 2,
-                })
-                .replace(",", " ")}`}
-            >
-              {dataAcc?.map((item) => (
-                <div
-                  key={item.server_account}
-                >{`${item.server_account} (${item.curr}) - ${item.balance}`}</div>
-              ))}
+            <Selector selected={selectedAcc}>
+              {dataAcc
+                ?.filter(
+                  (el) =>
+                    `${el.server_account} (${el.curr}) - ${el.balance}` !==
+                    selectedAcc
+                )
+                .map((item) => (
+                  <div
+                    onClick={() =>
+                      setSelectedAcc(
+                        `${item.server_account} (${item.curr}) - ${item.balance}`
+                      )
+                    }
+                    key={item.server_account}
+                  >{`${item.server_account} (${item.curr}) - ${item.balance}`}</div>
+                ))}
             </Selector>
           </fieldset>
           <fieldset className="fs-t">
             <div>{t("transfer.select2")}</div>
-            <Selector selected={selectedCurr}>
-              {data?.currency.map((item, index) => (
-                <div key={index} onClick={() => selectedCurr(item)}>
-                  {item}
+            <Selector
+              selected={dataCurr?.find((item) => item.id === selectedCurr).code}
+            >
+              {dataCurr?.map((item) => (
+                <div key={item.id} onClick={() => setSelectedCurr(item.id)}>
+                  {item.code}
                 </div>
               ))}
             </Selector>
@@ -147,7 +161,9 @@ const Transfer = () => {
               type="number"
               onChange={(e) => setMoney(e.target.value)}
             />
-            <div>{selectedCurr}</div>
+            <div>
+              {dataCurr?.find((item) => item.id === selectedCurr)?.code}
+            </div>
           </fieldset>
         </div>
         <SmGreenButton

@@ -8,57 +8,27 @@ import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 const MyAccount = () => {
-  const [dataFirst, setDataFirst] = useState([]);
-  const [dataSecond, setDataSecond] = useState([]);
+  const [data, setData] = useState([]);
   const { t, i18n } = useTranslation();
 
-  const getData = async () => {
+  useEffect(() => {
     const { key, rand_param } = DataCreate();
 
-    await axios
-      .get(
-        "https://cabinet.itcyclonelp.com/api/v_2/trading/GetTradeAccountByUser",
-        {
-          params: {
-            key,
-            rand_param,
-            auth_token: LocalStorage.get("auth_token"),
-            user_id: LocalStorage.get("user_id"),
-            languages: i18n.language,
-          },
-        }
-      )
+    axios
+      .get("https://cabinet.itcyclonelp.com/api/v_2/trading/GetBalanceInfo", {
+        params: {
+          key,
+          rand_param,
+          auth_token: LocalStorage.get("auth_token"),
+          user_id: LocalStorage.get("user_id"),
+          languages: i18n.language,
+        },
+      })
       .then((e) => {
         if (e.data.result === "success") {
-          setDataFirst(Object.values(e.data.values));
+          setData(Object.values(e.data.values));
         }
       });
-
-    dataFirst?.forEach(async (item) => {
-      await axios
-        .get(
-          "https://cabinet.itcyclonelp.com/api/v_2/trading/GetTradeAccountInfo",
-          {
-            params: {
-              key,
-              rand_param,
-              auth_token: LocalStorage.get("auth_token"),
-              user_id: LocalStorage.get("user_id"),
-              languages: i18n.language,
-              server_account: item.server_account,
-            },
-          }
-        )
-        .then((e) => {
-          if (e.data.result === "success") {
-            setDataSecond((prev) => [...prev, e.data.values]);
-          }
-        });
-    });
-  };
-
-  useEffect(() => {
-    getData();
   }, []);
 
   return (
@@ -79,24 +49,28 @@ const MyAccount = () => {
             </tr>
           </thead>
           <tbody>
-            {dataSecond?.map((item) => (
-              <tr key={item.id}>
+            {data?.map((item) => (
+              <tr key={item.accoubt_id}>
                 <td>{item.server_account}</td>
-                <td>{item.curr}</td>
+                <td>{`${item.group} (${item.curr})`}</td>
                 <td>{item.freeBalance}</td>
                 <td>{item.balance}</td>
                 <td>{item.margin}</td>
                 <td>{item.bonus}</td>
-                <td>-13.15</td>
+                <td>{item.actives}</td>
                 <td>
                   <SmGreenButton className={styles.td_btn}>
-                    <Link to="/trade/open">{t("my_trade.btn")}</Link>
+                    <Link
+                      to={`/trade/open?group=${item.group}&leverage=${item.leverage}`}
+                    >
+                      {t("my_trade.btn")}
+                    </Link>
                   </SmGreenButton>
                 </td>
               </tr>
             ))}
           </tbody>
-          {dataSecond.length === 0 && (
+          {data.length === 0 && (
             <tfoot>
               <tr>
                 <td colSpan={8}>{t("tfoot")}</td>

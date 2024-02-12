@@ -1,10 +1,5 @@
 const convertMoney = (value) => {
-  return parseInt(value)
-    .toLocaleString("ru-RU", {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    })
-    .replace(",", ".");
+  return Intl.NumberFormat().format(parseFloat(value)).replace(",", ".");
 };
 
 export default convertMoney;

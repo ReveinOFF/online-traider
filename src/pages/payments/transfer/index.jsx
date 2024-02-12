@@ -8,6 +8,7 @@ import DataCreate from "../../../utils/data-create";
 import axios from "axios";
 import LocalStorage from "../../../services/localStorage";
 import { useTranslation } from "react-i18next";
+import convertMoney from "../../../utils/convertMoney";
 
 const Transfer = () => {
   const [data, setData] = useState();
@@ -81,7 +82,9 @@ const Transfer = () => {
           );
           setDataAcc(e.data.values);
           setSelectedAcc(
-            `${values?.server_account} (${values?.curr}) - ${values?.balance}`
+            `${values?.server_account} (${values?.curr}) - ${convertMoney(
+              values?.balance
+            )}`
           );
         }
       })
@@ -147,18 +150,23 @@ const Transfer = () => {
               {dataAcc
                 ?.filter(
                   (el) =>
-                    `${el.server_account} (${el.curr}) - ${el.balance}` !==
-                    selectedAcc
+                    `${el.server_account} (${el.curr}) - ${convertMoney(
+                      el?.balance
+                    )}` !== selectedAcc
                 )
                 .map((item) => (
                   <div
                     onClick={() =>
                       setSelectedAcc(
-                        `${item.server_account} (${item.curr}) - ${item.balance}`
+                        `${item.server_account} (${item.curr}) - ${convertMoney(
+                          item?.balance
+                        )}`
                       )
                     }
                     key={item.server_account}
-                  >{`${item.server_account} (${item.curr}) - ${item.balance}`}</div>
+                  >{`${item.server_account} (${item.curr}) - ${convertMoney(
+                    item?.balance
+                  )}`}</div>
                 ))}
             </Selector>
           </fieldset>

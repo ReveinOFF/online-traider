@@ -6,7 +6,7 @@ import download from "../../../assets/images/appeals/download.svg";
 import Checkbox from "../../../components/checkbox";
 import { useTranslation } from "react-i18next";
 import { useContext, useEffect, useMemo, useRef, useState } from "react";
-import DataCreate from "../../../components/data-create";
+import DataCreate from "../../../utils/data-create";
 import deleteIcon from "../../../assets/images/servers/delete.svg";
 import axios from "axios";
 import { ErrorContext } from "../../../components/error-modal";

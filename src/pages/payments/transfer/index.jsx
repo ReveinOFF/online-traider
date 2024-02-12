@@ -4,7 +4,7 @@ import CustomInput from "../../../components/input";
 import { SmGreenButton } from "../../../components/buttons";
 import styles from "./transfer.module.scss";
 import { useSearchParams } from "react-router-dom";
-import DataCreate from "../../../components/data-create";
+import DataCreate from "../../../utils/data-create";
 import axios from "axios";
 import LocalStorage from "../../../services/localStorage";
 import { useTranslation } from "react-i18next";

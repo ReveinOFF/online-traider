@@ -5,7 +5,7 @@ import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import styles from "./profile.module.scss";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
-import DataCreate from "../../components/data-create";
+import DataCreate from "../../utils/data-create";
 import LocalStorage from "../../services/localStorage";
 import { ErrorContext } from "../../components/error-modal";
 import * as Yup from "yup";

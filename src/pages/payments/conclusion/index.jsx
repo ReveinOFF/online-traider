@@ -1,7 +1,7 @@
 import styles from "./conclusion.module.scss";
 import { SmGreenButton } from "../../../components/buttons";
 import { useCallback, useEffect, useState } from "react";
-import DataCreate from "../../../components/data-create";
+import DataCreate from "../../../utils/data-create";
 import LocalStorage from "../../../services/localStorage";
 import axios from "axios";
 import { useTranslation } from "react-i18next";

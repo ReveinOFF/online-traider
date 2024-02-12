@@ -3,7 +3,7 @@ import { BigButton, SmGreenButton } from "../../../components/buttons";
 import styles from "./my.module.scss";
 import axios from "axios";
 import LocalStorage from "../../../services/localStorage";
-import DataCreate from "../../../components/data-create";
+import DataCreate from "../../../utils/data-create";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
@@ -50,7 +50,7 @@ const MyAccount = () => {
           </thead>
           <tbody>
             {data?.map((item) => (
-              <tr key={item.accoubt_id}>
+              <tr key={item.account_id}>
                 <td>{item.server_account}</td>
                 <td>{`${item.group} (${item.curr})`}</td>
                 <td>{item.freeBalance}</td>
@@ -60,9 +60,7 @@ const MyAccount = () => {
                 <td>{item.actives}</td>
                 <td>
                   <SmGreenButton className={styles.td_btn}>
-                    <Link
-                      to={`/trade/open?group=${item.group}&leverage=${item.leverage}`}
-                    >
+                    <Link to={`/trade/open?id=${item.account_id}`}>
                       {t("my_trade.btn")}
                     </Link>
                   </SmGreenButton>

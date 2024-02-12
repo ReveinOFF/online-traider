@@ -3,7 +3,7 @@ import styles from "./documents.module.scss";
 import { useTranslation } from "react-i18next";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import DataCreate from "../../components/data-create";
+import DataCreate from "../../utils/data-create";
 import { ErrorContext } from "../../components/error-modal";
 
 const DocumentsAccount = () => {

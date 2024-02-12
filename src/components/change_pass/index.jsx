@@ -1,7 +1,7 @@
 import { FormikProvider, useFormik } from "formik";
 import { useContext, useEffect, useState } from "react";
 import * as Yup from "yup";
-import DataCreate from "../data-create";
+import DataCreate from "../../utils/data-create";
 import LocalStorage from "../../services/localStorage";
 import axios from "axios";
 import { ErrorContext } from "../error-modal";

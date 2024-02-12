@@ -12,7 +12,7 @@ import close from "../../assets/images/close.svg";
 import burger from "../../assets/images/header/burger-menu.svg";
 import LocalStorage from "../../services/localStorage";
 import axios from "axios";
-import DataCreate from "../data-create";
+import DataCreate from "../../utils/data-create";
 import { useAuth } from "../isAuth";
 import { useTranslation } from "react-i18next";
 
@@ -130,9 +130,6 @@ const Header = () => {
               </Link>
               <Link to="/trade/open" onClick={() => setShowShop(false)}>
                 {t("header.open")}
-              </Link>
-              <Link to="/trade/connect" onClick={() => setShowShop(false)}>
-                {t("header.connect")}
               </Link>
               <Link to="/trade/transactions" onClick={() => setShowShop(false)}>
                 {t("header.trans")}
@@ -270,9 +267,6 @@ const Header = () => {
                 </Link>
                 <Link to="/trade/open" onClick={() => setShowShop(false)}>
                   {t("header.open")}
-                </Link>
-                <Link to="/trade/connect" onClick={() => setShowShop(false)}>
-                  {t("header.connect")}
                 </Link>
                 <Link
                   to="/trade/transactions"

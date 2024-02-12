@@ -2,7 +2,7 @@ import Selector from "../../../components/selector";
 import styles from "./transactions.module.scss";
 import { useEffect, useState } from "react";
 import LocalStorage from "../../../services/localStorage";
-import DataCreate from "../../../components/data-create";
+import DataCreate from "../../../utils/data-create";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 
@@ -27,7 +27,7 @@ const TransactionsAccount = () => {
       )
       .then((e) => {
         if (e.data.result === "success") {
-          setData(e.data.values);
+          setData(Object.values(e.data.values));
         }
       });
   }, []);
@@ -38,7 +38,7 @@ const TransactionsAccount = () => {
       <div className={styles.transactions}>
         <fieldset>
           <div className={styles.type}>{t("deposit.select")}</div>
-          <Selector className={styles.data} />
+          <Selector className={styles.data}></Selector>
         </fieldset>
 
         <table>
@@ -56,17 +56,17 @@ const TransactionsAccount = () => {
           </thead>
           <tbody>
             {data?.map((item) => (
-              <tr key={item.id}>
+              <tr key={item.ID}>
                 <td>
-                  {new Date(item.operation_date * 1000).toLocaleDateString()}
+                  {new Date(item.OPERATION_DATE * 1000).toLocaleDateString()}
                 </td>
-                <td>{item.equity}</td>
+                <td>{item.EQUITY}</td>
                 <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
-                <td>{item.comment}</td>
+                <td>{item.COMMENT}</td>
               </tr>
             ))}
           </tbody>

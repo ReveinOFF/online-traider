@@ -2,11 +2,12 @@ import CusotmInput from "../../../components/input";
 import { SmBlueButton } from "../../../components/buttons";
 import styles from "./my.module.scss";
 import axios from "axios";
-import DataCreate from "../../../components/data-create";
+import DataCreate from "../../../utils/data-create";
 import LocalStorage from "../../../services/localStorage";
 import { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ErrorContext } from "../../../components/error-modal";
+import convertMoney from "../../../utils/convertMoney";
 
 const MyPayments = () => {
   const [payment, setPayment] = useState([]);
@@ -105,13 +106,7 @@ const MyPayments = () => {
                   <td>{item.payment_system}</td>
                   <td>{item.payment_type}</td>
                   <td>
-                    {parseInt(item.account_value)
-                      .toLocaleString("ru-RU", {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2,
-                      })
-                      .replace(",", ".")}{" "}
-                    {item.account_currency}
+                    {convertMoney(item.account_value)} {item.account_currency}
                   </td>
                   <td>{item.status}</td>
                 </tr>

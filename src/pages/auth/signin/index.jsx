@@ -8,7 +8,7 @@ import errorIcon from "../../../assets/images/signin/error.svg";
 import Language from "../../../components/language";
 import axios from "axios";
 import { useState } from "react";
-import DataCreate from "../../../components/data-create";
+import DataCreate from "../../../utils/data-create";
 import { useTranslation } from "react-i18next";
 import { useAuth } from "../../../components/isAuth";
 

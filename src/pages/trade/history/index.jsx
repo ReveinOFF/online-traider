@@ -1,11 +1,11 @@
 import Selector from "../../../components/selector";
 import styles from "./history.module.scss";
-import sexData from "../../../utils/sex";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
 import LocalStorage from "../../../services/localStorage";
-import DataCreate from "../../../components/data-create";
+import DataCreate from "../../../utils/data-create";
+import convertMoney from "../../../utils/convertMoney";
 
 const HistoryAccount = () => {
   const [data, setData] = useState([]);
@@ -28,7 +28,7 @@ const HistoryAccount = () => {
       )
       .then((e) => {
         if (e.data.result === "success") {
-          setData(e.data.values);
+          setData(Object.values(e.data.values));
         }
       });
   }, []);
@@ -39,7 +39,7 @@ const HistoryAccount = () => {
       <div className={styles.history}>
         <fieldset>
           <div className={styles.type}>{t("transact.type")}</div>
-          <Selector className={styles.data} data={sexData} />
+          <Selector className={styles.data}></Selector>
         </fieldset>
 
         <table>
@@ -58,20 +58,23 @@ const HistoryAccount = () => {
             </tr>
           </thead>
           <tbody>
-            {data?.map((item) => (
-              <tr key={item.id}>
-                <td>{item.id}</td>
-                <td>{item.SYMBOL}</td>
-                <td>{item.POSITION_TYPE}</td>
-                <td>{item.VOLUME}</td>
-                <td>{new Date(item.OPEN_DATE * 1000).toLocaleDateString()}</td>
-                <td>{new Date(item.CLOSE_DATE * 1000).toLocaleDateString()}</td>
-                <td>{item.OPEN_PRICE}</td>
-                <td>{item.CLOSE_PRICE}</td>
-                <td>{item.SWAP}</td>
-                <td>{item.SWAP}</td>
-              </tr>
-            ))}
+            {data?.map((item) =>
+              item.positions?.map((el) => (
+                <tr key={el.ID}>
+                  {console.log(el)}
+                  <td>{el.ID}</td>
+                  <td>{el.SYMBOL}</td>
+                  <td>{el.POSITION_TYPE}</td>
+                  <td>{el.VOLUME}</td>
+                  <td>{new Date(el.OPEN_DATE * 1000).toLocaleDateString()}</td>
+                  <td>{new Date(el.CLOSE_DATE * 1000).toLocaleDateString()}</td>
+                  <td>{convertMoney(el.OPEN_PRICE)}</td>
+                  <td>{convertMoney(el.CLOSE_PRICE)}</td>
+                  <td>{el.SWAP}</td>
+                  <td>{el.SWAP}</td>
+                </tr>
+              ))
+            )}
           </tbody>
           {data.length === 0 && (
             <tfoot>

@@ -7,7 +7,7 @@ import { useContext, useRef, useState } from "react";
 import { ErrorContext } from "../../../components/error-modal";
 import deleteIcon from "../../../assets/images/servers/delete.svg";
 import axios from "axios";
-import DataCreate from "../../../components/data-create";
+import DataCreate from "../../../utils/data-create";
 import LocalStorage from "../../../services/localStorage";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";

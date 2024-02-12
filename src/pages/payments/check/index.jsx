@@ -1,11 +1,11 @@
 import style from "./check.module.scss";
-import print from "../../../assets/images/payments/print.svg";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import DataCreate from "../../../components/data-create";
+import DataCreate from "../../../utils/data-create";
 import axios from "axios";
 import LocalStorage from "../../../services/localStorage";
 import { useSearchParams } from "react-router-dom";
+import convertMoney from "../../../utils/convertMoney";
 
 const Check = () => {
   const [data, setData] = useState([]);
@@ -49,14 +49,7 @@ const Check = () => {
         </div>
         <div className="check_info mb-1">
           <div>{t("check.div3")}</div>
-          <div>
-            {parseFloat(data?.account_value)
-              .toLocaleString("en-US", {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2,
-              })
-              .replace(",", " ")}
-          </div>
+          <div>{convertMoney(data?.account_value)}</div>
         </div>
         <div className="check_info mb-1">
           <div>{t("check.div4")}</div>

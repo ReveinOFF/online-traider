@@ -3,13 +3,24 @@ import Selector from "../../../components/selector";
 import styles from "./open.module.scss";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import DataCreate from "../../../components/data-create";
+import DataCreate from "../../../utils/data-create";
 import LocalStorage from "../../../services/localStorage";
 import { useTranslation } from "react-i18next";
 import { ErrorContext } from "../../../components/error-modal";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
-const listLeverage = [1, 5, 10, 33, 50, 100, 200, 400, 500, 1000];
+const listLeverage = [
+  "1:1",
+  "1:5",
+  "1:10",
+  "1:33",
+  "1:50",
+  "1:100",
+  "1:200",
+  "1:400",
+  "1:500",
+  "1:1000",
+];
 
 const OpenAccount = () => {
   const [data, setData] = useState([]);
@@ -20,27 +31,28 @@ const OpenAccount = () => {
   const { setError, setMessage, setSuccessMessage, setSuccess } =
     useContext(ErrorContext);
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
   useEffect(() => {
     const { key, rand_param } = DataCreate();
 
     axios
-      .get(
-        "https://cabinet.itcyclonelp.com/api/v_2/trading/TradingTypesAccountsList",
-        {
-          params: {
-            key,
-            rand_param,
-            auth_token: LocalStorage.get("auth_token"),
-            user_id: LocalStorage.get("user_id"),
-            languages: i18n.language,
-          },
-        }
-      )
+      .get("https://cabinet.itcyclonelp.com/api/v_2/trading/GetBalanceInfo", {
+        params: {
+          key,
+          rand_param,
+          auth_token: LocalStorage.get("auth_token"),
+          user_id: LocalStorage.get("user_id"),
+          languages: i18n.language,
+        },
+      })
       .then((e) => {
         setData(e.data.values);
-        setSelected(e.data.values[0].id);
-        setLevSelected(e.data.values[0]?.leverage);
+        const value = e.data.values.find(
+          (item) => item.account_id === searchParams.get("id")
+        );
+        setSelected(value?.group || e.data.values[0].group);
+        setLevSelected(value?.leverage || e.data.values[0].leverage);
       });
   }, []);
 
@@ -82,27 +94,25 @@ const OpenAccount = () => {
       <div className={styles.open}>
         <fieldset>
           <div className={styles.type}>{t("trade_open.type")}</div>
-          <Selector
-            selected={data?.find((item) => item.id === selected)?.group_name}
-          >
+          <Selector selected={selected}>
             {data
-              ?.filter((item) => item.id !== selected)
+              ?.filter((item) => item.group !== selected)
               .map((item) => (
                 <div
-                  key={item.id}
+                  key={item.account_id}
                   onClick={() => {
-                    setSelected(item.id);
+                    setSelected(item.group);
                     setLevSelected(item.leverage);
                   }}
                 >
-                  {item.group_name}
+                  {item.group}
                 </div>
               ))}
           </Selector>
         </fieldset>
         <fieldset>
           <div className={styles.type}>{t("trade_open.leverage")}</div>
-          <Selector selected={"1:" + levSelected} disabled={levSelected > 0}>
+          <Selector selected={levSelected} disabled={levSelected !== "1:0"}>
             {listLeverage.map((item, index) => (
               <div key={index} onClick={() => setLevSelected(item)}>
                 {item}

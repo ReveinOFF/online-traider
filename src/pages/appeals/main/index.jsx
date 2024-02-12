@@ -3,7 +3,7 @@ import CusotmInput from "../../../components/input";
 import { SmBlueButton, SmGreenButton } from "../../../components/buttons";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import DataCreate from "../../../components/data-create";
+import DataCreate from "../../../utils/data-create";
 import LocalStorage from "../../../services/localStorage";
 import { useTranslation } from "react-i18next";
 import { ErrorContext } from "../../../components/error-modal";

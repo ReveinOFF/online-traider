@@ -5,7 +5,7 @@ import email from "../../../assets/images/signin/email.svg";
 import { NmGreenButton, SmBlueButton } from "../../../components/buttons";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import DataCreate from "../../../components/data-create";
+import DataCreate from "../../../utils/data-create";
 import { useState } from "react";
 import errorIcon from "../../../assets/images/signin/error.svg";
 import { useTranslation } from "react-i18next";

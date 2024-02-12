@@ -60,15 +60,17 @@ const OpenAccount = () => {
     setDisabled(true);
 
     const { key, rand_param } = DataCreate();
-    const select = data?.find((item) => item.id === selected);
 
     var formData = new FormData();
     formData.append("rand_param", rand_param);
     formData.append("key", key);
     formData.append("auth_token", LocalStorage.get("auth_token"));
     formData.append("user_id", LocalStorage.get("user_id"));
-    formData.append("group_id", selected);
-    formData.append("leverage", select?.leverage);
+    formData.append(
+      "group_id",
+      data.find((item) => item.group === selected)?.group_id
+    );
+    formData.append("leverage", parseInt(levSelected.split(":")[1]));
 
     axios
       .post(

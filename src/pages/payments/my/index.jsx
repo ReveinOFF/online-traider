@@ -21,7 +21,7 @@ const MyPayments = () => {
     const { key, rand_param } = DataCreate();
 
     axios
-      .get("https://cabinet.itcyclonelp.com/api/v_2/trading/GetBalanceInfo", {
+      .get("https://cabinet.itcyclonelp.com/api/v_2/payments/GetUsersClaims", {
         params: {
           key,
           rand_param,
@@ -32,9 +32,9 @@ const MyPayments = () => {
       })
       .then((e) => {
         if (e.data.result === "success") {
-          setPayment(e.data.values);
+          setPayment(Object.values(e.data.values));
           setError(false);
-          setFilteredData(e.data.values);
+          setFilteredData(Object.values(e.data.values));
         } else {
           setError(true);
           setMessage(t("profile.error"));
@@ -99,7 +99,7 @@ const MyPayments = () => {
                 <tr key={item.account_id}>
                   <td>{item.account_id}</td>
                   <td>{item.server_account}</td>
-                  <td>{item.server_type}</td>
+                  <td>{item.account_type}</td>
                   <td>
                     {new Date(item.creation_date * 1000).toLocaleDateString()}
                   </td>

@@ -104,7 +104,26 @@ const Transfer = () => {
     [dataAcc]
   );
 
-  const handleClick = () => {};
+  const handleClick = () => {
+    setDisabled(true);
+
+    const { key, rand_param } = DataCreate();
+
+    var bodyFormData = new FormData();
+    bodyFormData.append("key", key);
+    bodyFormData.append("rand_param", rand_param);
+    bodyFormData.append("auth_token", LocalStorage.get("auth_token"));
+    bodyFormData.append("user_id", LocalStorage.get("user_id"));
+
+    axios
+      .post("https://cabinet.itcyclonelp.com/api/v_2/")
+      .then((e) => {
+        if (e.data.result === "success") {
+        } else {
+        }
+      })
+      .finally(() => setDisabled(false));
+  };
 
   return (
     <>

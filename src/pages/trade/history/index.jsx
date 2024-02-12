@@ -9,10 +9,29 @@ import convertMoney from "../../../utils/convertMoney";
 
 const HistoryAccount = () => {
   const [data, setData] = useState([]);
-  const { t } = useTranslation();
+  const [dataAcc, setDataAcc] = useState([]);
+  const [selectAcc, setSelectAcc] = useState();
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     const { key, rand_param } = DataCreate();
+
+    axios
+      .get("https://cabinet.itcyclonelp.com/api/v_2/trading/GetBalanceInfo", {
+        params: {
+          key,
+          rand_param,
+          auth_token: LocalStorage.get("auth_token"),
+          user_id: LocalStorage.get("user_id"),
+          languages: i18n.language,
+        },
+      })
+      .then((e) => {
+        if (e.data.result === "success") {
+          setDataAcc(e.data.values);
+          setSelectAcc(e.data.values[0]?.server_account);
+        }
+      });
 
     axios
       .get(
@@ -39,7 +58,16 @@ const HistoryAccount = () => {
       <div className={styles.history}>
         <fieldset>
           <div className={styles.type}>{t("transact.type")}</div>
-          <Selector className={styles.data}></Selector>
+          <Selector selected={selectAcc} className={styles.data}>
+            {dataAcc?.map((item) => (
+              <div
+                key={item.server_account}
+                onClick={() => setSelectAcc(item.server_account)}
+              >
+                {item.server_account}
+              </div>
+            ))}
+          </Selector>
         </fieldset>
 
         <table>
@@ -58,10 +86,12 @@ const HistoryAccount = () => {
             </tr>
           </thead>
           <tbody>
-            {data?.map((item) =>
-              item.positions?.map((el) => (
+            {data
+              ?.find((item) =>
+                item.positions?.some((el) => el.ACCOUNT_ID === selectAcc)
+              )
+              ?.positions.map((el) => (
                 <tr key={el.ID}>
-                  {console.log(el)}
                   <td>{el.ID}</td>
                   <td>{el.SYMBOL}</td>
                   <td>{el.POSITION_TYPE}</td>
@@ -73,10 +103,13 @@ const HistoryAccount = () => {
                   <td>{el.SWAP}</td>
                   <td>{el.SWAP}</td>
                 </tr>
-              ))
-            )}
+              ))}
           </tbody>
-          {data.length === 0 && (
+          {(data.length === 0 ||
+            data.every(
+              (item) =>
+                !item.positions?.some((el) => el.ACCOUNT_ID === selectAcc)
+            )) && (
             <tfoot>
               <tr>
                 <td colSpan={10}>{t("tfoot")}</td>
@@ -86,7 +119,14 @@ const HistoryAccount = () => {
         </table>
 
         <div className={styles.money}>
-          {t("transact.money")} <span>0.00</span>
+          {t("transact.money")}{" "}
+          <span>
+            {convertMoney(
+              data?.find((item) =>
+                item.positions?.some((el) => el.ACCOUNT_ID === selectAcc)
+              )?.total.sum_profit_all
+            )}
+          </span>
         </div>
       </div>
     </>

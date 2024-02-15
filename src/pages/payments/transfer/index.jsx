@@ -1,14 +1,15 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import Selector from "../../../components/selector";
 import CustomInput from "../../../components/input";
 import { SmGreenButton } from "../../../components/buttons";
 import styles from "./transfer.module.scss";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import DataCreate from "../../../utils/data-create";
 import axios from "axios";
 import LocalStorage from "../../../services/localStorage";
 import { useTranslation } from "react-i18next";
 import convertMoney from "../../../utils/convertMoney";
+import { ErrorContext } from "../../../components/error-modal";
 
 const Transfer = () => {
   const [data, setData] = useState();
@@ -20,12 +21,15 @@ const Transfer = () => {
   const [selectedCurr, setSelectedCurr] = useState("USD");
   const [selectedAcc, setSelectedAcc] = useState();
   const [money, setMoney] = useState();
+  const navigate = useNavigate();
+  const { setMessage, setError } = useContext(ErrorContext);
 
-  useEffect(() => {
+  const getData = async () => {
     setDisabled(true);
     const { key, rand_param } = DataCreate();
+    var tempData = null;
 
-    axios
+    await axios
       .get(
         "https://cabinet.itcyclonelp.com/api/v_2/payments/GetPaymentSystemsList",
         {
@@ -44,10 +48,13 @@ const Transfer = () => {
           setData(
             e.data.values.find((item) => item.id === searchParams.get("id"))
           );
+          tempData = e.data.values.find(
+            (item) => item.id === searchParams.get("id")
+          );
         }
       });
 
-    axios
+    await axios
       .get("https://cabinet.itcyclonelp.com/api/v_2/settings/GetCurrencies", {
         params: {
           key,
@@ -60,12 +67,15 @@ const Transfer = () => {
       })
       .then((e) => {
         if (e.data.result === "success") {
-          setDataCurr(e.data.values);
-          setSelectedCurr(e.data.values[0].id);
+          const values = e.data.values?.filter((item) =>
+            Object.keys(tempData.currency)?.includes(item.code)
+          );
+          setDataCurr(values);
+          setSelectedCurr(values[0].id);
         }
       });
 
-    axios
+    await axios
       .get("https://cabinet.itcyclonelp.com/api/v_2/trading/GetBalanceInfo", {
         params: {
           key,
@@ -77,35 +87,16 @@ const Transfer = () => {
       })
       .then((e) => {
         if (e.data.result === "success") {
-          const values = e.data.values?.find(
-            (item) => item.curr === selectedCurr
-          );
           setDataAcc(e.data.values);
-          setSelectedAcc(
-            `${values?.server_account} (${values?.curr}) - ${convertMoney(
-              values?.balance
-            )}`
-          );
+          setSelectedAcc(e.data.values[0].account_id);
         }
       })
       .finally(() => setDisabled(false));
+  };
+
+  useEffect(() => {
+    getData();
   }, []);
-
-  const costChange = useCallback(
-    (v) => {
-      if (!v) return;
-
-      const numericValues = Object.values(v)
-        ?.filter((value) => /^\d+%$/.test(value))
-        .map((value) => parseInt(value, 10));
-
-      const min = numericValues.length > 0 ? Math.min(...numericValues) : 0;
-      const max = numericValues.length > 0 ? Math.max(...numericValues) : 0;
-
-      return min !== max ? `${min}-${max}%` : `${min}%`;
-    },
-    [dataAcc]
-  );
 
   const handleClick = () => {
     setDisabled(true);
@@ -116,17 +107,30 @@ const Transfer = () => {
     bodyFormData.append("key", key);
     bodyFormData.append("rand_param", rand_param);
     bodyFormData.append("auth_token", LocalStorage.get("auth_token"));
-    bodyFormData.append("user_id", LocalStorage.get("user_id"));
+    bodyFormData.append("value", money);
+    bodyFormData.append("merchant_id", data.id);
+    bodyFormData.append("account_id", selectedAcc);
+    bodyFormData.append("currency_id", selectedCurr);
+    bodyFormData.append("status", 0);
 
     axios
-      .post("https://cabinet.itcyclonelp.com/api/v_2/")
+      .post("https://cabinet.itcyclonelp.com/api/v_2/payments/CreateClaim")
       .then((e) => {
         if (e.data.result === "success") {
+          navigate(`/payment/check?id=${e.data.values.claim_id}`);
         } else {
+          setError(true);
+          setMessage(t("transfer.err_create"));
         }
       })
       .finally(() => setDisabled(false));
   };
+
+  const convertDataAcc = useCallback(
+    (data) =>
+      `${data.server_account} (${data.curr}) - ${convertMoney(data?.balance)}`,
+    []
+  );
 
   return (
     <>
@@ -134,10 +138,10 @@ const Transfer = () => {
       <div className={`item-center ${styles.block_transfer}`}>
         <div className={styles.info}>
           <div>
-            {t("transfer.i1")} {data?.currency.join("/")}
+            {t("transfer.i1")} {data && Object.keys(data?.currency)?.join("/")}
           </div>
           <div>
-            {t("transfer.i2")} {costChange(data?.costs)}
+            {t("transfer.i2")} {data?.costs[i18n.language]}
           </div>
           <div>
             {t("transfer.i3")} {data?.caption[i18n.language]}
@@ -146,27 +150,23 @@ const Transfer = () => {
         <div className={styles.s_transfer}>
           <fieldset className="fs-t">
             <div>{t("transfer.select1")}</div>
-            <Selector selected={selectedAcc}>
-              {dataAcc
-                ?.filter(
-                  (el) =>
-                    `${el.server_account} (${el.curr}) - ${convertMoney(
-                      el?.balance
-                    )}` !== selectedAcc
+            <Selector
+              selected={
+                dataAcc &&
+                convertDataAcc(
+                  dataAcc?.find((item) => item.account_id === selectedAcc)
                 )
+              }
+            >
+              {dataAcc
+                ?.filter((el) => dataAcc && convertDataAcc(el) !== selectedAcc)
                 .map((item) => (
                   <div
-                    onClick={() =>
-                      setSelectedAcc(
-                        `${item.server_account} (${item.curr}) - ${convertMoney(
-                          item?.balance
-                        )}`
-                      )
-                    }
+                    onClick={() => setSelectedAcc(item.account_id)}
                     key={item.server_account}
-                  >{`${item.server_account} (${item.curr}) - ${convertMoney(
-                    item?.balance
-                  )}`}</div>
+                  >
+                    {dataAcc && convertDataAcc(item)}
+                  </div>
                 ))}
             </Selector>
           </fieldset>

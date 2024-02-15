@@ -1,0 +1,316 @@
+{
+  "signin": {
+    "h1": "Log in to my personal cabinet",
+    "email": "Login or E-mail",
+    "password": "Password",
+    "reg": "Registration",
+    "forgot": "Forgot your password?",
+    "error": "Invalid email or password",
+    "btn": "LOG IN"
+  },
+  "forgot": {
+    "h1": "Password recovery",
+    "email": "Your e-mail",
+    "error": "Incorrect email",
+    "btn_1": "SEND",
+    "btn_2": "CANCEL",
+    "desc": "To reset your password, you will need to enter the email you provided during registration. An email with a link to reset your password will be sent to your email."
+  },
+  "signup": {
+    "h1": "Registration",
+    "desc": "Registration will take only a few minutes and will allow you to access your personal account. Fields marked with * are mandatory",
+    "block_1": {
+      "h2": "Account",
+      "email": "E-Mail *",
+      "email_ph": "Enter your e-mail",
+      "password": "Password *",
+      "password_ph": "Enter your password",
+      "password_r": "Repeat the password *",
+      "password_r_ph": "Repeat the password",
+      "data": "Date of birth"
+    },
+    "block_2": {
+      "h2": "Account",
+      "second_name": "Surname *",
+      "second_name_ph": "Enter last name",
+      "first_name": "Name *",
+      "first_name_ph": "Enter a name",
+      "patronymic": "Patronymic",
+      "patronymic_ph": "Enter middle name",
+      "passport": "Passport",
+      "sex": "Sex",
+      "set_empty": "Not specified"
+    },
+    "block_3": {
+      "h2": "Contacts",
+      "phone": "Phone *",
+      "phone_ph": "Enter the phone number",
+      "country": "Country",
+      "area": "Area",
+      "area_ph": "Enter an area",
+      "city": "City",
+      "city_ph": "Enter city",
+      "address": "Address",
+      "address_ph": "Enter the address",
+      "postcode": "Postal code",
+      "postcode_ph": "Enter the postal code"
+    },
+    "block_4": {
+      "h2": "Contacts",
+      "captcha": "Incorrect captcha",
+      "btn": "SIGN UP"
+    }
+  },
+  "signup_valid": {
+    "req": "This field should not be empty",
+    "error": "Registration error",
+    "error_any": "Error in field",
+    "email": "The postal code is incorrect.",
+    "email_unique": "Email's already taken",
+    "pass_min": "Password must contain a minimum of 8 characters",
+    "pass_u": "The password must contain at least one capital letter",
+    "pass_l": "The password must contain at least one lowercase letter",
+    "pass_n": "The password must contain at least one digit",
+    "pass_r": "The passwords don't match"
+  },
+  "sex": {
+    "f": "Female",
+    "m": "Male"
+  },
+  "document": {
+    "h1": "Funds Entry",
+    "t_n": "Title",
+    "l_1": "Просмотр"
+  },
+  "profile": {
+    "h1": "My profile",
+    "error": "Data retrieval error!",
+    "block_1": {
+      "h2": "Personal data",
+      "login": "Login",
+      "pass": "Password",
+      "pass_btn": "Change password",
+      "email_ph": "Enter your e-mail address",
+      "surname": "Surname",
+      "surname_ph": "Enter last name",
+      "name": "Name",
+      "name_ph": "Enter a name",
+      "patronymic": "Patronymic",
+      "patronymic_ph": "Enter middle name",
+      "passport": "Passport",
+      "date": "Date of birth"
+    },
+    "block_2": {
+      "h2": "Contacts",
+      "phone": "Phone",
+      "country": "Country",
+      "area": "Area",
+      "area_ph": "Enter an area",
+      "city": "City",
+      "city_ph": "Enter city",
+      "address": "Address",
+      "address_ph": "Enter the address",
+      "postcode": "Postal code",
+      "postcode_ph": "Enter the postal code"
+    },
+    "block_3": {
+      "h2": "Profile settings",
+      "check": "Duplication to email",
+      "lang": "Default language"
+    },
+    "block_4": {
+      "h2": "Passport and documents",
+      "download": "Download",
+      "download_btn": "Download the file"
+    },
+    "file_err": "Error loading this file",
+    "file_succ": "The file has been successfully uploaded",
+    "file_del_err": "Error when deleting this file",
+    "file_del_succ": "The file was successfully deleted",
+    "success": "Data successfully changed",
+    "btn": "REDACTING"
+  },
+  "header_admin": {
+    "setting": "SETTINGS",
+    "doc": "Papers",
+    "office": "Personal cabinet",
+    "payment": "Payment systems",
+    "servers": "Servers",
+    "acc": "Types of accounts",
+    "lang": "Languages",
+    "method": "Payment methods",
+    "service": "SERVICE",
+    "email": "Email Newsletter",
+    "course": "Exchange rates",
+    "templates": "Letter templates",
+    "shares": "Stocks",
+    "orders": "New applications",
+    "manage": "Account Management",
+    "users": "User management",
+    "payment_s": "Deposit/withdrawal of funds",
+    "report": "Report on payment systems",
+    "appeals": "ADVERTISEMENT",
+    "profile": "My profile",
+    "logout": "Output"
+  },
+  "header": {
+    "profile": "My profile",
+    "logout": "Output",
+    "shop": "TRADING",
+    "my": "My accounts",
+    "open": "Open an account",
+    "trans": "Deposit transactions",
+    "history": "Trading history",
+    "payment": "PAYMENTS",
+    "my_p": "My requests",
+    "concl": "Funds Entry",
+    "company": "COMPANY",
+    "doc": "Documents",
+    "appeals": "APPLICATIONS"
+  },
+  "my_payment": {
+    "h1": "My requests",
+    "start": "Beginning",
+    "end": "The end",
+    "btn": "SEARCH",
+    "th": {
+      "num": "Number",
+      "acc": "Account",
+      "acc_type": "Account type",
+      "date": "Date of Creation",
+      "payment": "Payment system",
+      "trans": "Type of translation",
+      "sum": "Payment amount",
+      "status": "Status"
+    }
+  },
+  "tfoot": "No results",
+  "conclusion_payment": {
+    "h1": "Funds Entry",
+    "th": {
+      "payment": "Method of payment",
+      "val": "Currency",
+      "com": "Commission",
+      "trans": "Transfer deadline",
+      "add": "Replenishment"
+    },
+    "btn": "IMPLEMENTATION"
+  },
+  "change_pass": {
+    "pass1": "Old password *",
+    "pass1_input": "Enter your old password",
+    "pass2": "New password *",
+    "pass2_input": "Enter a new password",
+    "pass3": "Repeat the new password *",
+    "pass3_input": "Repeat the password",
+    "btn": "CHANGE PASSWORD",
+    "error": "Password change error",
+    "success": "You have successfully changed your password"
+  },
+  "appeals": {
+    "h1": "Appeals",
+    "btn1": "CREATE AN APPEAL",
+    "btn2": "REQUEST ARCHIVE",
+    "btn2_2": "PUBLIC APPEALS",
+    "start": "Beginning",
+    "end": "The end",
+    "keywords": "Keyword",
+    "keywords_ph": "Type in the word",
+    "btn3": "SEARCH",
+    "theme": "Subject of address",
+    "depart": "Communications Department",
+    "date": "Date of Creation",
+    "last": "Last message",
+    "status": "Status",
+    "search_err": "Keyword search error",
+    "search_succ": "Keyword successfully found"
+  },
+  "app_create": {
+    "h1": "Create an appeal",
+    "sub": "Subject of address",
+    "sub_ph": "Theme",
+    "text": "Text",
+    "text_ph": "Enter text",
+    "upload": "Download the file",
+    "btn": "CONNECT",
+    "err": "Error when creating a request",
+    "err_f1": "You've maxed out the files",
+    "err_f2": "Maximum number of files - 8"
+  },
+  "app_mess": {
+    "h1": "Message history",
+    "sub": "Subject of the address:",
+    "depart": "Company department: Customer Relations Department",
+    "status": "Status:",
+    "text": "Enter answer",
+    "text_ph": "Enter text",
+    "upload": "Download the file",
+    "close": "Close the appeal",
+    "btn": "SEND",
+    "is_close": "Appeal closed",
+    "reopen": "REOPEN",
+    "err": "Message not sent for unknown reason",
+    "succ": "The message has been sent"
+  },
+  "deposit": {
+    "h1": "Deposit transactions",
+    "select": "Select an account",
+    "th1": "Date of operation",
+    "th2": "Amount",
+    "th3": "Comments",
+    "money": "Profit:"
+  },
+  "transact": {
+    "h1": "Trading history",
+    "type": "Account type",
+    "num": "Number",
+    "symb": "Symbol",
+    "type_h": "Type",
+    "volume": "Scope",
+    "data_o": "Date of opening",
+    "data_c": "Closing Date",
+    "price_o": "Opening price",
+    "price_c": "Closing price",
+    "swal": "Swap",
+    "comm": "Comments",
+    "money": "Profit:"
+  },
+  "trade_open": {
+    "h1": "Open an account",
+    "type": "Account type",
+    "leverage": "Shoulder",
+    "btn": "CREATE AN ACCOUNT",
+    "succ": "You have successfully created an account",
+    "err": "An unknown error was detected during account creation"
+  },
+  "check": {
+    "div1": "Request number",
+    "div2": "Currency",
+    "div3": "Payment amount",
+    "div4": "Status",
+    "div5": "Date of Creation"
+  },
+  "transfer": {
+    "h1": "Bank transfer",
+    "i1": "Currency:",
+    "i2": "Commission:",
+    "i3": "Transfer deadline:",
+    "select1": "Account",
+    "select2": "Payment currency",
+    "money": "Payment amount",
+    "btn": "FURTHER",
+    "err_create": "Error when creating an approval request"
+  },
+  "my_trade": {
+    "h1": "My accounts",
+    "th1": "Account",
+    "th2": "Account type",
+    "th3": "It can be deduced",
+    "th4": "Means",
+    "th5": "Bail",
+    "th6": "Bonus balance",
+    "th7": "Profit",
+    "th8": "Actions",
+    "btn": "FILL IN THE ACCOUNT"
+  }
+}

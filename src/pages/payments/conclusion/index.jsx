@@ -35,17 +35,6 @@ const Conclusion = () => {
       });
   }, []);
 
-  const costChange = useCallback((v) => {
-    const numericValues = Object.values(v)
-      ?.filter((value) => /^\d+%$/.test(value))
-      .map((value) => parseInt(value, 10));
-
-    const min = numericValues.length > 0 ? Math.min(...numericValues) : 0;
-    const max = numericValues.length > 0 ? Math.max(...numericValues) : 0;
-
-    return min !== max ? `${min}-${max}%` : `${min}%`;
-  }, []);
-
   return (
     <>
       <h1>{t("conclusion_payment.h1")}</h1>
@@ -74,8 +63,8 @@ const Conclusion = () => {
                   <div>{item.pay_method_name}</div>
                 </td>
                 <td></td>
-                <td>{item.currency.join("/")}</td>
-                <td>{costChange(item.costs)}</td>
+                <td>{Object.keys(item.currency)?.join("/")}</td>
+                <td>{item.costs[i18n.language]}</td>
                 <td>{item.caption[i18n.language]}</td>
                 <td>
                   <SmGreenButton>

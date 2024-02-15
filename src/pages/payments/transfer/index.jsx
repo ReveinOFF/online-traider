@@ -114,7 +114,10 @@ const Transfer = () => {
     bodyFormData.append("status", 0);
 
     axios
-      .post("https://cabinet.itcyclonelp.com/api/v_2/payments/CreateClaim")
+      .post(
+        "https://cabinet.itcyclonelp.com/api/v_2/payments/CreateClaim",
+        bodyFormData
+      )
       .then((e) => {
         if (e.data.result === "success") {
           navigate(`/payment/check?id=${e.data.values.claim_id}`);

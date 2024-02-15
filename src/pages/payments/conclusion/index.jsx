@@ -60,7 +60,7 @@ const Conclusion = () => {
                     width={30}
                     height={30}
                   />
-                  <div>{item.pay_method_name}</div>
+                  <div>{item.name}</div>
                 </td>
                 <td></td>
                 <td>{Object.keys(item.currency)?.join("/")}</td>

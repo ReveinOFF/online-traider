@@ -34,7 +34,7 @@ const MyAccount = () => {
   return (
     <>
       <h1>{t("my_trade.h1")}</h1>
-      <div className="table justify-center">
+      <div className={`table justify-center ${styles.adaptive}`}>
         <table>
           <thead>
             <tr>
@@ -51,14 +51,16 @@ const MyAccount = () => {
           <tbody>
             {data?.map((item) => (
               <tr key={item.account_id}>
-                <td>{item.server_account}</td>
-                <td>{`${item.group} (${item.curr})`}</td>
-                <td>{item.freeBalance}</td>
-                <td>{item.balance}</td>
-                <td>{item.margin}</td>
-                <td>{item.bonus}</td>
-                <td>{item.actives}</td>
-                <td>
+                <td data-label={t("my_trade.th1")}>{item.server_account}</td>
+                <td
+                  data-label={t("my_trade.th2")}
+                >{`${item.group} (${item.curr})`}</td>
+                <td data-label={t("my_trade.th3")}>{item.freeBalance}</td>
+                <td data-label={t("my_trade.th4")}>{item.balance}</td>
+                <td data-label={t("my_trade.th5")}>{item.margin}</td>
+                <td data-label={t("my_trade.th6")}>{item.bonus}</td>
+                <td data-label={t("my_trade.th7")}>{item.actives}</td>
+                <td data-label={t("my_trade.th8")}>
                   <SmGreenButton className={styles.td_btn}>
                     <Link to={`/trade/open?id=${item.account_id}`}>
                       {t("my_trade.btn")}

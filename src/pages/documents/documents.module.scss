@@ -1,11 +1,21 @@
+@import "../../styles/responsive.scss";
+
 .documents {
   padding: 0 30px;
+
+  @include phone-only {
+    padding-inline: 10px;
+  }
 
   table {
     thead {
       tr {
         th {
           text-align: start;
+
+          @include phone-low {
+            text-align: center;
+          }
         }
       }
     }
@@ -19,8 +29,21 @@
             margin: 10px 30px;
             display: flex;
             justify-content: space-between;
+            align-items: center;
+
+            @include phone-low {
+              flex-direction: column;
+            }
 
             & > div {
+              &:first-child {
+                text-align: start;
+
+                @include phone-low {
+                  text-align: center;
+                }
+              }
+
               &:last-of-type {
                 display: flex;
                 gap: 50px;

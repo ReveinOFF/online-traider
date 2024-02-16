@@ -55,7 +55,7 @@ const TransactionsAccount = () => {
   return (
     <>
       <h1>{t("deposit.h1")}</h1>
-      <div className={styles.transactions}>
+      <div className={`${styles.transactions} ${styles.adaptive}`}>
         <fieldset>
           <div className={styles.type}>{t("deposit.select")}</div>
           <Selector selected={selectAcc} className={styles.data}>
@@ -75,11 +75,6 @@ const TransactionsAccount = () => {
             <tr>
               <th>{t("deposit.th1")}</th>
               <th>{t("deposit.th2")}</th>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th></th>
               <th>{t("deposit.th3")}</th>
             </tr>
           </thead>
@@ -88,16 +83,11 @@ const TransactionsAccount = () => {
               ?.filter((item) => item.SERVER_ACCOUNT === selectAcc)
               ?.map((item) => (
                 <tr key={item.ID}>
-                  <td>
+                  <td data-label={t("deposit.th1")}>
                     {new Date(item.OPERATION_DATE * 1000).toLocaleDateString()}
                   </td>
-                  <td>{item.EQUITY}</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td>{item.COMMENT}</td>
+                  <td data-label={t("deposit.th2")}>{item.EQUITY}</td>
+                  <td data-label={t("deposit.th3")}>{item.COMMENT}</td>
                 </tr>
               ))}
           </tbody>

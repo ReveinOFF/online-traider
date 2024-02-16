@@ -1,3 +1,5 @@
+@import "../../../styles/responsive.scss";
+
 .transactions {
   padding: 0 30px;
 
@@ -45,6 +47,65 @@
 
     span {
       font-weight: 400;
+    }
+  }
+}
+
+.adaptive {
+  margin-inline: 0;
+
+  table {
+    @include tablet-landscape-down {
+      thead {
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+      }
+
+      tbody {
+        background-color: transparent;
+      }
+
+      tr {
+        display: block;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-bottom: 3px solid #bebebe;
+        padding: 10px 20px;
+
+        &:last-child td:first-child {
+          border-bottom-left-radius: 0;
+        }
+
+        &::after {
+          background: transparent;
+        }
+
+        button {
+          margin-right: 0;
+          padding-inline: 0;
+        }
+
+        td {
+          display: block;
+          font-size: 0.8em;
+          text-align: right;
+
+          &:not(:last-child) {
+            border-bottom: 1px solid #ddd;
+          }
+
+          &::before {
+            content: attr(data-label);
+            float: left;
+            font-weight: bold;
+            text-transform: uppercase;
+          }
+        }
+      }
     }
   }
 }

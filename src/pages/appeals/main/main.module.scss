@@ -1,3 +1,5 @@
+@import "../../../styles/responsive.scss";
+
 .main_appeals {
   padding: 0 30px;
 
@@ -17,7 +19,12 @@
       gap: 10px;
       position: relative;
       z-index: 0;
+
+      @include tablet-portrait-down {
+        flex-direction: column;
+      }
     }
+
     &:nth-child(2) {
       margin-bottom: 30px;
       display: grid;
@@ -26,6 +33,14 @@
       position: relative;
       align-items: flex-end;
       z-index: 0;
+
+      @include tablet-landscape-down {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @include tablet-portrait-down {
+        grid-template-columns: repeat(1, 1fr);
+      }
 
       input {
         padding: 16px 20px;
@@ -55,5 +70,67 @@
     padding-block: 9px;
     color: #ffffff;
     padding-inline: 40px;
+  }
+}
+
+.adaptive {
+  table {
+    @include tablet-landscape-down {
+      thead {
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+      }
+
+      tbody {
+        background-color: transparent;
+
+        tr {
+          display: block;
+          margin-bottom: 20px;
+          border: 1px solid #ddd;
+          border-bottom: 3px solid #bebebe;
+          padding: 10px 20px;
+
+          &::after {
+            background: transparent;
+          }
+
+          button {
+            margin-right: 0;
+            padding-inline: 0;
+          }
+
+          td {
+            display: block;
+            font-size: 0.8em;
+            text-align: right;
+            width: 100%;
+
+            &:not(:last-child) {
+              border-bottom: 1px solid #ddd;
+            }
+
+            &::before {
+              content: attr(data-label);
+              float: left;
+              font-weight: bold;
+              text-transform: uppercase;
+            }
+          }
+        }
+      }
+
+      tfoot {
+        tr {
+          td {
+            border-radius: 5px;
+          }
+        }
+      }
+    }
   }
 }

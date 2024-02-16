@@ -141,7 +141,7 @@ const MainAppeals = () => {
             {t("appeals.btn3")}
           </SmBlueButton>
         </div>
-        <div>
+        <div className={styles.adaptive}>
           <table>
             <thead>
               <tr>
@@ -159,16 +159,20 @@ const MainAppeals = () => {
                   key={item.id}
                   onClick={() => navigate(`tickets?id=${item.id}`)}
                 >
-                  <td>{item.id}</td>
-                  <td>{item.text}</td>
-                  <td>{item.department_id}</td>
-                  <td>{new Date(item.date * 1000).toLocaleDateString()}</td>
-                  <td>
-                    {item.message.length > 1
-                      ? item.message
-                      : item.file_name || item.message}
+                  <td data-label="ID">{item.id}</td>
+                  <td data-label={t("appeals.theme")}>{item.text}</td>
+                  <td data-label={t("appeals.depart")}>{item.department_id}</td>
+                  <td data-label={t("appeals.date")}>
+                    {new Date(item.date * 1000).toLocaleDateString()}
                   </td>
-                  <td>{item.closed_by}</td>
+                  {(item.message.length > 1 || item.file_name.length > 1) && (
+                    <td data-label={t("appeals.last")}>
+                      {item.message.length > 1
+                        ? item.message
+                        : item.file_name || item.message}
+                    </td>
+                  )}
+                  <td data-label={t("appeals.status")}>{item.closed_by}</td>
                 </tr>
               ))}
             </tbody>

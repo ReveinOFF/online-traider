@@ -80,7 +80,7 @@ const MyPayments = () => {
             {t("my_payment.btn")}
           </SmBlueButton>
         </div>
-        <div>
+        <div className={styles.adaptive}>
           <table>
             <thead>
               <tr>
@@ -97,18 +97,26 @@ const MyPayments = () => {
             <tbody>
               {filteredData?.map((item) => (
                 <tr key={item.account_id}>
-                  <td>{item.account_id}</td>
-                  <td>{item.server_account}</td>
-                  <td>{item.account_type}</td>
-                  <td>
+                  <td data-label={t("my_payment.th.num")}>{item.account_id}</td>
+                  <td data-label={t("my_payment.th.acc")}>
+                    {item.server_account}
+                  </td>
+                  <td data-label={t("my_payment.th.acc_type")}>
+                    {item.account_type}
+                  </td>
+                  <td data-label={t("my_payment.th.date")}>
                     {new Date(item.creation_date * 1000).toLocaleDateString()}
                   </td>
-                  <td>{item.payment_system}</td>
-                  <td>{item.payment_type}</td>
-                  <td>
+                  <td data-label={t("my_payment.th.payment")}>
+                    {item.payment_system}
+                  </td>
+                  <td data-label={t("my_payment.th.trans")}>
+                    {item.payment_type}
+                  </td>
+                  <td data-label={t("my_payment.th.sum")}>
                     {convertMoney(item.account_value)} {item.account_currency}
                   </td>
-                  <td>{item.status}</td>
+                  <td data-label={t("my_payment.th.status")}>{item.status}</td>
                 </tr>
               ))}
             </tbody>

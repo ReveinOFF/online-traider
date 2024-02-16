@@ -38,12 +38,11 @@ const Conclusion = () => {
   return (
     <>
       <h1>{t("conclusion_payment.h1")}</h1>
-      <div className={`table ${styles.conclusion}`}>
+      <div className={`table ${styles.conclusion} ${styles.adaptive}`}>
         <table>
           <thead>
             <tr>
               <th>{t("conclusion_payment.th.payment")}</th>
-              <th></th>
               <th>{t("conclusion_payment.th.val")}</th>
               <th>{t("conclusion_payment.th.com")}</th>
               <th>{t("conclusion_payment.th.trans")}</th>
@@ -53,7 +52,10 @@ const Conclusion = () => {
           <tbody>
             {data?.map((item) => (
               <tr key={item.id}>
-                <td className="flex-center">
+                <td
+                  className="flex-center"
+                  data-label={t("conclusion_payment.th.payment")}
+                >
                   <img
                     src={`https://cabinet.itcyclonelp.com${item.image}`}
                     alt="bank"
@@ -62,11 +64,16 @@ const Conclusion = () => {
                   />
                   <div>{item.name}</div>
                 </td>
-                <td></td>
-                <td>{Object.keys(item.currency)?.join("/")}</td>
-                <td>{item.costs[i18n.language]}</td>
-                <td>{item.caption[i18n.language]}</td>
-                <td>
+                <td data-label={t("conclusion_payment.th.val")}>
+                  {Object.keys(item.currency)?.join("/")}
+                </td>
+                <td data-label={t("conclusion_payment.th.com")}>
+                  {item.costs[i18n.language]}
+                </td>
+                <td data-label={t("conclusion_payment.th.trans")}>
+                  {item.caption[i18n.language]}
+                </td>
+                <td data-label={t("conclusion_payment.th.add")}>
                   <SmGreenButton>
                     <Link to={`/payment/transfer?id=${item.id}`}>
                       {t("conclusion_payment.btn")}

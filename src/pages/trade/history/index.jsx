@@ -55,7 +55,7 @@ const HistoryAccount = () => {
   return (
     <>
       <h1>{t("transact.h1")}</h1>
-      <div className={styles.history}>
+      <div className={`${styles.history} ${styles.adaptive}`}>
         <fieldset>
           <div className={styles.type}>{t("transact.type")}</div>
           <Selector selected={selectAcc} className={styles.data}>
@@ -92,16 +92,24 @@ const HistoryAccount = () => {
               )
               ?.positions.map((el) => (
                 <tr key={el.ID}>
-                  <td>{el.ID}</td>
-                  <td>{el.SYMBOL}</td>
-                  <td>{el.POSITION_TYPE}</td>
-                  <td>{el.VOLUME}</td>
-                  <td>{new Date(el.OPEN_DATE * 1000).toLocaleDateString()}</td>
-                  <td>{new Date(el.CLOSE_DATE * 1000).toLocaleDateString()}</td>
-                  <td>{convertMoney(el.OPEN_PRICE)}</td>
-                  <td>{convertMoney(el.CLOSE_PRICE)}</td>
-                  <td>{el.SWAP}</td>
-                  <td>{el.SWAP}</td>
+                  <td data-label={t("transact.num")}>{el.ID}</td>
+                  <td data-label={t("transact.symb")}>{el.SYMBOL}</td>
+                  <td data-label={t("transact.type_h")}>{el.POSITION_TYPE}</td>
+                  <td data-label={t("transact.volume")}>{el.VOLUME}</td>
+                  <td data-label={t("transact.data_o")}>
+                    {new Date(el.OPEN_DATE * 1000).toLocaleDateString()}
+                  </td>
+                  <td data-label={t("transact.data_c")}>
+                    {new Date(el.CLOSE_DATE * 1000).toLocaleDateString()}
+                  </td>
+                  <td data-label={t("transact.price_o")}>
+                    {convertMoney(el.OPEN_PRICE)}
+                  </td>
+                  <td data-label={t("transact.price_c")}>
+                    {convertMoney(el.CLOSE_PRICE)}
+                  </td>
+                  <td data-label={t("transact.swal")}>{el.SWAP}</td>
+                  <td data-label={t("transact.comm")}>{el.SWAP}</td>
                 </tr>
               ))}
           </tbody>

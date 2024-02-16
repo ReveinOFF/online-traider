@@ -71,7 +71,7 @@ const CreateAppeals = () => {
       )
       .then((e) => {
         if (e.data.result === "success") {
-          navigate(`/appeals/tickets?id=${e.data.values.ticket_id}`);
+          navigate(`/appeals/tickets?id=${e.data.values.ticked_id}`);
           setError(false);
         } else {
           setError(true);

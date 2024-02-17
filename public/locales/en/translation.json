@@ -85,6 +85,7 @@
   "profile": {
     "h1": "My profile",
     "error": "Data retrieval error!",
+    "err_change": "Error when changing data!",
     "block_1": {
       "h2": "Personal data",
       "login": "Login",

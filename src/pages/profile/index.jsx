@@ -53,6 +53,9 @@ const Profile = () => {
           setEmail(e.data.values.email);
           formik.setValues(e.data.values);
           if (e.data.values.date_of_birth) {
+            console.log(e.data.values.date_of_birth);
+            console.log(new Date(e.data.values.date_of_birth * 1000));
+            console.log(new Date(e.data.values.date_of_birth));
             const date = new Date(e.data.values.date_of_birth * 1000);
             formik.setFieldValue(
               "date_of_birth",
@@ -141,15 +144,7 @@ const Profile = () => {
           );
         });
       }),
-    date_of_birth: Yup.date()
-      .transform(function (value, originalValue) {
-        if (this.isType(value)) {
-          return value;
-        }
-        const result = new Date(originalValue);
-        return result;
-      })
-      .notRequired(),
+    date_of_birth: Yup.date().notRequired(),
     second_name: Yup.string().required(t("signup_valid.req")),
     first_name: Yup.string().required(t("signup_valid.req")),
     patronymic: Yup.string().notRequired(),
@@ -176,8 +171,15 @@ const Profile = () => {
     bodyFormData.append("auth_token", LocalStorage.get("auth_token"));
     bodyFormData.append("user_id", LocalStorage.get("user_id"));
     Object.entries(value).forEach((element) => {
-      bodyFormData.append(element[0], element[1]);
+      element[1] && bodyFormData.append(element[0], element[1]);
     });
+    const date = Object.entries(value).find(
+      (item) => item[0] === "date_of_birth"
+    );
+    bodyFormData.set(
+      "date_of_birth",
+      parseInt(new Date(date[1]).getTime().toString().slice(0, -3))
+    );
 
     if (value.email === email) bodyFormData.delete("email");
 
@@ -193,7 +195,7 @@ const Profile = () => {
           setError(false);
         } else {
           setError(true);
-          setMessage(t("signup_valid.error"));
+          setMessage(t("profile.err_change"));
           Object.entries(e.data.errors).forEach((element) => {
             formik.setFieldError(element[0], t("signup_valid.error_any"));
           });

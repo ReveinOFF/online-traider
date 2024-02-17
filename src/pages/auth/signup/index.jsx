@@ -87,6 +87,13 @@ const SignUp = () => {
     Object.entries(value).forEach((element) => {
       bodyFormData.append(element[0], element[1]);
     });
+    const date = Object.entries(value).find(
+      (item) => item[0] === "date_of_birth"
+    );
+    bodyFormData.set(
+      "date_of_birth",
+      parseInt(new Date(date[1]).getTime().toString().slice(0, -3))
+    );
 
     axios
       .post(
@@ -159,15 +166,7 @@ const SignUp = () => {
     password_repeat: Yup.string()
       .required(t("signup_valid.req"))
       .oneOf([Yup.ref("password"), null], t("signup_valid.pass_r")),
-    date_of_birth: Yup.date()
-      .transform(function (value, originalValue) {
-        if (this.isType(value)) {
-          return value;
-        }
-        const result = new Date(originalValue);
-        return result;
-      })
-      .notRequired(),
+    date_of_birth: Yup.date().notRequired(),
     second_name: Yup.string().required(t("signup_valid.req")),
     first_name: Yup.string().required(t("signup_valid.req")),
     patronymic: Yup.string().notRequired(),

@@ -43,7 +43,8 @@ const App = () => {
         <Route path="trade/open" element={<OpenAccount />} />
         <Route path="trade/history" element={<HistoryAccount />} />
         <Route path="trade/transactions" element={<TransactionsAccount />} />
-        <Route path="trade/documents" element={<DocumentsAccount />} />
+
+        <Route path="documents" element={<DocumentsAccount />} />
 
         <Route path="payment/my" element={<MyPayments />} />
         <Route path="payment/conclusion" element={<Conclusion />} />

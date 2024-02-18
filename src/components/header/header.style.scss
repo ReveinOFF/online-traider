@@ -75,7 +75,7 @@ header {
         text-decoration: none;
       }
 
-      &:first-child {
+      &:is(.active) {
         background: linear-gradient(
           93.83deg,
           #294bb8 0%,
@@ -83,7 +83,8 @@ header {
           #2985b8 100%
         );
 
-        button {
+        button,
+        a {
           color: #ffffff;
         }
       }
@@ -170,16 +171,17 @@ header {
   display: grid;
   transition: background 0.3s;
 
+  &:is(.here) {
+    filter: invert(55%) sepia(88%) saturate(5400%) hue-rotate(199deg)
+      brightness(94%) contrast(86%);
+  }
+
   & > div {
     &:first-child {
       padding: 15px;
 
+      &:hover,
       &:is(.active) {
-        filter: invert(55%) sepia(88%) saturate(5400%) hue-rotate(199deg)
-          brightness(94%) contrast(86%);
-      }
-
-      &:hover {
         filter: invert(55%) sepia(88%) saturate(5400%) hue-rotate(199deg)
           brightness(94%) contrast(86%);
       }

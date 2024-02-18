@@ -16,7 +16,7 @@ import close from "../../assets/images/close.svg";
 import fileSvg from "../../assets/images/file.svg";
 
 const Profile = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [showChangepass, setShowChangepass] = useState(false);
   const [email, setEmail] = useState();
   const [typingTimeout, setTypingTimeout] = useState();
@@ -53,9 +53,6 @@ const Profile = () => {
           setEmail(e.data.values.email);
           formik.setValues(e.data.values);
           if (e.data.values.date_of_birth) {
-            console.log(e.data.values.date_of_birth);
-            console.log(new Date(e.data.values.date_of_birth * 1000));
-            console.log(new Date(e.data.values.date_of_birth));
             const date = new Date(e.data.values.date_of_birth * 1000);
             formik.setFieldValue(
               "date_of_birth",
@@ -196,9 +193,12 @@ const Profile = () => {
         } else {
           setError(true);
           setMessage(t("profile.err_change"));
-          Object.entries(e.data.errors).forEach((element) => {
-            formik.setFieldError(element[0], t("signup_valid.error_any"));
-          });
+          if (e.data.errors)
+            Object.entries(e.data.errors).forEach((element) => {
+              formik.setFieldError(element[0], t("signup_valid.error_any"));
+            });
+          if (e.data.description === "Incorrect email")
+            formik.setFieldError("email", t("signup_valid.error_any"));
         }
       })
       .finally(() => setDisableBtn(false));
@@ -450,7 +450,7 @@ const Profile = () => {
                 type="text"
                 name="address"
                 placeholder={t("profile.block_2.address_ph")}
-                value={values.city}
+                value={values.address}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 error={touched.address && errors.address}

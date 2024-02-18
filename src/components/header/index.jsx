@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./header.style.scss";
 import arrow from "../../assets/images/arrow.svg";
 import arrow_first from "../../assets/images/arrow_first.svg";
@@ -24,7 +24,7 @@ const Header = () => {
   const [showBurger, setShowBurger] = useState(false);
   const { t } = useTranslation();
   const { logout } = useAuth();
-  const navigate = useNavigate();
+  const location = useLocation();
 
   const changeShowProfile = (e) => {
     if (!e.target.closest(".c_profile")) setShowProfile(false);
@@ -110,19 +110,33 @@ const Header = () => {
     <header>
       <nav>
         <ul>
-          <li className="justify-center c_shop">
+          <li
+            className={`justify-center c_shop ${
+              location.pathname.includes("trade") ? "active" : ""
+            }`}
+          >
             <button
               className="item-center"
               onClick={() => setShowShop(!showShop)}
             >
               {t("header.shop")}{" "}
-              <img
-                src={arrow_first}
-                className={showShop ? "active" : ""}
-                alt="arrow"
-                width={10}
-                height={10}
-              />
+              {location.pathname.includes("trade") ? (
+                <img
+                  src={arrow_first}
+                  className={showShop ? "active" : ""}
+                  alt="arrow"
+                  width={10}
+                  height={10}
+                />
+              ) : (
+                <img
+                  src={arrow}
+                  alt="arrow"
+                  className={showShop ? "active" : ""}
+                  width={10}
+                  height={10}
+                />
+              )}
             </button>
             <div className={`h_dropdown ${showShop ? "active" : ""}`}>
               <Link to="/trade/my" onClick={() => setShowShop(false)}>
@@ -139,13 +153,33 @@ const Header = () => {
               </Link>
             </div>
           </li>
-          <li className="justify-center c_payment">
+          <li
+            className={`justify-center c_payment ${
+              location.pathname.includes("payment") ? "active" : ""
+            }`}
+          >
             <button
               className="item-center"
               onClick={() => setShowPayment(!showPayment)}
             >
               {t("header.payment")}{" "}
-              <img src={arrow} alt="arrow" width={10} height={10} />
+              {location.pathname.includes("payment") ? (
+                <img
+                  src={arrow_first}
+                  className={showPayment ? "active" : ""}
+                  alt="arrow"
+                  width={10}
+                  height={10}
+                />
+              ) : (
+                <img
+                  src={arrow}
+                  alt="arrow"
+                  className={showPayment ? "active" : ""}
+                  width={10}
+                  height={10}
+                />
+              )}
             </button>
             <div className={`h_dropdown ${showPayment ? "active" : ""}`}>
               <Link to="/payment/my" onClick={() => setShowPayment(false)}>
@@ -159,21 +193,45 @@ const Header = () => {
               </Link>
             </div>
           </li>
-          <li className="justify-center c_company">
+          <li
+            className={`justify-center c_company ${
+              location.pathname === "/documents" ? "active" : ""
+            }`}
+          >
             <button
               className="item-center"
               onClick={() => setShowCompany(!showCompany)}
             >
               {t("header.company")}{" "}
-              <img src={arrow} alt="arrow" width={10} height={10} />
+              {location.pathname === "/documents" ? (
+                <img
+                  src={arrow_first}
+                  className={showCompany ? "active" : ""}
+                  alt="arrow"
+                  width={10}
+                  height={10}
+                />
+              ) : (
+                <img
+                  src={arrow}
+                  alt="arrow"
+                  className={showCompany ? "active" : ""}
+                  width={10}
+                  height={10}
+                />
+              )}
             </button>
             <div className={`h_dropdown ${showCompany ? "active" : ""}`}>
-              <Link to="/trade/documents" onClick={() => setShowCompany(false)}>
+              <Link to="/documents" onClick={() => setShowCompany(false)}>
                 {t("header.doc")}
               </Link>
             </div>
           </li>
-          <li className="justify-center">
+          <li
+            className={`justify-center ${
+              location.pathname === "/appeals" ? "active" : ""
+            }`}
+          >
             <Link to="/appeals" className="item-center">
               {t("header.appeals")}
             </Link>
@@ -188,8 +246,8 @@ const Header = () => {
         </NmGreenButton>
         <button
           className={`item-center profile ${
-            showProfile ? "active" : ""
-          } c_profile`}
+            location.pathname === "/" ? "here" : ""
+          } ${showProfile ? "active" : ""} c_profile`}
           onClick={() => setShowProfile(!showProfile)}
         >
           <div className={showProfile ? "active" : ""}>
@@ -262,19 +320,40 @@ const Header = () => {
                 <img src={arrow} alt="arrow" width={11} height={11} />
               </button>
               <div className={showShop ? "active" : ""}>
-                <Link to="/trade/my" onClick={() => setShowShop(false)}>
+                <Link
+                  to="/trade/my"
+                  onClick={() => {
+                    setShowShop(false);
+                    setShowBurger(false);
+                  }}
+                >
                   {t("header.my")}
                 </Link>
-                <Link to="/trade/open" onClick={() => setShowShop(false)}>
+                <Link
+                  to="/trade/open"
+                  onClick={() => {
+                    setShowShop(false);
+                    setShowBurger(false);
+                  }}
+                >
                   {t("header.open")}
                 </Link>
                 <Link
                   to="/trade/transactions"
-                  onClick={() => setShowShop(false)}
+                  onClick={() => {
+                    setShowShop(false);
+                    setShowBurger(false);
+                  }}
                 >
                   {t("header.trans")}
                 </Link>
-                <Link to="/trade/history" onClick={() => setShowShop(false)}>
+                <Link
+                  to="/trade/history"
+                  onClick={() => {
+                    setShowShop(false);
+                    setShowBurger(false);
+                  }}
+                >
                   {t("header.history")}
                 </Link>
               </div>
@@ -288,12 +367,21 @@ const Header = () => {
                 <img src={arrow} alt="arrow" width={11} height={11} />
               </button>
               <div className={showPayment ? "active" : ""}>
-                <Link to="/payment/my" onClick={() => setShowPayment(false)}>
+                <Link
+                  to="/payment/my"
+                  onClick={() => {
+                    setShowPayment(false);
+                    setShowBurger(false);
+                  }}
+                >
                   {t("header.my_p")}
                 </Link>
                 <Link
                   to="/payment/conclusion"
-                  onClick={() => setShowPayment(false)}
+                  onClick={() => {
+                    setShowPayment(false);
+                    setShowBurger(false);
+                  }}
                 >
                   {t("header.concl")}
                 </Link>
@@ -309,21 +397,30 @@ const Header = () => {
               </button>
               <div className={showCompany ? "active" : ""}>
                 <Link
-                  to="/trade/documents"
-                  onClick={() => setShowCompany(false)}
+                  to="/documents"
+                  onClick={() => {
+                    setShowCompany(false);
+                    setShowBurger(false);
+                  }}
                 >
                   {t("header.doc")}
                 </Link>
               </div>
             </li>
             <li>
-              <Link to="/appeals">{t("header.appeals")}</Link>
+              <Link to="/appeals" onClick={() => setShowBurger(false)}>
+                {t("header.appeals")}
+              </Link>
             </li>
           </ul>
         </nav>
 
         <div>
-          <Link to="https://terminal.itcyclonelp.com" target="_blank">
+          <Link
+            to="https://terminal.itcyclonelp.com"
+            target="_blank"
+            onClick={() => setShowBurger(false)}
+          >
             <NmGreenButton className="btn-terminal">WebTerminal</NmGreenButton>
           </Link>
           <button
@@ -337,11 +434,16 @@ const Header = () => {
               {t("header.profile")}
             </div>
             <div className={showProfile ? "active" : ""}>
-              <Link to="/">
+              <Link to="/" onClick={() => setShowBurger(false)}>
                 <img src={myprofile} alt="my profile" width={16} height={16} />{" "}
                 {t("header.profile")}
               </Link>
-              <div onClick={Logout}>
+              <div
+                onClick={() => {
+                  Logout();
+                  setShowBurger(false);
+                }}
+              >
                 <img src={exit} alt="exit" width={16} height={16} />{" "}
                 {t("header.logout")}
               </div>

@@ -34,6 +34,7 @@ const OpenAccount = () => {
   const [searchParams] = useSearchParams();
 
   useEffect(() => {
+    setDisabled(true);
     const { key, rand_param } = DataCreate();
 
     axios
@@ -51,8 +52,9 @@ const OpenAccount = () => {
         const value = e.data.values.find(
           (item) => item.account_id === searchParams.get("id")
         );
-        setSelected(value?.group || e.data.values[0].group);
-        setLevSelected(value?.leverage || e.data.values[0].leverage);
+        setSelected(value?.group || e.data.values[0]?.group);
+        setLevSelected(value?.leverage || e.data.values[0]?.leverage);
+        if (e.data.values.length > 0) setDisabled(false);
       });
   }, []);
 

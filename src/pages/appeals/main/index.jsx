@@ -165,13 +165,13 @@ const MainAppeals = () => {
                   <td data-label={t("appeals.date")}>
                     {new Date(item.date * 1000).toLocaleDateString()}
                   </td>
-                  {(item.message.length > 1 || item.file_name.length > 1) && (
-                    <td data-label={t("appeals.last")}>
+                  <td data-label={t("appeals.last")}>
+                    <div>
                       {item.message.length > 1
                         ? item.message
                         : item.file_name || item.message}
-                    </td>
-                  )}
+                    </div>
+                  </td>
                   <td data-label={t("appeals.status")}>{item.closed_by}</td>
                 </tr>
               ))}

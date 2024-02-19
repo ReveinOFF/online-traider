@@ -171,7 +171,7 @@ header {
   display: grid;
   transition: background 0.3s;
 
-  &:is(.here) {
+  &:is(.here) > div:first-child {
     filter: invert(55%) sepia(88%) saturate(5400%) hue-rotate(199deg)
       brightness(94%) contrast(86%);
   }

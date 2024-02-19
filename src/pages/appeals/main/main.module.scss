@@ -7,10 +7,20 @@
     cursor: pointer;
 
     td:nth-child(5) {
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      max-width: 50px;
+      & > div:first-child {
+        max-width: 50px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+    }
+
+    td:last-child {
+      padding-right: 20px;
+
+      @include tablet-landscape-down {
+        padding-right: 0;
+      }
     }
   }
 
@@ -105,9 +115,9 @@
           }
 
           td {
-            display: block;
+            display: flex;
             font-size: 0.8em;
-            text-align: right;
+            justify-content: space-between;
             width: 100%;
 
             &:not(:last-child) {

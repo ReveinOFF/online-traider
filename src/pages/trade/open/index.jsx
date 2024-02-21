@@ -10,16 +10,16 @@ import { ErrorContext } from "../../../components/error-modal";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 const listLeverage = [
-  "1:1",
-  "1:5",
-  "1:10",
-  "1:33",
-  "1:50",
-  "1:100",
-  "1:200",
-  "1:400",
-  "1:500",
-  "1:1000",
+  "1",
+  "5",
+  "10",
+  "33",
+  "50",
+  "100",
+  "200",
+  "400",
+  "500",
+  "1000",
 ];
 
 const OpenAccount = () => {
@@ -38,21 +38,24 @@ const OpenAccount = () => {
     const { key, rand_param } = DataCreate();
 
     axios
-      .get("https://cabinet.itcyclonelp.com/api/v_2/trading/GetBalanceInfo", {
-        params: {
-          key,
-          rand_param,
-          auth_token: LocalStorage.get("auth_token"),
-          user_id: LocalStorage.get("user_id"),
-          languages: i18n.language,
-        },
-      })
+      .get(
+        "https://cabinet.itcyclonelp.com/api/v_2/trading/TradingTypesAccountsList",
+        {
+          params: {
+            key,
+            rand_param,
+            auth_token: LocalStorage.get("auth_token"),
+            user_id: LocalStorage.get("user_id"),
+            languages: i18n.language,
+          },
+        }
+      )
       .then((e) => {
         setData(e.data.values);
         const value = e.data.values.find(
           (item) => item.account_id === searchParams.get("id")
         );
-        setSelected(value?.group || e.data.values[0]?.group);
+        setSelected(value?.group || e.data.values[0]?.group_on_server);
         setLevSelected(value?.leverage || e.data.values[0]?.leverage);
         if (e.data.values.length > 0) setDisabled(false);
       });
@@ -68,11 +71,8 @@ const OpenAccount = () => {
     formData.append("key", key);
     formData.append("auth_token", LocalStorage.get("auth_token"));
     formData.append("user_id", LocalStorage.get("user_id"));
-    formData.append(
-      "group_id",
-      data.find((item) => item.group === selected)?.group_id
-    );
-    formData.append("leverage", parseInt(levSelected.split(":")[1]));
+    formData.append("group_id", selected);
+    formData.append("leverage", levSelected);
 
     axios
       .post(
@@ -98,28 +98,36 @@ const OpenAccount = () => {
       <div className={styles.open}>
         <fieldset>
           <div className={styles.type}>{t("trade_open.type")}</div>
-          <Selector selected={selected}>
+          <Selector
+            selected={
+              data?.find((item) => item.group_on_server === selected)
+                ?.group_name
+            }
+          >
             {data
-              ?.filter((item) => item.group !== selected)
+              ?.filter((item) => item.group_on_server !== selected)
               .map((item) => (
                 <div
-                  key={item.account_id}
+                  key={item.id}
                   onClick={() => {
-                    setSelected(item.group);
+                    setSelected(item.group_on_server);
                     setLevSelected(item.leverage);
                   }}
                 >
-                  {item.group}
+                  {item.group_name}
                 </div>
               ))}
           </Selector>
         </fieldset>
         <fieldset>
           <div className={styles.type}>{t("trade_open.leverage")}</div>
-          <Selector selected={levSelected} disabled={levSelected !== "1:0"}>
+          <Selector
+            selected={`1:${levSelected}`}
+            disabled={levSelected !== "0"}
+          >
             {listLeverage.map((item, index) => (
               <div key={index} onClick={() => setLevSelected(item)}>
-                {item}
+                {`1:${item}`}
               </div>
             ))}
           </Selector>

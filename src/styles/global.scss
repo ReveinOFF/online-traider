@@ -9,6 +9,7 @@ body {
 
 * {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 button {
@@ -403,7 +404,19 @@ input[type="number"] {
   padding-top: 20px;
   display: grid;
   grid-template-rows: auto 1fr auto;
-  justify-content: center;
+  padding-inline: 6%;
+
+  @include tablet-portrait-down {
+    padding-top: 0;
+  }
+
+  @include desktop-down {
+    padding-inline: 4%;
+  }
+
+  @include phone-only {
+    padding-inline: 0;
+  }
 
   & > main {
     background: #2f3241;

@@ -37,7 +37,8 @@
           }
 
           @include phone-only {
-            display: block;
+            justify-content: space-between;
+            align-items: center;
 
             img {
               display: none;
@@ -77,8 +78,8 @@
         tr {
           display: block;
           margin-bottom: 20px;
-          border: 1px solid #ddd;
-          border-bottom: 3px solid #bebebe;
+          border: solid #ddd;
+          border-width: 1px 1px 3px 1px;
           padding: 10px 20px;
 
           &::after {
@@ -91,17 +92,28 @@
           }
 
           td {
-            display: block;
+            display: flex;
             font-size: 0.8em;
-            text-align: right;
+            justify-content: space-between;
+            align-items: center;
 
             &:not(:last-child) {
               border-bottom: 1px solid #ddd;
             }
 
+            div {
+              @include phone-only {
+                max-width: 80px;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+              }
+            }
+
             &::before {
               content: attr(data-label);
               float: left;
+              text-align: left;
               font-weight: bold;
               text-transform: uppercase;
             }

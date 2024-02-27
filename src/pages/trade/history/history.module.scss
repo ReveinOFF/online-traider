@@ -3,6 +3,14 @@
 .history {
   padding: 0 30px;
 
+  @include phone-only {
+    padding-inline: 20px;
+  }
+
+  @include phone-low {
+    padding-inline: 10px;
+  }
+
   fieldset {
     border: 0;
 
@@ -50,6 +58,10 @@
 .adaptive {
   margin-inline: 20px;
 
+  @include phone-only {
+    margin-inline: 0;
+  }
+
   table {
     @include big-desktop-up {
       thead {
@@ -67,8 +79,8 @@
         tr {
           display: block;
           margin-bottom: 20px;
-          border: 1px solid #ddd;
-          border-bottom: 3px solid #bebebe;
+          border: solid #ddd;
+          border-width: 1px 1px 3px 1px;
           padding: 10px 20px;
 
           &::after {

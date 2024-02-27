@@ -97,26 +97,34 @@ const MyPayments = () => {
             <tbody>
               {filteredData?.map((item) => (
                 <tr key={item.account_id}>
-                  <td data-label={t("my_payment.th.num")}>{item.account_id}</td>
+                  <td data-label={t("my_payment.th.num")}>
+                    <div>{item.account_id}</div>
+                  </td>
                   <td data-label={t("my_payment.th.acc")}>
-                    {item.server_account}
+                    <div>{item.server_account}</div>
                   </td>
                   <td data-label={t("my_payment.th.acc_type")}>
-                    {item.account_type}
+                    <div>{item.account_type}</div>
                   </td>
                   <td data-label={t("my_payment.th.date")}>
-                    {new Date(item.creation_date * 1000).toLocaleDateString()}
+                    <div>
+                      {new Date(item.creation_date * 1000).toLocaleDateString()}
+                    </div>
                   </td>
                   <td data-label={t("my_payment.th.payment")}>
-                    {item.payment_system}
+                    <div>{item.payment_system}</div>
                   </td>
                   <td data-label={t("my_payment.th.trans")}>
-                    {item.payment_type}
+                    <div>{item.payment_type}</div>
                   </td>
                   <td data-label={t("my_payment.th.sum")}>
-                    {convertMoney(item.account_value)} {item.account_currency}
+                    <div>
+                      {convertMoney(item.account_value)} {item.account_currency}
+                    </div>
                   </td>
-                  <td data-label={t("my_payment.th.status")}>{item.status}</td>
+                  <td data-label={t("my_payment.th.status")}>
+                    <div>{item.status}</div>
+                  </td>
                 </tr>
               ))}
             </tbody>

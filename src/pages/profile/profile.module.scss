@@ -122,6 +122,29 @@
         color: #8a8d9d;
       }
 
+      a {
+        max-width: 500px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+
+        @include tablet-landscape-down {
+          max-width: 400px;
+        }
+
+        @include tablet-portrait-down {
+          max-width: 200px;
+        }
+
+        @include phone-only {
+          max-width: 100px;
+        }
+
+        @include phone-low {
+          max-width: 50px;
+        }
+      }
+
       a:hover {
         color: #6f7078;
       }

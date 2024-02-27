@@ -4,16 +4,7 @@ header {
   position: relative;
   justify-content: space-between;
   display: flex;
-
-  @include tablet-landscape-down {
-    width: 80vw;
-  }
-  @include tablet-portrait-down {
-    width: 90vw;
-  }
-  @include phone-only {
-    width: 100vw;
-  }
+  width: 100%;
 
   &::after {
     content: "";
@@ -213,6 +204,8 @@ header {
         color: #ffffff;
         font-weight: 400;
         text-align: start;
+        display: flex;
+        align-items: center;
 
         &:hover {
           filter: invert(55%) sepia(88%) saturate(5400%) hue-rotate(199deg)
@@ -303,7 +296,7 @@ header {
   transition: 0.3s;
 
   @include phone-only {
-    width: 100vw;
+    width: 100%;
   }
 
   &:is(.active) {

@@ -39,7 +39,13 @@
               &:first-child {
                 text-align: start;
 
+                @include phone-only {
+                  max-width: 200px;
+                  text-wrap: wrap;
+                }
+
                 @include phone-low {
+                  max-width: auto;
                   text-align: center;
                 }
               }

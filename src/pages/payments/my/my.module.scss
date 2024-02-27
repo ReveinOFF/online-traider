@@ -78,8 +78,8 @@
         tr {
           display: block;
           margin-bottom: 20px;
-          border: 1px solid #ddd;
-          border-bottom: 3px solid #bebebe;
+          border: solid #ddd;
+          border-width: 1px 1px 3px 1px;
           padding: 10px 20px;
 
           &::after {
@@ -94,7 +94,22 @@
           td {
             display: block;
             font-size: 0.8em;
-            text-align: right;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            div {
+              @include phone-only {
+                max-width: 80px;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+              }
+
+              @include phone-low {
+                max-width: 50px;
+              }
+            }
 
             &:not(:last-child) {
               border-bottom: 1px solid #ddd;

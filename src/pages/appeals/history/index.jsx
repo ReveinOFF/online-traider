@@ -108,6 +108,8 @@ const HistoryAppeals = () => {
       .then((e) => {
         if (e.data.result === "success") {
           setError(false);
+          setFiles(null);
+          setFilesPreview(null);
         } else {
           setError(true);
           setMessage(t("app_mess.err"));
@@ -169,6 +171,7 @@ const HistoryAppeals = () => {
 
   const deleteFile = (idx) => {
     setFilesPreview(filesPreview.filter((_, index) => index !== idx));
+    setFiles(files.filter((_, index) => index !== idx));
   };
 
   const handleReopen = async () => {

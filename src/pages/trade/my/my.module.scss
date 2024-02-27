@@ -68,6 +68,12 @@
               border-bottom: 1px solid #ddd;
             }
 
+            &:last-child {
+              &::before {
+                margin-top: 8px;
+              }
+            }
+
             &::before {
               content: attr(data-label);
               float: left;

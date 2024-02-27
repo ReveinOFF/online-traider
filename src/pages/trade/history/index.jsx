@@ -58,7 +58,11 @@ const HistoryAccount = () => {
       <div className={`${styles.history} ${styles.adaptive}`}>
         <fieldset>
           <div className={styles.type}>{t("transact.type")}</div>
-          <Selector selected={selectAcc} className={styles.data}>
+          <Selector
+            selected={selectAcc}
+            className={styles.data}
+            disabled={data.length === 0}
+          >
             {dataAcc?.map((item) => (
               <div
                 key={item.server_account}

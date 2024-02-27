@@ -65,13 +65,13 @@ const Conclusion = () => {
                   <div>{item.name}</div>
                 </td>
                 <td data-label={t("conclusion_payment.th.val")}>
-                  {Object.keys(item.currency)?.join("/")}
+                  <div>{Object.keys(item.currency)?.join("/")}</div>
                 </td>
                 <td data-label={t("conclusion_payment.th.com")}>
-                  {item.costs[i18n.language]}
+                  <div>{item.costs[i18n.language]}</div>
                 </td>
                 <td data-label={t("conclusion_payment.th.trans")}>
-                  {item.caption[i18n.language]}
+                  <div>{item.caption[i18n.language]}</div>
                 </td>
                 <td data-label={t("conclusion_payment.th.add")}>
                   <SmGreenButton>

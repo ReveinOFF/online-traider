@@ -48,13 +48,14 @@
 .img_preview {
   cursor: pointer;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 0.9fr);
+  max-width: 396px;
   justify-content: center;
   margin-top: 15px;
   gap: 10px;
 
   @include phone-only {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 0.9fr);
   }
 
   div {

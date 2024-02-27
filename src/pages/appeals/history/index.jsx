@@ -20,6 +20,7 @@ const HistoryAppeals = () => {
   const [files, setFiles] = useState([]);
   const [filesPreview, setFilesPreview] = useState([]);
   const ref = useRef();
+  const refMsg = useRef();
   const [close, setClose] = useState(false);
   const [isClosed, setIsClosed] = useState(false);
   const { setError, setMessage, setSuccessMessage, setSuccess } =
@@ -73,7 +74,7 @@ const HistoryAppeals = () => {
     bodyFormData.append("ticket_id", searchParams.get("id"));
     bodyFormData.append("text", text);
 
-    if (files.length > 0) {
+    if (files?.length > 0) {
       var bodyFormData2 = new FormData();
       bodyFormData2.append("key", key);
       bodyFormData2.append("rand_param", rand_param);
@@ -145,6 +146,7 @@ const HistoryAppeals = () => {
     setSuccessMessage(t("app_mess.succ"));
     getRequests();
     setText("");
+    refMsg.current.scrollTop = 0;
   };
 
   const changeFiles = (e) => {
@@ -209,7 +211,7 @@ const HistoryAppeals = () => {
             </div>
             <div>{t("app_mess.depart")}</div>
           </div>
-          <div className={styles.body_apples}>
+          <div className={styles.body_apples} ref={refMsg}>
             {Object.values(messages)
               ?.filter(
                 (value) =>
@@ -240,7 +242,7 @@ const HistoryAppeals = () => {
                   <div className={styles.message}>{item?.text}</div>
                   <div className={styles.files}>
                     {item?.files?.map((file) => (
-                      <div>
+                      <div key={file.file_id}>
                         <img
                           src={`https://cabinet.itcyclonelp.com/api/v_2/page/GetUpload?key=${
                             value.key
@@ -301,6 +303,7 @@ const HistoryAppeals = () => {
                 type="file"
                 style={{ display: "none" }}
                 ref={ref}
+                accept=".jpg, .jpeg, .png"
                 multiple
                 onChange={changeFiles}
               />

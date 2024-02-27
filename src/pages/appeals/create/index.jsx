@@ -105,6 +105,7 @@ const CreateAppeals = () => {
 
   const deleteFile = (idx) => {
     setFilesPreview(filesPreview.filter((_, index) => index !== idx));
+    setFiles(files.filter((_, index) => index !== idx));
   };
 
   return (
@@ -137,7 +138,7 @@ const CreateAppeals = () => {
           type="file"
           ref={ref}
           multiple
-          accept=".jpg, .jpeg, .gif, .png, .pdf"
+          accept=".jpg, .jpeg, .png"
           style={{ display: "none" }}
           onChange={changeFiles}
         />

@@ -82,6 +82,10 @@
 
 .history_appeals {
   padding: 0 30px;
+  padding-bottom: 30px;
+  display: grid;
+  grid-template-rows: 1fr auto auto;
+  height: 90%;
 
   .input {
     textarea {
@@ -102,6 +106,7 @@
 
   button {
     padding: 16px 50px;
+    margin-bottom: 0;
 
     @include phone-only {
       width: 100%;
@@ -139,6 +144,7 @@
     border-radius: 0px 0px 5px 5px;
     max-height: 295px;
     overflow: auto;
+    scroll-behavior: smooth;
 
     & > div {
       padding: 20px 30px;
@@ -197,6 +203,7 @@
         letter-spacing: 0em;
         max-width: 800px;
         width: 100%;
+        margin-top: 10px;
 
         @include tablet-landscape-down {
           max-width: 500px;
@@ -224,7 +231,7 @@
 .closed {
   position: relative;
   z-index: 0;
-  margin-bottom: 30px;
+  margin-top: auto;
 
   div {
     color: #ff4b55;

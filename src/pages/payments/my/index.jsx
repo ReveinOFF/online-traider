@@ -8,6 +8,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ErrorContext } from "../../../components/error-modal";
 import convertMoney from "../../../utils/convertMoney";
+import CheckModal from "../../../components/check";
 
 const MyPayments = () => {
   const [payment, setPayment] = useState([]);
@@ -19,6 +20,8 @@ const MyPayments = () => {
   const refDateR = useRef();
   const { setError, setMessage } = useContext(ErrorContext);
   const [loading, setLoading] = useState(true);
+  const [showModal, setShowModal] = useState(false);
+  const [showById, setShowById] = useState(null);
 
   useEffect(() => {
     document.title = t("my_payment.h1");
@@ -67,6 +70,15 @@ const MyPayments = () => {
 
   return (
     <>
+      {showModal && (
+        <CheckModal
+          id={showById}
+          onClick={() => {
+            setShowModal(false);
+            setShowById(null);
+          }}
+        />
+      )}
       <h1>{t("my_payment.h1")}</h1>
       <div className={styles.my_payments}>
         <div>
@@ -108,7 +120,13 @@ const MyPayments = () => {
             </thead>
             <tbody>
               {filteredData?.map((item) => (
-                <tr key={item.id}>
+                <tr
+                  key={item.id}
+                  onClick={() => {
+                    setShowModal(true);
+                    setShowById(item.id);
+                  }}
+                >
                   <td data-label={t("my_payment.th.num")}>
                     <div>{item.account_id}</div>
                   </td>

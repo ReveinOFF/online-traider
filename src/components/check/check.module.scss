@@ -1,0 +1,78 @@
+@import "../../styles/responsive.scss";
+
+.modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #2f3241df;
+  z-index: 10;
+
+  .check {
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 0 5px 0 rgba(92, 92, 92, 0.71);
+    gap: 20px;
+    background: #343846;
+    height: 60%;
+    border-radius: 5px;
+    width: 50%;
+    padding: 50px;
+
+    @include tablet-portrait-down {
+      width: 70%;
+    }
+
+    @include phone-only {
+      width: 95%;
+    }
+
+    img {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      cursor: pointer;
+    }
+
+    @include tablet-portrait-down {
+      padding-inline: 20px;
+    }
+
+    @include phone-only {
+      padding-inline: 10px;
+    }
+
+    & > div {
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .check_info {
+      display: flex;
+      justify-content: space-between;
+      background: #3f4254;
+      padding: 16px 20px;
+      border-radius: 5px;
+
+      & > div {
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 19px;
+        letter-spacing: 0em;
+
+        &:first-child {
+          color: #8a8d9d;
+        }
+
+        &:last-child {
+          color: #ffffff;
+        }
+      }
+    }
+  }
+}

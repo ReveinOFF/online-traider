@@ -12,6 +12,10 @@
     padding-inline: 10px;
   }
 
+  tbody > tr {
+    cursor: pointer;
+  }
+
   & > div {
     &:first-child {
       margin-bottom: 30px;

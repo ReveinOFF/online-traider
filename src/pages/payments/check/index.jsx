@@ -1,4 +1,4 @@
-import style from "./check.module.scss";
+import styles from "./check.module.scss";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import DataCreate from "../../../utils/data-create";
@@ -42,7 +42,7 @@ const Check = () => {
 
   return (
     <>
-      <div className={`mt-3 item-center ${style.check}`}>
+      <div className={`mt-3 item-center ${styles.check}`}>
         <div className="check_info mb-1">
           <div>{t("check.div1")}</div>
           <div>{data?.id}</div>

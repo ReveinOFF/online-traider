@@ -10,6 +10,7 @@ const DocumentsAccount = () => {
   const [data, setData] = useState();
   const { i18n, t } = useTranslation();
   const { setError, setMessage } = useContext(ErrorContext);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     document.title = t("document.h1");
@@ -33,6 +34,7 @@ const DocumentsAccount = () => {
           setError(true);
           setMessage(t("profile.error"));
         }
+        setLoading(false);
       });
   }, []);
 
@@ -68,7 +70,7 @@ const DocumentsAccount = () => {
           {!data && (
             <tfoot>
               <tr>
-                <td colSpan={6}>{t("tfoot")}</td>
+                <td colSpan={1}>{loading ? t("load") : t("tfoot")}</td>
               </tr>
             </tfoot>
           )}

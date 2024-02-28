@@ -12,6 +12,7 @@ const TransactionsAccount = () => {
   const [dataAcc, setDataAcc] = useState([]);
   const [selectAcc, setSelectAcc] = useState();
   const { t, i18n } = useTranslation();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     document.title = t("deposit.h1");
@@ -53,6 +54,7 @@ const TransactionsAccount = () => {
         if (e.data.result === "success") {
           setData(Object.values(e.data.values));
         }
+        setLoading(false);
       });
   }, []);
 
@@ -103,7 +105,7 @@ const TransactionsAccount = () => {
             !data.some((item) => item.SERVER_ACCOUNT === selectAcc)) && (
             <tfoot>
               <tr>
-                <td colSpan={8}>{t("tfoot")}</td>
+                <td colSpan={3}>{loading ? t("load") : t("tfoot")}</td>
               </tr>
             </tfoot>
           )}

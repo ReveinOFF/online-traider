@@ -18,6 +18,7 @@ const MyPayments = () => {
   const refDateL = useRef();
   const refDateR = useRef();
   const { setError, setMessage } = useContext(ErrorContext);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     document.title = t("my_payment.h1");
@@ -45,6 +46,7 @@ const MyPayments = () => {
           setError(true);
           setMessage(t("profile.error"));
         }
+        setLoading(false);
       });
   }, []);
 
@@ -141,7 +143,7 @@ const MyPayments = () => {
             {filteredData.length === 0 && (
               <tfoot>
                 <tr>
-                  <td colSpan={10}>{t("tfoot")}</td>
+                  <td colSpan={8}>{loading ? t("load") : t("tfoot")}</td>
                 </tr>
               </tfoot>
             )}

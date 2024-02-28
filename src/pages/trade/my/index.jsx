@@ -10,6 +10,7 @@ import { useTranslation } from "react-i18next";
 const MyAccount = () => {
   const [data, setData] = useState([]);
   const { t, i18n } = useTranslation();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     document.title = t("my_trade.h1");
@@ -32,6 +33,7 @@ const MyAccount = () => {
         if (e.data.result === "success") {
           setData(Object.values(e.data.values));
         }
+        setLoading(false);
       });
   }, []);
 
@@ -77,7 +79,7 @@ const MyAccount = () => {
           {data.length === 0 && (
             <tfoot>
               <tr>
-                <td colSpan={8}>{t("tfoot")}</td>
+                <td colSpan={8}>{loading ? t("load") : t("tfoot")}</td>
               </tr>
             </tfoot>
           )}

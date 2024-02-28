@@ -22,6 +22,7 @@ const MainAppeals = () => {
   const navigate = useNavigate();
   const [btnDisabled, setBtnDisabled] = useState(false);
   const [btnDisabledA, setBtnDisabledA] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     document.title = t("appeals.h1");
@@ -50,6 +51,7 @@ const MainAppeals = () => {
           setError(true);
           setMessage(t("profile.error"));
         }
+        setLoading(false);
       })
       .finally(() => setBtnDisabledA(false));
   }, [showMain]);
@@ -183,7 +185,7 @@ const MainAppeals = () => {
             {filteredData.length === 0 && (
               <tfoot>
                 <tr>
-                  <td colSpan={6}>{t("tfoot")}</td>
+                  <td colSpan={6}>{loading ? t("load") : t("tfoot")}</td>
                 </tr>
               </tfoot>
             )}

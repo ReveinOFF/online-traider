@@ -12,6 +12,7 @@ const HistoryAccount = () => {
   const [dataAcc, setDataAcc] = useState([]);
   const [selectAcc, setSelectAcc] = useState();
   const { t, i18n } = useTranslation();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     document.title = t("transact.h1");
@@ -35,6 +36,7 @@ const HistoryAccount = () => {
           setDataAcc(e.data.values);
           setSelectAcc(e.data.values[0]?.server_account);
         }
+        setLoading(false);
       });
 
     axios
@@ -128,7 +130,7 @@ const HistoryAccount = () => {
             )) && (
             <tfoot>
               <tr>
-                <td colSpan={10}>{t("tfoot")}</td>
+                <td colSpan={10}>{loading ? t("load") : t("tfoot")}</td>
               </tr>
             </tfoot>
           )}

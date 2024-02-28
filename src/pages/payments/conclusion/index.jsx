@@ -1,6 +1,6 @@
 import styles from "./conclusion.module.scss";
 import { SmGreenButton } from "../../../components/buttons";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import DataCreate from "../../../utils/data-create";
 import LocalStorage from "../../../services/localStorage";
 import axios from "axios";
@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 const Conclusion = () => {
   const [data, setData] = useState();
   const { i18n, t } = useTranslation();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     document.title = t("conclusion_payment.h1");
@@ -36,6 +37,7 @@ const Conclusion = () => {
         if (e.data.result === "success") {
           setData(e.data.values);
         }
+        setLoading(false);
       });
   }, []);
 
@@ -90,7 +92,7 @@ const Conclusion = () => {
           {!data && (
             <tfoot>
               <tr>
-                <td colSpan={10}>{t("tfoot")}</td>
+                <td colSpan={5}>{loading ? t("load") : t("tfoot")}</td>
               </tr>
             </tfoot>
           )}

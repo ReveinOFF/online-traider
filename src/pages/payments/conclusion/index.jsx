@@ -12,6 +12,10 @@ const Conclusion = () => {
   const { i18n, t } = useTranslation();
 
   useEffect(() => {
+    document.title = t("conclusion_payment.h1");
+  }, []);
+
+  useEffect(() => {
     const { key, rand_param } = DataCreate();
 
     axios

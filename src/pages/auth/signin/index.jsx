@@ -7,7 +7,7 @@ import passIcon from "../../../assets/images/signin/pass.svg";
 import errorIcon from "../../../assets/images/signin/error.svg";
 import Language from "../../../components/language";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DataCreate from "../../../utils/data-create";
 import { useTranslation } from "react-i18next";
 import { useAuth } from "../../../components/isAuth";
@@ -17,6 +17,10 @@ const SignIn = () => {
   const [isError, setIsError] = useState(false);
   const { t } = useTranslation();
   const { login } = useAuth();
+
+  useEffect(() => {
+    document.title = t("signin.h1");
+  }, []);
 
   const handleSubmite = (e) => {
     e.preventDefault();

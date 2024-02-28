@@ -24,6 +24,10 @@ const MainAppeals = () => {
   const [btnDisabledA, setBtnDisabledA] = useState(false);
 
   useEffect(() => {
+    document.title = t("appeals.h1");
+  }, []);
+
+  useEffect(() => {
     setBtnDisabledA(true);
     const { key, rand_param } = DataCreate();
 

@@ -34,6 +34,10 @@ const OpenAccount = () => {
   const [searchParams] = useSearchParams();
 
   useEffect(() => {
+    document.title = t("trade_open.h1");
+  }, []);
+
+  useEffect(() => {
     setDisabled(true);
     const { key, rand_param } = DataCreate();
 

@@ -12,6 +12,10 @@ const MyAccount = () => {
   const { t, i18n } = useTranslation();
 
   useEffect(() => {
+    document.title = t("my_trade.h1");
+  }, []);
+
+  useEffect(() => {
     const { key, rand_param } = DataCreate();
 
     axios

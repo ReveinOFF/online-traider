@@ -24,6 +24,10 @@ const Transfer = () => {
   const navigate = useNavigate();
   const { setMessage, setError } = useContext(ErrorContext);
 
+  useEffect(() => {
+    document.title = t("transfer.h1");
+  }, []);
+
   const getData = async () => {
     setDisabled(true);
     const { key, rand_param } = DataCreate();

@@ -27,6 +27,10 @@ const HistoryAppeals = () => {
     useContext(ErrorContext);
   const [searchParams] = useSearchParams();
 
+  useEffect(() => {
+    document.title = t("app_mess.h1");
+  }, []);
+
   const value = useMemo(() => {
     const { key, rand_param } = DataCreate();
 

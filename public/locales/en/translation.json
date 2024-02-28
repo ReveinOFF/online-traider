@@ -285,6 +285,7 @@
     "err": "An unknown error was detected during account creation"
   },
   "check": {
+    "h1": "Сheck",
     "div1": "Request number",
     "div2": "Currency",
     "div3": "Payment amount",

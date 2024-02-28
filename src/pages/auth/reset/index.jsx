@@ -6,7 +6,7 @@ import { NmGreenButton, SmBlueButton } from "../../../components/buttons";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import DataCreate from "../../../utils/data-create";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import errorIcon from "../../../assets/images/signin/error.svg";
 import { useTranslation } from "react-i18next";
 
@@ -15,6 +15,10 @@ const ResetPass = () => {
   const [error, setError] = useState(false);
   const navigate = useNavigate();
   const { t } = useTranslation();
+
+  useEffect(() => {
+    document.title = t("forgot.h1");
+  }, []);
 
   const SendReset = (e) => {
     e.preventDefault();

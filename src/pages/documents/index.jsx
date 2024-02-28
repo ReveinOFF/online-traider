@@ -12,6 +12,10 @@ const DocumentsAccount = () => {
   const { setError, setMessage } = useContext(ErrorContext);
 
   useEffect(() => {
+    document.title = t("document.h1");
+  }, []);
+
+  useEffect(() => {
     const { key, rand_param } = DataCreate();
 
     axios

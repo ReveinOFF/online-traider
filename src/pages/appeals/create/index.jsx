@@ -3,7 +3,7 @@ import CustomTextArea from "../../../components/textarea";
 import styles from "./create.module.scss";
 import { BigButton } from "../../../components/buttons";
 import download from "../../../assets/images/appeals/download.svg";
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { ErrorContext } from "../../../components/error-modal";
 import deleteIcon from "../../../assets/images/servers/delete.svg";
 import axios from "axios";
@@ -22,6 +22,10 @@ const CreateAppeals = () => {
   const { setError, setMessage } = useContext(ErrorContext);
   const navigate = useNavigate();
   const { t } = useTranslation();
+
+  useEffect(() => {
+    document.title = t("app_create.h1");
+  }, []);
 
   const handleClick = async () => {
     setDisableBtn(true);

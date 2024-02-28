@@ -14,6 +14,10 @@ const HistoryAccount = () => {
   const { t, i18n } = useTranslation();
 
   useEffect(() => {
+    document.title = t("transact.h1");
+  }, []);
+
+  useEffect(() => {
     const { key, rand_param } = DataCreate();
 
     axios

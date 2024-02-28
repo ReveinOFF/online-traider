@@ -13,6 +13,10 @@ const Check = () => {
   const [searchParams] = useSearchParams();
 
   useEffect(() => {
+    document.title = t("check.h1");
+  }, []);
+
+  useEffect(() => {
     const { key, rand_param } = DataCreate();
 
     axios

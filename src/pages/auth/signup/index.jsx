@@ -30,6 +30,10 @@ const SignUp = () => {
   const [isCaptchaValid, setIsCaptchaValid] = useState(false);
   const [showError, setShowError] = useState(false);
 
+  useEffect(() => {
+    document.title = t("signup.h1");
+  }, []);
+
   const generateCaptchaText = () => {
     const characters =
       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";

@@ -70,8 +70,10 @@ const Transfer = () => {
           const values = e.data.values?.filter((item) =>
             Object.keys(tempData.currency)?.includes(item.code)
           );
-          setDataCurr(values);
-          setSelectedCurr(values[0].id);
+          setDataCurr(values.length > 0 ? values : e.data.values);
+          setSelectedCurr(
+            values.length > 0 ? values[0]?.id : e.data.values[0].id
+          );
         }
       });
 
@@ -141,7 +143,8 @@ const Transfer = () => {
       <div className={`item-center ${styles.block_transfer}`}>
         <div className={styles.info}>
           <div>
-            {t("transfer.i1")} {data && Object.keys(data?.currency)?.join("/")}
+            {t("transfer.i1")}{" "}
+            {(data && Object.keys(data?.currency)?.join("/")) || "-"}
           </div>
           <div>
             {t("transfer.i2")} {data?.costs[i18n.language]}
@@ -176,7 +179,10 @@ const Transfer = () => {
           <fieldset className="fs-t">
             <div>{t("transfer.select2")}</div>
             <Selector
-              selected={dataCurr?.find((item) => item.id === selectedCurr).code}
+              selected={
+                dataCurr?.find((item) => item.id === selectedCurr)?.code
+              }
+              disabled={data?.currency.length === 0}
             >
               {dataCurr?.map((item) => (
                 <div key={item.id} onClick={() => setSelectedCurr(item.id)}>

@@ -103,6 +103,7 @@ const OpenAccount = () => {
               data?.find((item) => item.group_on_server === selected)
                 ?.group_name
             }
+            disabled={data.length === 0 || data.length === 1}
           >
             {data
               ?.filter((item) => item.group_on_server !== selected)

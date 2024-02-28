@@ -4,7 +4,7 @@ import styles from "./my.module.scss";
 import axios from "axios";
 import DataCreate from "../../../utils/data-create";
 import LocalStorage from "../../../services/localStorage";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ErrorContext } from "../../../components/error-modal";
 import convertMoney from "../../../utils/convertMoney";
@@ -15,6 +15,8 @@ const MyPayments = () => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const { i18n, t } = useTranslation();
+  const refDateL = useRef();
+  const refDateR = useRef();
   const { setError, setMessage } = useContext(ErrorContext);
 
   useEffect(() => {
@@ -66,14 +68,18 @@ const MyPayments = () => {
             <div>{t("my_payment.start")}</div>
             <CusotmInput
               type="date"
+              ref={refDateL}
               onChange={(e) => setStartDate(e.target.value)}
+              onClick={() => refDateL.current.showPicker()}
             />
           </fieldset>
           <fieldset className="fs-t">
             <div>{t("my_payment.end")}</div>
             <CusotmInput
               type="date"
+              ref={refDateR}
               onChange={(e) => setEndDate(e.target.value)}
+              onClick={() => refDateR.current.showPicker()}
             />
           </fieldset>
           <SmBlueButton className={styles.btn} onClick={handleClick}>
@@ -96,7 +102,7 @@ const MyPayments = () => {
             </thead>
             <tbody>
               {filteredData?.map((item) => (
-                <tr key={item.account_id}>
+                <tr key={item.id}>
                   <td data-label={t("my_payment.th.num")}>
                     <div>{item.account_id}</div>
                   </td>

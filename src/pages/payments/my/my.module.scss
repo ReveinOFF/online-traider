@@ -2,6 +2,7 @@
 
 .my_payments {
   padding: 0 30px;
+  padding-bottom: 30px;
 
   @include phone-only {
     padding-inline: 20px;

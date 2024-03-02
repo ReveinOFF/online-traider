@@ -1,11 +1,12 @@
 @import "../../../styles/responsive.scss";
 
 .output {
+  margin-bottom: 30px;
   table {
     tbody {
       tr {
         td {
-          height: 65px;
+          height: 90px;
 
           img {
             margin-right: 20px;

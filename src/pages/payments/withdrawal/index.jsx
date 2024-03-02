@@ -2,6 +2,7 @@ import {
   useCallback,
   useContext,
   useEffect,
+  useMemo,
   useReducer,
   useState,
 } from "react";
@@ -41,6 +42,8 @@ const reducer = (state, action) => {
       return { ...state, adrsc: action.adrsc };
     case "numc":
       return { ...state, numc: action.numc };
+    case "iban":
+      return { ...state, iban: action.iban };
     default:
       return state;
   }
@@ -65,11 +68,14 @@ const Withdrawal = () => {
   const [dataAcc, setDataAcc] = useState();
   const [dataCurr, setDataCurr] = useState();
   const [disabled, setDisabled] = useState(false);
+  const [exchanges, setExchanges] = useState();
   const [searchParams] = useSearchParams();
   const [selectedCurr, setSelectedCurr] = useState("USD");
   const [selectedCard, setSelectedCard] = useState("Visa");
   const [selectedAcc, setSelectedAcc] = useState();
+  const [addressM, setAddressM] = useState();
   const [money, setMoney] = useState();
+  const [money2, setMoney2] = useState();
   const navigate = useNavigate();
   const { setMessage, setError } = useContext(ErrorContext);
   const [store, dispatch] = useReducer(reducer, {
@@ -82,6 +88,7 @@ const Withdrawal = () => {
     adrsb: "",
     swiftb: "",
     bnkc: "",
+    iban: "",
     adrsc: "",
     numc: "",
   });
@@ -99,6 +106,26 @@ const Withdrawal = () => {
     setDisabled(true);
     const { key, rand_param } = DataCreate();
     var tempData = null;
+
+    await axios
+      .get(
+        "https://cabinet.itcyclonelp.com/api/v_2/settings/GetExchangeRates",
+        {
+          params: {
+            key,
+            rand_param,
+            auth_token: LocalStorage.get("auth_token"),
+            user_id: LocalStorage.get("user_id"),
+            languages: i18n.language,
+            format: 2,
+          },
+        }
+      )
+      .then((e) => {
+        if (e.data.result === "success") {
+          setExchanges(Object.entries(e.data.values));
+        }
+      });
 
     await axios
       .get(
@@ -189,7 +216,7 @@ const Withdrawal = () => {
         bodyFormData.append("claim[bank_name]", store.name);
         bodyFormData.append("claim[card_number]", store.num);
         bodyFormData.append("claim[payee_fio]", store.fio);
-        // bodyFormData.append("claim[iban]", store.num);
+        bodyFormData.append("claim[iban]", store.iban);
         bodyFormData.append("claim[payee_living_site]", store.cntr);
         bodyFormData.append("claim[payee_address]", store.adrs);
         bodyFormData.append("claim[swift]", store.swift);
@@ -206,6 +233,12 @@ const Withdrawal = () => {
         bodyFormData.append("claim[card_num]", store2.num2);
         bodyFormData.append("claim[fio]", store2.fio2);
         bodyFormData.append("claim[expiration_date]", store2.tim2);
+      case "crypto":
+        bodyFormData.append(
+          "claim[pay_method]",
+          selectedCard.toLocaleLowerCase()
+        );
+        bodyFormData.append("claim[wallet]", addressM);
     }
 
     axios
@@ -230,6 +263,18 @@ const Withdrawal = () => {
     []
   );
 
+  const curse = useMemo(() => {
+    const data = exchanges?.find(
+      (item) =>
+        item[0] ===
+        `${dataAcc?.find((item) => item.account_id === selectedAcc)?.curr}${
+          dataCurr?.find((item) => item.id === selectedCurr)?.code
+        }`.toLocaleUpperCase()
+    );
+
+    return data ? data[1].bank : null;
+  }, [exchanges, dataAcc, dataCurr, selectedAcc, selectedCurr]);
+
   return (
     <>
       <h1>{data?.caption[i18n.language]}</h1>
@@ -240,14 +285,14 @@ const Withdrawal = () => {
             {(data && Object.keys(data?.currency)?.join("/")) || "-"}
           </div>
           <div>
-            {t("transfer.i2")} {data?.costs[i18n.language]}
+            {t("transfer.i2")} {data?.costs[i18n.language] || "0%"}
           </div>
           <div>
             {t("transfer.i3")} {data?.caption[i18n.language]}
           </div>
         </div>
         <div className={styles.s_transfer}>
-          <fieldset className="fs-t">
+          <fieldset className="fs-t mb-2">
             <div>{t("transfer.select1")}</div>
             <Selector
               selected={
@@ -275,7 +320,10 @@ const Withdrawal = () => {
               selected={
                 dataCurr?.find((item) => item.id === selectedCurr)?.code
               }
-              disabled={data?.currency.length === 0}
+              disabled={
+                Object.values(data?.currency || [])?.length === 0 ||
+                Object.values(data?.currency || [])?.length === 1
+              }
             >
               {dataCurr?.map((item) => (
                 <div key={item.id} onClick={() => setSelectedCurr(item.id)}>
@@ -284,14 +332,20 @@ const Withdrawal = () => {
               ))}
             </Selector>
           </fieldset>
-          <fieldset className={`flex-center ${styles.fs_lr}`}>
+          <fieldset className={`flex-center mb-3 ${styles.fs_lr}`}>
             <div>{t("withdrawal.fs2")}</div>
             <CustomInput
               type="number"
-              onChange={(e) => setMoney(e.target.value)}
+              value={money}
+              onChange={(e) => {
+                setMoney(e.target.value);
+
+                if (data?.name === "crypto")
+                  setMoney2((e.target.value / curse).toFixed(4));
+              }}
             />
             <div>
-              {dataCurr?.find((item) => item.id === selectedCurr)?.code}
+              {dataAcc?.find((item) => item.account_id === selectedAcc).curr}
             </div>
           </fieldset>
           {data?.name === "bank" && (
@@ -397,6 +451,16 @@ const Withdrawal = () => {
                 />
               </fieldset>
               <fieldset className={`fs-t ${styles.f}`}>
+                <div>Iban</div>
+                <CustomInput
+                  type="text"
+                  value={store.iban}
+                  onChange={(e) =>
+                    dispatch({ type: "iban", iban: e.target.value })
+                  }
+                />
+              </fieldset>
+              <fieldset className={`fs-t ${styles.f}`}>
                 <div>{t("withdrawal.fs13")}</div>
                 <CustomInput
                   type="text"
@@ -454,12 +518,48 @@ const Withdrawal = () => {
               </fieldset>
             </>
           )}
-          {data?.name === "crypto" && <></>}
+          {data?.name === "crypto" && (
+            <>
+              <fieldset
+                className={`flex-center ${styles.fs_lr}`}
+                style={{ marginInline: "auto" }}
+              >
+                <div>{t("withdrawal.fs2_2")}</div>
+                <CustomInput
+                  type="number"
+                  value={money2}
+                  onChange={(e) => {
+                    setMoney2(e.target.value);
+
+                    if (data?.name === "crypto")
+                      setMoney((e.target.value * curse).toFixed(4));
+                  }}
+                />
+                <div>
+                  {dataCurr?.find((item) => item.id === selectedCurr)?.code}
+                </div>
+              </fieldset>
+              <fieldset
+                className={`fs-t ${styles.f}`}
+                style={{ marginTop: 20 }}
+              >
+                <div>{t("withdrawal.adrs")}</div>
+                <CustomInput
+                  type="text"
+                  value={addressM}
+                  onChange={(e) => setAddressM(e.target.value)}
+                />
+              </fieldset>
+              <p style={{ textAlign: "start", marginTop: 30 }}>
+                {t("withdrawal.curs")} {curse}
+              </p>
+            </>
+          )}
         </div>
         <SmGreenButton
           onClick={handleClick}
           disabled={disabled || !money || !selectedAcc || !selectedCurr}
-          style={{ marginBottom: 30 }}
+          style={{ marginBottom: 30, marginTop: 40 }}
         >
           {t("withdrawal.btn")}
         </SmGreenButton>

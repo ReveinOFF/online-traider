@@ -62,10 +62,10 @@ const Output = () => {
                   <img
                     src={`https://cabinet.itcyclonelp.com${item.image}`}
                     alt="bank"
-                    width={30}
-                    height={30}
+                    width={70}
+                    height={70}
                   />
-                  <div>{item.name}</div>
+                  <div>{item.caption[i18n.language]}</div>
                 </td>
                 <td data-label={t("output.th2")}>
                   <div>{Object.keys(item.currency)?.join("/")}</div>

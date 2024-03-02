@@ -306,8 +306,11 @@
   "withdrawal": {
     "h1": "Withdrawal of funds",
     "fs1": "Bank account currency",
-    "fs2": "Output amount",
+    "fs2": "Withdrawal amount",
+    "fs2_2": "Amount to be credited",
     "fs3": "Full name of the bank",
+    "adrs": "Wallet address",
+    "curs": "Current conversion rate:",
     "fs4": "Card number (if available)",
     "fs5": "Full name of the recipient",
     "fs6": "Country and city of the recipient",

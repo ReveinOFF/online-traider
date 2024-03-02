@@ -1,0 +1,117 @@
+@import "../../../styles/responsive.scss";
+
+.output {
+  table {
+    tbody {
+      tr {
+        td {
+          height: 65px;
+
+          img {
+            margin-right: 20px;
+            object-fit: contain;
+          }
+
+          button {
+            background: #3f4352;
+            height: 100%;
+
+            a {
+              padding: 8px 16px;
+              color: #ffffff;
+            }
+          }
+        }
+
+        td:first-child {
+          justify-content: flex-start;
+          padding-left: 30px;
+
+          @include tablet-landscape-down {
+            display: flex;
+            padding-left: 0;
+
+            img {
+              margin-left: auto;
+            }
+          }
+
+          @include phone-only {
+            justify-content: space-between;
+            align-items: center;
+
+            img {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.adaptive {
+  margin-inline: 20px;
+
+  table {
+    @include tablet-landscape-down {
+      thead {
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+      }
+
+      tbody {
+        background-color: transparent;
+
+        tr {
+          display: block;
+          margin-bottom: 20px;
+          border: solid #ddd;
+          border-width: 1px 1px 3px 1px;
+          padding: 10px 20px;
+
+          &::after {
+            background: transparent;
+          }
+
+          button {
+            margin-right: 0;
+            padding-inline: 0;
+          }
+
+          td {
+            display: flex;
+            font-size: 0.8em;
+            justify-content: space-between;
+            align-items: center;
+
+            &:not(:last-child) {
+              border-bottom: 1px solid #ddd;
+            }
+
+            div {
+              @include phone-only {
+                max-width: 80px;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+              }
+            }
+
+            &::before {
+              content: attr(data-label);
+              float: left;
+              text-align: left;
+              font-weight: bold;
+              text-transform: uppercase;
+            }
+          }
+        }
+      }
+    }
+  }
+}

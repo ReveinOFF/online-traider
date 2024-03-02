@@ -132,29 +132,6 @@
     "success": "Data successfully changed",
     "btn": "REDACTING"
   },
-  "header_admin": {
-    "setting": "SETTINGS",
-    "doc": "Papers",
-    "office": "Personal cabinet",
-    "payment": "Payment systems",
-    "servers": "Servers",
-    "acc": "Types of accounts",
-    "lang": "Languages",
-    "method": "Payment methods",
-    "service": "SERVICE",
-    "email": "Email Newsletter",
-    "course": "Exchange rates",
-    "templates": "Letter templates",
-    "shares": "Stocks",
-    "orders": "New applications",
-    "manage": "Account Management",
-    "users": "User management",
-    "payment_s": "Deposit/withdrawal of funds",
-    "report": "Report on payment systems",
-    "appeals": "ADVERTISEMENT",
-    "profile": "My profile",
-    "logout": "Output"
-  },
   "header": {
     "profile": "My profile",
     "logout": "Output",
@@ -168,7 +145,8 @@
     "concl": "Funds Entry",
     "company": "COMPANY",
     "doc": "Documents",
-    "appeals": "APPLICATIONS"
+    "appeals": "APPLICATIONS",
+    "output": "Withdrawal of funds"
   },
   "my_payment": {
     "h1": "My requests",
@@ -315,5 +293,35 @@
     "th7": "Profit",
     "th8": "Actions",
     "btn": "FILL IN THE ACCOUNT"
+  },
+  "output": {
+    "h1": "Withdrawal of funds",
+    "th1": "Output method",
+    "th2": "Currency",
+    "th3": "Commission",
+    "th4": "Transfer deadline",
+    "th5": "Withdrawal of funds",
+    "btn": "Withdraw"
+  },
+  "withdrawal": {
+    "h1": "Withdrawal of funds",
+    "fs1": "Bank account currency",
+    "fs2": "Output amount",
+    "fs3": "Full name of the bank",
+    "fs4": "Card number (if available)",
+    "fs5": "Full name of the recipient",
+    "fs6": "Country and city of the recipient",
+    "fs7": "Recipient's address",
+    "fs8": "SWIFT",
+    "fs9": "Address of the beneficiary bank",
+    "fs10": "SWIFT of the correspondent bank",
+    "fs11": "Correspondent bank",
+    "fs12": "Address of the correspondent bank",
+    "fs13": "Account number of the beneficiary bank with the correspondent bank",
+    "f2s1": "Card type",
+    "f2s2": "Card number",
+    "f2s3": "Name (as on the map)",
+    "f2s4": "Validity period (MMYG format)",
+    "btn": "Send"
   }
 }

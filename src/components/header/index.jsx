@@ -191,6 +191,9 @@ const Header = () => {
               >
                 {t("header.concl")}
               </Link>
+              <Link to="/payment/output" onClick={() => setShowPayment(false)}>
+                {t("header.output")}
+              </Link>
             </div>
           </li>
           <li
@@ -384,6 +387,15 @@ const Header = () => {
                   }}
                 >
                   {t("header.concl")}
+                </Link>
+                <Link
+                  to="/payment/output"
+                  onClick={() => {
+                    setShowPayment(false);
+                    setShowBurger(false);
+                  }}
+                >
+                  {t("header.output")}
                 </Link>
               </div>
             </li>

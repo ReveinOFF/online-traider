@@ -51,11 +51,12 @@ const SignIn = () => {
       <div className="block">
         <Language />
         <h1>{t("signin.h1")}</h1>
-        <form onSubmit={handleSubmite}>
+        <form onSubmit={handleSubmite} noValidate>
           <fieldset className={styles.margin}>
             <img src={profileIcon} alt="email" width={20} height={20} />
             <CustomInput
               type="email"
+              formNoValidate
               name="user_email"
               placeholder={t("signin.email")}
               error={isError}

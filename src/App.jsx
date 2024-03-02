@@ -17,6 +17,8 @@ import MainAppeals from "./pages/appeals/main";
 import CreateAppeals from "./pages/appeals/create";
 import HistoryAppeals from "./pages/appeals/history";
 import { useAuth } from "./components/isAuth";
+import Output from "./pages/payments/output";
+import Withdrawal from "./pages/payments/withdrawal";
 
 const App = () => {
   const { isAuth } = useAuth();
@@ -48,6 +50,8 @@ const App = () => {
 
         <Route path="payment/my" element={<MyPayments />} />
         <Route path="payment/conclusion" element={<Conclusion />} />
+        <Route path="payment/output" element={<Output />} />
+        <Route path="payment/withdrawal" element={<Withdrawal />} />
         <Route path="payment/transfer" element={<Transfer />} />
         <Route path="payment/check" element={<Check />} />
 

@@ -1,0 +1,99 @@
+@import "../../../styles/responsive.scss";
+
+.block_withdrawal {
+  flex-direction: column;
+  position: relative;
+  z-index: 0;
+
+  @include tablet-portrait-down {
+    padding-inline: 10px;
+  }
+
+  .info {
+    width: 100%;
+    max-width: 460px;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 23px;
+    letter-spacing: 0em;
+    color: #8a8d9d;
+    background: #353847;
+    padding: 15px 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+
+  .s_transfer {
+    width: 100%;
+    max-width: 420px;
+
+    fieldset {
+      margin-bottom: 20px;
+
+      &:where(.f) {
+        input {
+          width: 100%;
+        }
+      }
+
+      &:nth-child(3) {
+        margin-bottom: 40px;
+      }
+
+      & > div:last-of-type {
+        width: 100%;
+      }
+    }
+  }
+
+  button {
+    background: #2f3241;
+    padding: 19px 95px;
+
+    @include phone-only {
+      padding-inline: 0;
+      width: 100%;
+    }
+  }
+}
+
+.fs_lr {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+
+  @include phone-only {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr);
+  }
+
+  div {
+    color: #6b6e7b;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+    letter-spacing: 0em;
+
+    &:first-child {
+      @include phone-only {
+        grid-row: 1;
+      }
+    }
+
+    &:last-child {
+      @include phone-only {
+        grid-row: 2;
+        margin-left: 5px;
+      }
+    }
+  }
+
+  input {
+    margin: 0 20px;
+
+    @include phone-only {
+      margin-inline: 0;
+      grid-row: 2;
+    }
+  }
+}

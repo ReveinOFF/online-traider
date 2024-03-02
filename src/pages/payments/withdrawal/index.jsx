@@ -350,7 +350,10 @@ const Withdrawal = () => {
           </fieldset>
           {data?.name === "bank" && (
             <>
-              <fieldset className={`fs-t ${styles.f}`}>
+              <fieldset
+                className={`fs-t ${styles.f}`}
+                style={{ marginTop: 20 }}
+              >
                 <div>{t("withdrawal.fs3")}</div>
                 <CustomInput
                   type="text"
@@ -360,7 +363,10 @@ const Withdrawal = () => {
                   }
                 />
               </fieldset>
-              <fieldset className={`fs-t ${styles.f}`}>
+              <fieldset
+                className={`fs-t ${styles.f}`}
+                style={{ marginTop: 20 }}
+              >
                 <div>{t("withdrawal.fs4")}</div>
                 <CustomInput
                   type="text"
@@ -370,7 +376,10 @@ const Withdrawal = () => {
                   }
                 />
               </fieldset>
-              <fieldset className={`fs-t ${styles.f}`}>
+              <fieldset
+                className={`fs-t ${styles.f}`}
+                style={{ marginTop: 20 }}
+              >
                 <div>{t("withdrawal.fs5")}</div>
                 <CustomInput
                   type="text"
@@ -380,7 +389,10 @@ const Withdrawal = () => {
                   }
                 />
               </fieldset>
-              <fieldset className={`fs-t ${styles.f}`}>
+              <fieldset
+                className={`fs-t ${styles.f}`}
+                style={{ marginTop: 20 }}
+              >
                 <div>{t("withdrawal.fs6")}</div>
                 <CustomInput
                   type="text"
@@ -390,7 +402,10 @@ const Withdrawal = () => {
                   }
                 />
               </fieldset>
-              <fieldset className={`fs-t ${styles.f}`}>
+              <fieldset
+                className={`fs-t ${styles.f}`}
+                style={{ marginTop: 20 }}
+              >
                 <div>{t("withdrawal.fs7")}</div>
                 <CustomInput
                   type="text"
@@ -400,7 +415,10 @@ const Withdrawal = () => {
                   }
                 />
               </fieldset>
-              <fieldset className={`fs-t ${styles.f}`}>
+              <fieldset
+                className={`fs-t ${styles.f}`}
+                style={{ marginTop: 20 }}
+              >
                 <div>{t("withdrawal.fs8")}</div>
                 <CustomInput
                   type="text"
@@ -410,7 +428,10 @@ const Withdrawal = () => {
                   }
                 />
               </fieldset>
-              <fieldset className={`fs-t ${styles.f}`}>
+              <fieldset
+                className={`fs-t ${styles.f}`}
+                style={{ marginTop: 20 }}
+              >
                 <div>{t("withdrawal.fs9")}</div>
                 <CustomInput
                   type="text"
@@ -420,7 +441,10 @@ const Withdrawal = () => {
                   }
                 />
               </fieldset>
-              <fieldset className={`fs-t ${styles.f}`}>
+              <fieldset
+                className={`fs-t ${styles.f}`}
+                style={{ marginTop: 20 }}
+              >
                 <div>{t("withdrawal.fs10")}</div>
                 <CustomInput
                   type="text"
@@ -430,7 +454,10 @@ const Withdrawal = () => {
                   }
                 />
               </fieldset>
-              <fieldset className={`fs-t ${styles.f}`}>
+              <fieldset
+                className={`fs-t ${styles.f}`}
+                style={{ marginTop: 20 }}
+              >
                 <div>{t("withdrawal.fs11")}</div>
                 <CustomInput
                   type="text"
@@ -440,7 +467,10 @@ const Withdrawal = () => {
                   }
                 />
               </fieldset>
-              <fieldset className={`fs-t ${styles.f}`}>
+              <fieldset
+                className={`fs-t ${styles.f}`}
+                style={{ marginTop: 20 }}
+              >
                 <div>{t("withdrawal.fs12")}</div>
                 <CustomInput
                   type="text"
@@ -450,7 +480,10 @@ const Withdrawal = () => {
                   }
                 />
               </fieldset>
-              <fieldset className={`fs-t ${styles.f}`}>
+              <fieldset
+                className={`fs-t ${styles.f}`}
+                style={{ marginTop: 20 }}
+              >
                 <div>Iban</div>
                 <CustomInput
                   type="text"
@@ -460,7 +493,10 @@ const Withdrawal = () => {
                   }
                 />
               </fieldset>
-              <fieldset className={`fs-t ${styles.f}`}>
+              <fieldset
+                className={`fs-t ${styles.f}`}
+                style={{ marginTop: 20 }}
+              >
                 <div>{t("withdrawal.fs13")}</div>
                 <CustomInput
                   type="text"
@@ -486,7 +522,10 @@ const Withdrawal = () => {
                   )}
                 </Selector>
               </fieldset>
-              <fieldset className={`fs-t ${styles.f}`}>
+              <fieldset
+                className={`fs-t ${styles.f}`}
+                style={{ marginBottom: 20 }}
+              >
                 <div>{t("withdrawal.f2s2")}</div>
                 <CustomInput
                   type="text"
@@ -496,7 +535,10 @@ const Withdrawal = () => {
                   }
                 />
               </fieldset>
-              <fieldset className={`fs-t ${styles.f}`}>
+              <fieldset
+                className={`fs-t ${styles.f}`}
+                style={{ marginBottom: 20 }}
+              >
                 <div>{t("withdrawal.f2s3")}</div>
                 <CustomInput
                   type="text"

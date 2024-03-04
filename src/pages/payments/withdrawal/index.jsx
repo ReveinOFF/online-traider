@@ -225,6 +225,7 @@ const Withdrawal = () => {
         bodyFormData.append("claim[bank_correspondent]", store.bnkc);
         bodyFormData.append("claim[correspondent_address]", store.adrsc);
         bodyFormData.append("claim[correspondent_payee_account]", store.numc);
+        break;
       case "card":
         bodyFormData.append(
           "claim[pay_method]",
@@ -233,12 +234,14 @@ const Withdrawal = () => {
         bodyFormData.append("claim[card_num]", store2.num2);
         bodyFormData.append("claim[fio]", store2.fio2);
         bodyFormData.append("claim[expiration_date]", store2.tim2);
+        break;
       case "crypto":
         bodyFormData.append(
           "claim[pay_method]",
           selectedCard.toLocaleLowerCase()
         );
         bodyFormData.append("claim[wallet]", addressM);
+        break;
     }
 
     axios
@@ -553,9 +556,17 @@ const Withdrawal = () => {
                 <CustomInput
                   type="text"
                   value={store2.tim2}
-                  onChange={(e) =>
-                    dispatch2({ type: "tim2", tim2: e.target.value })
-                  }
+                  onChange={(e) => {
+                    let text = e.target.value.replace(/\D/g, "");
+                    if (text.length > 2) {
+                      text = text.slice(0, 2) + "/" + text.slice(2);
+                    }
+                    text.slice(0, 5);
+                    dispatch2({
+                      type: "tim2",
+                      tim2: text,
+                    });
+                  }}
                 />
               </fieldset>
             </>

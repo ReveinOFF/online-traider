@@ -324,7 +324,7 @@
     "f2s1": "Card type",
     "f2s2": "Card number",
     "f2s3": "Name (as on the map)",
-    "f2s4": "Validity period (MMYG format)",
+    "f2s4": "Validity period (MM/YY format)",
     "btn": "Send"
   }
 }

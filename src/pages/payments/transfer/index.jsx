@@ -13,6 +13,7 @@ import { ErrorContext } from "../../../components/error-modal";
 
 const Transfer = () => {
   const [data, setData] = useState();
+  const [lang, setLang] = useState();
   const [dataAcc, setDataAcc] = useState();
   const [dataCurr, setDataCurr] = useState();
   const [disabled, setDisabled] = useState(false);
@@ -32,6 +33,22 @@ const Transfer = () => {
     setDisabled(true);
     const { key, rand_param } = DataCreate();
     var tempData = null;
+
+    axios
+      .get("https://cabinet.itcyclonelp.com/api/v_2/settings/GetLanguages", {
+        params: {
+          key,
+          rand_param,
+          auth_token: LocalStorage.get("auth_token"),
+          user_id: LocalStorage.get("user_id"),
+          languages: i18n.language,
+        },
+      })
+      .then((e) => {
+        if (e.data.result === "success") {
+          setLang(e.data.values);
+        }
+      });
 
     await axios
       .get(
@@ -104,35 +121,92 @@ const Transfer = () => {
     getData();
   }, []);
 
+  const openWindowWithPost = (datas) => {
+    var form = document.createElement("form");
+    form.target = "_parent";
+    form.method = "POST";
+    form.action = data.payment_data?.handler;
+    form.style.display = "none";
+
+    for (var key in datas) {
+      var input = document.createElement("input");
+      input.type = "hidden";
+      input.name = key;
+      input.value = datas[key];
+      form.appendChild(input);
+    }
+
+    document.body.appendChild(form);
+    form.submit();
+    document.body.removeChild(form);
+  };
+
   const handleClick = () => {
     setDisabled(true);
 
-    const { key, rand_param } = DataCreate();
+    if (
+      data.payment_data?.WORK_TYPE === "auto" &&
+      (data.payment_data?.createClaim === "0" ||
+        data.payment_data?.createClaim === 0) &&
+      data.payment_data?.handler
+    ) {
+      openWindowWithPost({
+        "Pay[currency_id]": dataCurr
+          .find((item) => item.id === selectedCurr)
+          ?.code.toLocaleLowerCase(),
+        "Pay[account_id]": selectedAcc,
+        "Pay[value]": money,
+        "Pay[user_id]": parseInt(LocalStorage.get("user_id")),
+        "Pay[server_account]": dataAcc.find(
+          (item) => item.account_id === selectedAcc
+        )?.server_account,
+        "Pay[language_id]": parseInt(
+          lang.find((item) => item.code === i18n.language)?.id
+        ),
+        "Pay[extra_data]": JSON.stringify({
+          platform: "trDeposit",
+          referrer: "/accountwithdrawal",
+        }),
+        amountPayment: money,
+        convertValue: money,
+        flag: 0,
+        course: 1,
+        user_id: parseInt(LocalStorage.get("user_id")),
+        server_account: dataAcc.find((item) => item.account_id === selectedAcc)
+          ?.server_account,
+        merchant_id: parseInt(searchParams.get("id")),
+        language_id: parseInt(
+          lang.find((item) => item.code === i18n.language)?.id
+        ),
+      });
+    } else {
+      const { key, rand_param } = DataCreate();
 
-    var bodyFormData = new FormData();
-    bodyFormData.append("key", key);
-    bodyFormData.append("rand_param", rand_param);
-    bodyFormData.append("auth_token", LocalStorage.get("auth_token"));
-    bodyFormData.append("value", money);
-    bodyFormData.append("merchant_id", data.id);
-    bodyFormData.append("account_id", selectedAcc);
-    bodyFormData.append("currency_id", selectedCurr);
-    bodyFormData.append("status", 0);
+      var bodyFormData = new FormData();
+      bodyFormData.append("key", key);
+      bodyFormData.append("rand_param", rand_param);
+      bodyFormData.append("auth_token", LocalStorage.get("auth_token"));
+      bodyFormData.append("value", money);
+      bodyFormData.append("merchant_id", data.id);
+      bodyFormData.append("account_id", selectedAcc);
+      bodyFormData.append("currency_id", selectedCurr);
+      bodyFormData.append("status", 0);
 
-    axios
-      .post(
-        "https://cabinet.itcyclonelp.com/api/v_2/payments/CreateClaim",
-        bodyFormData
-      )
-      .then((e) => {
-        if (e.data.result === "success") {
-          navigate(`/payment/check?id=${e.data.values.claim_id}`);
-        } else {
-          setError(true);
-          setMessage(t("transfer.err_create"));
-        }
-      })
-      .finally(() => setDisabled(false));
+      axios
+        .post(
+          "https://cabinet.itcyclonelp.com/api/v_2/payments/CreateClaim",
+          bodyFormData
+        )
+        .then((e) => {
+          if (e.data.result === "success") {
+            navigate(`/payment/check?id=${e.data.values.claim_id}`);
+          } else {
+            setError(true);
+            setMessage(t("transfer.err_create"));
+          }
+        })
+        .finally(() => setDisabled(false));
+    }
   };
 
   const convertDataAcc = useCallback(
